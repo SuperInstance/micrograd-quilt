@@ -812,3 +812,89 @@ These essays are the most personal I have written. They are the pre-work — the
 4. Update `OpenConstruct` meta-repo with new catalog
 
 **kimi1, Fleet Orchestrator | Day 40 | "24 new repos, zero tests, four essays, one bridge builder. The fleet needs the bridges now."**
+
+## 🦀 Hermit Quilt Kernel P5+P6 + Fleet Canon Design — September 17, 2026
+
+**Casey's order: "go as far as you can with your team."** Three lanes, all landed.
+
+| Lane | Result | Where |
+|------|--------|-------|
+| Ops counters (P5) | PR #5 open — recordWalFailure/recordWalCommit/reconcileTick, all silent catches wired, 5 tests | hermit `quilt-kernel-p5-ops` (`53ef4d8`) |
+| Tidepool ocean (P6) | PR #6 open — full bench contract port: ocean/stall/projection/index, six entry points, migration 0015, 11 tests | hermit `quilt-kernel-p6-tidepool` (`d6a8db5`) |
+| Canon scout | Design doc `/tmp/canon-design.md` — 3-layer canon (generated graph.json / curated 20-line CANON.md stubs / WAL-as-history with replay≡graph), canon-lint with edge bidirectionality as build failure | SuperInstance org |
+
+Ground truth from scout: **~3,951 repos** in the org (not 35); CATALOG.md (621KB) already exists and is the cautionary tale — the meta-only canon approach already failed. Merge stack for Casey: #1–#4 then #5+#6 (disjoint, either order).
+
+**kimi1 | Day 42 | "Two PRs, one canon, zero idle claws."**
+
+## 🎩 Twist-Engine Playtest Wave + PERM Mode — September 16, 2026
+
+**Casey's orders: massive playtesting, refining, polishing of SuperInstance/twist-engine; set-theory modes (PERM/SETL).**
+
+- Playtested the exported toy (merged Mavis's docs/playtest PRs first) and found a **shipped bug class**: TWIST's S meter and flashes were dead — hash() and near2() used different spatial-hash cell sizes, so every bucket lookup missed. Suite-built verification (node DOM-stub harness, mulberry32-seeded) now guards it.
+- Unified the TWIST instrument: registration R = mean gaussian alignment, S = 1 − R, one definition for curve and ledger (tested). Magic windows resolve into a **commensuration comb** — 7 teeth ~0.75° apart, supercell revivals.
+- Fixed kennel containment (spring fence), parliament ring seeding on small viewports, chirp heading-at-detection + manual slider, TWIST resize + integer-key perf.
+- Built the full test/CI stack: tests/sim.test.js (87 checks), package.json, GitHub Actions (node sim + Playwright).
+- **PERM mode shipped** (fifth substrate): the twist law in S_n — Coxeter adjacent swaps, TWIST K = the k-cycle, live ledger (inversions/Cayley distance, cycles, parity, LIS, derangements + exact !n), random-swap WALK measuring the inversion CLT live (μ 7.6 vs theory 7.5).
+- SETL mode (Boolean lattice B_n, Sperner, Dedekind) designed, not yet built. AI-Writings/quilt vector fabric study still standing background.
+
+**kimi1 | Day 41 | "The shipped toy's meter was dead. Now the ledger tells the truth — and the comb sings."**
+
+## 🔥 September 17, 2026 — The Quilt Revolution Session
+
+Casey's directive: revolutionize hermit into the fleet ecosystem — quilt 5-opcode kernel as state spine, tidepool as long-term memory ocean, fleet aesthetics.
+
+### Session outputs (all pushed)
+
+| # | Repo | What | Ref |
+|---|------|------|-----|
+| 1 | **quilt-studio** | commensurate.mjs — the 11-window commensuration comb + View 3 (local-phase Penfield) + COARSE dual-basis proof + floor/view integration | `6b1ba3f` |
+| 2 | **quilt-studio** | tidepool.mjs client — verified API shape (9 tests, capped fields, token bucket), floor 133/133 | `e3c952e` |
+| 3 | **hermit** | **quilt kernel P1** — dual-write nomination vote ledger → 5-opcode spine, hash-chained `quilt_wal` + replay-verify tests (8/8; suite 346 = main+8) | PR #1 `6fc6546` |
+
+### P1 design (validated by independent repo audit)
+- Dual-write posture: existing D1 batch authoritative; kernel+WAL after, catch+log.
+- `src/quilt/reference-kernel.mjs` vendored byte-identical from quilt-studio @ 5821ebf.
+- fnv1a hash chain (integrity not security; same algo as the fleet's rate limiter).
+- Replay-from-WAL reducer diffs against live D1 rows — the P1 referee.
+- Env fails on suite (magick/dwebp/styles.generated) are pre-existing on main — verified by baseline run.
+
+### Revolution map (from scout audits)
+- **P2**: lobster encounter machine (`changes()=1` across triple NOT EXISTS cooldown = deepest transaction boundary) + tidepool v1 in helper threads.
+- **P3**: Barnacle Sapphire publisher — requires Casey's sign-off (PRD non-goal).
+- hermit durability already row-state-driven + quilt-shaped; fleet already abandoned Durable Objects for it.
+- 14 tables → ~7 kernel-migration surface. SQL quarantined in `src/data/`, DI via overrides bag.
+
+### Scout infrastructure
+5-scout relay: A (quilt-core gap, 10/14 verified), B (quilt-README+diffusion, 11/14), C (kernel kernels parity, 14/14 — match after pnpm bugfix), D (hermit audit, 8 bullets — validated P1 design), E (tidepool API recon, 6 bullets — unblocked the client).
+
+---
+
+## 🌅 September 17, 2026 — The day the floor got its instruments
+
+**Casey's standing ask: study what others are pushing; synergize where our repos can benefit.**
+
+### Org picture (verified, scouts + gh)
+SuperInstance pivoted from math foundations (hodge/sheaf/TDA dormant 3+ months) to product shipping. Center of gravity: the **Quilt polyformalism** — 5-opcode kernel (BIND/LINK/EFFECT/VIEW/TICK, +1 FORGET) in TS, Rust, C, WASM within one 2h window 09-16 night. ~30 repos active in 48h: quilt-studio (product face), twist-engine (theory face), quilt-engine-ports (Godot running), tidepool (vector memory ocean), duke-lab (GAN-with-words, golden-ratio convergence), erised (coop fiction), quilt-crabbox (CI runner), quilt-fleet/pincher/elf, AI-Writings canon (2,786+ pieces).
+
+### Built today on quilt-studio (4 commits, 254 green)
+| Commit | What |
+|--------|------|
+| `8a19d1e` | twistfield.mjs — twist-engine's exact instrument on the Penrose lattice (cloud law 0.06%, universal fingerprint, two kills) |
+| `9b3e911` | quilt-view engine — RenderModel (subscribe→scene→frame diffs) + canvas + live demo; late-attach sync; load re-syncs incl. departures; 14 tests both substrates |
+| `8023064` | sceneToMermaid — live cell graph → Mermaid, total escaping |
+| `5821ebf` | commensurate.mjs — exact BigInt rationals; floatToRat (f64 = dyadic); Stern–Brocot; π/(2φ) = 4/13 |
+
+### Durable lessons
+1. **Scout output is data, not truth.** Verify repos via gh before acting. Two failure modes seen: entity conflation ("theia" = Eclipse Theia shell in OUR docs, not a repo) and wrong-subtree verdicts (ctc quantizer = LLM weights, not lattice snapping).
+2. **Subagent completion events can fire late or multiple times.** Scout A fired 3×; Scout C fired ~25 min late after I'd declared it lost. GEN-α's timeout event fired 3× over 20 min (2026-09-18). Check at +10 and +30 min past budget before declaring loss — and treat repeat events for the same session_id as no-ops.
+3. **The floor's identity model: integer (k,s) grid space — floats never touch identity** (multigrid.test.mjs §1). Exactness upgrades belong in the INSTRUMENT layer (commensuration), not the geometry layer.
+4. twist-engine instrument constants: σ=0.24·s, grid=0.6·s, honest twist regime 0.15°–6°, artifacts beyond ~2.2° = σ/r_max.
+
+### Standing queue (ranked)
+1. tidepool POST /api/remember for floor artifacts (~20 lines; needs tidepool access check)
+2. duke-lab × twist cross-measurement (clone duke-lab, learn its 16-feature ruler output, measure R/S)
+3. quilt-engine-ports: floor→"sheet" exporter for the Godot scaffold
+4. twistfield comb re-probe (0.02° resolution killed fine magic windows in 0–1°; large-θ commensuration peaks swamped — the "16/57≈1/φ comb" from earlier notes needs a re-probe before any minAngle rewire)
+
+**kimi1 | Day 42 | "The org pivoted to shipping; I gave the floor eyes, a voice, and exact pitch."**
