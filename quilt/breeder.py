@@ -118,37 +118,38 @@ def viable(rows, analytic_grads=None):
 
 # -- minimal 3-generation demo (consumability proof, not MAP-Elites) ----------
 def demo(seed=0, generations=3, pop=6):
-    """Seeded 3-generation loop over random tape genotypes. Archive cells =
-    (depth, op-diversity) buckets; novelty objective = open an EMPTY cell.
-    Honest-null valid: a generation that opens no new viable cell says so."""
+    """SMOKE HARNESS ONLY (critic ref M3-01: no in-repo MAP-Elites). Each
+    generation draws `pop` random organisms and reports the binary viability
+    floor; the first viable organism each generation carries the
+    consumability proof: decode(genome) replays to the same exact sink.
+    The real negative-space search — archive cells, empty-cell novelty,
+    selection pressure — lives in the-tap PR #7 and breeds these tapes
+    later via its composition seam."""
     rng = random.Random(seed)
-    archive = {}   # cell -> (score, geno)
     log = [f"breeder demo: seed={seed} generations={generations} pop={pop}"]
     for gen in range(generations):
-        opened = 0
+        viable_ct = 0
+        proof = None
         for _ in range(pop):
             t = random_organism(rng)
             rows = t.rows
-            v = viable(rows)
-            cell = phenotype(rows)
-            if v == 1 and cell not in archive:
-                archive[cell] = (float(sink_value(rows)), genotype(t))
-                opened += 1
-        if opened:
-            log.append(f"  gen{gen}: +{opened} viable new cell(s); "
-                       f"archive={len(archive)}")
+            if viable(rows) == 1:
+                viable_ct += 1
+                if proof is None:
+                    geno = genotype(t)
+                    want = sink_value(rows)
+                    got = sink_value(decode(geno))
+                    proof = (want, got, want == got)
+        if proof is not None:
+            log.append(f"  gen{gen}: {viable_ct}/{pop} viable; consumability "
+                       f"sink={float(proof[0]):.6f} "
+                       f"replay={float(proof[1]):.6f} "
+                       f"identical={proof[2]}")
         else:
-            log.append(f"  gen{gen}: HONEST NULL — no viable organism opened "
-                       f"new space this generation; archive={len(archive)}")
-    cells = sorted(archive)
-    log.append("  negative-space map (depth x op-diversity):")
-    for cell in cells:
-        log.append(f"    cell {cell}: sink={archive[cell][0]:.6f} "
-                   f"geno_sha={_short(archive[cell][1])}")
-    log.append(f"  archive size: {len(archive)} cells")
+            log.append(f"  gen{gen}: HONEST NULL — {viable_ct}/{pop} viable; "
+                       f"no organism to prove consumability on")
     return "\n".join(log)
 
 
-def _short(geno, n=12):
-    import hashlib
-    return hashlib.sha256(geno.encode()).hexdigest()[:n]
+if __name__ == "__main__":
+    print(demo(seed=0))

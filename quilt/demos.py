@@ -12,7 +12,7 @@ worst relative drift of ~2e-16 (a couple of ulps) against Karpathy's pinned
 
 import argparse
 
-from . import auditor, comb as combmod, engine, genotype as gen, tape
+from . import auditor, breeder, comb as combmod, engine, genotype as gen, tape
 
 
 def karpathy_graph(exact=False):
@@ -105,12 +105,17 @@ def demo_c(seed=0, generations=3):
     print(f"genotype hash re-materialized: {h1}")
     print(f"consumability (hashes match, forward identical): "
           f"{h0 == h1 and sinks[0].data == g.data}")
-    history = gen.demo_loop(g0, target, seed=seed, generations=generations)
+    history, kept = gen.demo_loop(g0, target, seed=seed,
+                                  generations=generations)
     print(f"{'gen':>3} {'fitness':>12} {'output':>12} {'kept':>5} "
           f"{'genotype_hash':>20}")
     for row in history:
         print(f"{row['gen']:>3} {row['fitness']:>12.6f} {row['output']:>12.6f} "
               f"{str(row['kept']):>5} {row['genotype_hash']:>20}")
+    sinks_k, t_k = gen.materialize(kept)
+    floor = breeder.viable(t_k.rows)
+    print(f"\nviability floor on kept genotype (binary, exact FD check): "
+          f"{'PASS' if floor == 1 else 'FAIL'}")
     return history
 
 

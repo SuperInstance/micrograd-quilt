@@ -109,10 +109,11 @@ def demo_loop(g0, target, seed=0, generations=3, sigma=0.05):
     """Seeded 3-generation consumability harness (NOT a search engine):
     each generation materializes the genotype fresh, scores |target - out|,
     then hill-climbs one input constant. Seeded rng + reset ids make the
-    whole run reproducible."""
+    whole run reproducible. Returns (history, kept_genotype)."""
     rng = random.Random(seed)
     history = []
     g = json.loads(json.dumps(g0))          # deep copy
+    best = g
     best_fit = None
     for gen in range(generations):
         sinks, t = materialize(g)
@@ -130,4 +131,4 @@ def demo_loop(g0, target, seed=0, generations=3, sigma=0.05):
             break
         idx = rng.randrange(len(g["inputs"]))
         g["inputs"][idx]["data"] += rng.gauss(0.0, sigma)
-    return history
+    return history, best

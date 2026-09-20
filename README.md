@@ -1,5 +1,95 @@
 
-# micrograd
+# micrograd-quilt
+
+A fork of [karpathy/micrograd](https://github.com/karpathy/micrograd) that keeps
+the `micrograd/` package byte-for-byte and adds a `quilt/` layer answering
+three questions the 100 lines can't ask. The original README is untouched
+below; nothing in `micrograd/` changes behavior, so every notebook and
+test upstream still runs.
+
+**micrograd is the best 100 lines in ML education; micrograd-quilt keeps
+that transparency and asks where floats lie, how to prove a gradient, and
+what evolution does to a backprop graph.**
+
+## The three questions
+
+**1. Where does float backprop break? → the stochastic rational auditor**
+(`quilt/auditor.py`). Every forward pass also runs a full-twin graph in
+exact `fractions.Fraction` arithmetic. By default the auditor is
+*stochastic*: it samples ~N/√N of the N live nodes under a fixed seed and
+reports exact drift + a 95% confidence interval on the sampled paths —
+calibrated measurement, not a claimed equivalence with float (critic ref
+M3-01). `--exact` promotes every node (full twin) for small graphs:
+
+```bash
+python3 -m quilt.demos a --exact
+```
+
+**2. How do you prove a gradient? → the quilt tape**
+(`quilt/tape.py`). Every op appends a hash-chained row (FNV-1a, 64-bit):
+`BIND` / `LINK` / `EFFECT` / `VIEW` / `TICK`, plus `FORGET` for tape GC.
+`backward()` writes `EFFECT` rows in application order; `replay(rows)`
+re-applies them row-for-row, so replay is bit-for-bit identical to the live
+backward pass — a regression guard, not a theorem. A planted wrong `EFFECT`
+breaks the chain: `verify()` returns `(False, row_index)`. The tape is also
+the breeding genotype (question 3).
+
+**3. How does the engine evolve? → genotype encoding, brains elsewhere**
+(`quilt/genotype.py`, `quilt/breeder.py`). The genotype is the tape's
+BIND/LINK spine; `materialize(g)` rebuilds a live graph with identical
+forward values, and `genotype_hash` is namespace-independent, so any
+faithful rebuild hashes the same. The in-repo demo loop is a *smoke
+harness only* — no MAP-Elites here. The real negative-space GAN lives in
+[SuperInstance/the-tap](https://github.com/SuperInstance/the-tap) (PR #7,
+`NEGATIVE-SPACE-GAN.md` @ 2c60f314) and breeds these tapes later through
+its composition seam.
+
+**The comb** (`quilt/comb.py`) is the default view: two backward passes
+under different topo/reduction orders, edges shaded by float disagreement.
+Pure float, cheap — no exact arithmetic needed to see a wobbling tooth.
+
+## Demos
+
+```bash
+python3 -m quilt.demos a            # Karpathy's example, pinned: g=24.7041,
+                                    # a.grad=138.8338, b.grad=645.5773;
+                                    # comb intact, exact audit ≤1e-12 drift
+python3 -m quilt.demos b            # ill-conditioned graph: comb tooth at
+                                    # diff=1e32, auditor CI95 names the drift
+python3 -m quilt.demos c            # 3-generation genotype loop:
+                                    # hash-stable consumability + viability
+python3 -m quilt.breeder            # random-organism viability floor harness
+```
+
+One honest caveat (A): Karpathy's example contains `10.0/f` with `f` not a
+power of two, so `10/f` is not exactly representable — the exact audit
+legitimately measures a worst relative drift of ~2e-16 (a couple of ulps)
+on that path. That *is* zero meaningful drift, and the comb shows the same
+term as its one ulp-scale tooth.
+
+## Tests
+
+The quilt suite is pure stdlib + pytest — no torch required (the original
+`test/` keeps its torch-based reference tests untouched):
+
+```bash
+python3 -m pytest tests/ -q     # 22 tests
+```
+
+Covered: FNV vectors; hash-chain verify; planted-`EFFECT` tripwire
+(binary); `FORGET` GC keeps the suffix verifiable; replay ≡ live bitwise;
+tick-resume composes; quilt-vs-micrograd float equivalence on the shared
+op set; auditor √N sampling stats, seeded determinism, exact promotion;
+exact-vs-float agreement on dyadic graphs; comb fires on the
+ill-conditioned graph and is silent on exactly-representable ones; genotype
+round-trip (bitwise forward, namespace-independent hash); demo-loop seeded
+determinism; the Karpathy pins.
+
+Stdlib only: `fractions`, `hashlib`, `math`, `json`, `random`.
+
+---
+
+# micrograd (original README)
 
 ![awww](puppy.jpg)
 

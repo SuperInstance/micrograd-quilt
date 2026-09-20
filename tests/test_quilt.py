@@ -272,9 +272,9 @@ def test_leaves_and_sinks():
 def test_demo_loop_seeded_determinism():
     g, a, b, t, teeth = karpathy()
     g0 = gen.genotype(t.rows)
-    h1 = gen.demo_loop(g0, g.data, seed=11, generations=3)
-    h2 = gen.demo_loop(g0, g.data, seed=11, generations=3)
-    assert h1 == h2
+    h1, k1 = gen.demo_loop(g0, g.data, seed=11, generations=3)
+    h2, k2 = gen.demo_loop(g0, g.data, seed=11, generations=3)
+    assert h1 == h2 and k1 == k2
     assert len(h1) == 3
 
 
