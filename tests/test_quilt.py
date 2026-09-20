@@ -84,8 +84,12 @@ def test_replay_tick_resume_composes():
 
 
 def test_quilt_value_matches_micrograd_float_semantics():
-    """Instrumentation must not change float results (ops both engines share;
-    quilt additionally restricts pow to integer exponents -- see README)."""
+    """Instrumentation must not change float RESULTS beyond reduction order.
+    Both engines DFS over a set of parents, so accumulation order — and the
+    last ulp — is allocation-dependent in each. The quilt thesis is exactly
+    that this wobble exists and is measurable (the comb); we assert the two
+    engines agree to a few ulps, never claiming bitwise identity. (Pow is
+    additionally restricted to integer exponents in quilt -- see README.)"""
     engine.Value.reset_ids()
     t = tape.Tape()
     with tape.attach(t):
@@ -113,7 +117,14 @@ def test_quilt_value_matches_micrograd_float_semantics():
     kg = kf / 2.0
     kg += 10.0 / kf
     kg.backward()
-    assert (g.data, a.grad, b.grad) == (kg.data, ka.grad, kb.grad)
+    U = 2.220446049250313e-16          # one ulp at 1.0 (engine.U)
+
+    def close(x, y):
+        return abs(x - y) <= 8 * U * max(abs(x), abs(y), 1.0)
+
+    assert close(g.data, kg.data)
+    assert close(a.grad, ka.grad)
+    assert close(b.grad, kb.grad)
 
 
 # ---------- 3. rational auditor ----------

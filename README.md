@@ -78,8 +78,9 @@ python3 -m pytest tests/ -q     # 22 tests
 
 Covered: FNV vectors; hash-chain verify; planted-`EFFECT` tripwire
 (binary); `FORGET` GC keeps the suffix verifiable; replay ≡ live bitwise;
-tick-resume composes; quilt-vs-micrograd float equivalence on the shared
-op set; auditor √N sampling stats, seeded determinism, exact promotion;
+tick-resume composes; quilt vs micrograd agree to a few ulps on the shared
+op set (both engines' DFS topo iterates parent sets in allocation-dependent
+order — that last-ulp wobble is the comb's raison d'être, not a bug); auditor √N sampling stats, seeded determinism, exact promotion;
 exact-vs-float agreement on dyadic graphs; comb fires on the
 ill-conditioned graph and is silent on exactly-representable ones; genotype
 round-trip (bitwise forward, namespace-independent hash); demo-loop seeded
