@@ -34,11 +34,15 @@ _BAR_MAX = 40     # render cap
 def disagreements(root):
     """Two backward passes, different reduction orders. Returns
     (grads_a, grads_b, disag) keyed by node id; run under an attached tape so
-    the auditor can spot-check."""
+    the auditor can spot-check. After measuring, the graph's live grads are
+    RESTORED to pass A — pass A is the canonical, recorded pass (replay ==
+    its grads bitwise), and downstream readers should see it."""
     root.backward(order=reduction_orders()[0])
     grads_a = {v.id: v.grad for v in root.topo()}
     root.backward(order=reduction_orders()[1], zero=True)
     grads_b = {v.id: v.grad for v in root.topo()}
+    for v in root.topo():          # restore pass A as canonical state
+        v.grad = grads_a[v.id]
     disag = {}
     for i in grads_a:
         ga, gb = grads_a[i], grads_b[i]

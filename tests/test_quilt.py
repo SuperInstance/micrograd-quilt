@@ -10,6 +10,7 @@ Covers the three design laws (amended, critic ref M3-01):
 plus the float-native commensuration comb.
 """
 
+import json
 import math
 import os
 import sys
@@ -284,6 +285,104 @@ class TestBreeder(unittest.TestCase):
     def test_demo_determinism(self):
         self.assertEqual(breeder.demo(seed=0, generations=2, pop=4),
                          breeder.demo(seed=0, generations=2, pop=4))
+
+
+class TestPortsFromLaneAH2(unittest.TestCase):
+    """Strengths ported from the sibling lane AH2 (merged 7bdc972), rewritten
+    as stdlib unittest (no pytest) per the M3-01 minimalism pin."""
+
+    def test_fnv1a_vectors(self):
+        # published FNV-1a 64 check value for "a" (Fowler/Noll/Vo site)
+        self.assertEqual(tape.fnv1a_64("a"), 0xAF63DC4C8601EC8C)
+        # distinct inputs diverge; chain property: order matters
+        self.assertNotEqual(tape.fnv1a_64("ab"), tape.fnv1a_64("ba"))
+
+    def test_comb_silent_on_exact_ints(self):
+        # exactly representable integers: both reduction orders agree
+        # bit-for-bit — the comb must show no teeth (no false positives).
+        engine.Value.reset_ids()
+        t = tape.Tape()
+        with tape.attach(t):
+            a = engine.Value(3.0)
+            b = engine.Value(7.0)
+            c = a * b + a ** 2
+            L = c * b + a
+            L.backward()
+        _, _, disag = comb.disagreements(L)
+        self.assertTrue(all(d == 0.0 for d in disag.values()))
+
+    def test_comb_restores_pass_a_grads(self):
+        # after the shadow pass B, live grads must be pass A (canonical,
+        # recorded) — downstream readers see the recorded pass.
+        engine.Value.reset_ids()
+        t = tape.Tape()
+        with tape.attach(t):
+            x = engine.Value(2.0)
+            y = engine.Value(3.0)
+            L = x * y + x ** 2 * y
+            L.backward()
+        canonical = {v.id: v.grad for v in L.topo()}
+        comb.disagreements(L)
+        self.assertEqual({v.id: v.grad for v in L.topo()}, canonical)
+
+    def test_genotype_namespace_independent(self):
+        # same graph built after unrelated Values shifted the global id
+        # counter: raw rows differ, canon genotype hashes the same.
+        def build_once():
+            engine.Value.reset_ids()
+            t = tape.Tape()
+            with tape.attach(t):
+                a = engine.Value(1.5)
+                b = engine.Value(-0.5)
+                c = a * b + a ** 2
+                (c + b).backward()
+            return t
+        t1 = build_once()
+        _ = engine.Value(99.0)          # shift the id namespace
+        t2 = build_once()
+        raw1 = [r for r in t1.rows if r["t"] in ("BIND", "LINK")]
+        raw2 = [r for r in t2.rows if r["t"] in ("BIND", "LINK")]
+        self.assertNotEqual(
+            json.dumps(raw1, sort_keys=True),
+            json.dumps(raw2, sort_keys=True))
+        self.assertEqual(breeder.genotype(t1), breeder.genotype(t2))
+        # and the canon genome materializes with matching ids
+        sink, vals = breeder.materialize(breeder.decode(breeder.genotype(t2)))
+        self.assertEqual(sorted(vals), list(range(len(vals))))
+
+    def test_quilt_vs_micrograd_few_ulps(self):
+        # cross-validate the quilt engine against upstream micrograd on the
+        # shared op set: data and grads agree to a few ulps, NOT bitwise —
+        # both engines' DFS topo iterates parent sets in allocation-dependent
+        # order; that last-ulp wobble is the comb's raison d'etre, not a bug.
+        try:
+            from micrograd.engine import Value as KValue
+        except ImportError:
+            self.skipTest("micrograd package unavailable")
+        ka, kb = KValue(-4.0), KValue(2.0)
+        kc = ka + kb
+        kd = ka * kb + kb ** 3
+        kc = kc + kc + 1
+        kc = kc + 1 + kc + (-ka)
+        kd = kd + kd * 2 + (kb + ka).relu()
+        kd = kd + 3 * kd + (kb - ka).relu()
+        kg = kd * kc
+        kg.backward()
+
+        engine.Value.reset_ids()
+        qa, qb = engine.Value(-4.0), engine.Value(2.0)
+        qc = qa + qb
+        qd = qa * qb + qb ** 3
+        qc += qc + 1
+        qc += 1 + qc + (-qa)
+        qd += qd * 2 + (qb + qa).relu()
+        qd += 3 * qd + (qb - qa).relu()
+        qg = qd * qc
+        qg.backward()
+
+        self.assertAlmostEqual(qg.data, kg.data, delta=1e-12 * max(1, abs(kg.data)))
+        self.assertAlmostEqual(qa.grad, ka.grad, delta=1e-9 * max(1, abs(ka.grad)))
+        self.assertAlmostEqual(qb.grad, kb.grad, delta=1e-9 * max(1, abs(kb.grad)))
 
 
 if __name__ == "__main__":

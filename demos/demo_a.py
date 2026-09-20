@@ -14,7 +14,7 @@ Run from repo root: python3 -m demos.demo_a
 
 from quilt import auditor, comb, engine, tape
 
-SNIPPET_NOTE = "verbatim Karpathy README example (README.md L24-38)"
+SNIPPET_NOTE = ('verbatim Karpathy README example (original README, "Example usage")')
 
 
 def build():

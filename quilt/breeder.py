@@ -33,16 +33,37 @@ _OPS = ["+", "*", "tanh", "relu", "**2"]
 
 
 # -- genotype encoding --------------------------------------------------------
+def _canon_ids(rows):
+    """Renumber ids by first appearance over the BIND/LINK spine (row order
+    == construction order, so parents always precede children). Genotype
+    identity = graph structure + constants, INDEPENDENT of the accidental
+    id namespace — any faithful materialization hashes the same. This is
+    the consumability contract the composition seam relies on."""
+    remap = {}
+    out = []
+    for r in rows:
+        r = dict(r)
+        if r["id"] not in remap:
+            remap[r["id"]] = len(remap)
+        r["id"] = remap[r["id"]]
+        if r["t"] == "LINK":
+            r["p"] = [remap[i] for i in r["p"]]
+        out.append(r)
+    return out
+
+
 def genotype(tape):
     """The genome: canonical JSON of the tape's BIND/LINK rows (the forward
-    graph — everything backward needs is derivable by replay)."""
+    graph — everything backward needs is derivable by replay), ids renumbered
+    by first appearance (see _canon_ids)."""
     rows = [r for r in tape.rows if r["t"] in ("BIND", "LINK")]
-    return json.dumps(rows, sort_keys=True, separators=(",", ":"))
+    return json.dumps(_canon_ids(rows), sort_keys=True, separators=(",", ":"))
 
 
 def decode(geno):
-    """Genome → row list (BIND/LINK only). Consumability proof: replay(decode
-    (genotype(t))) rebuilds the graph's values and gradients."""
+    """Genome → row list (BIND/LINK only, canon ids). Consumability proof:
+    materialize(decode(genotype(t))) rebuilds the graph; replay reproduces
+    its values and gradients bitwise."""
     return json.loads(geno)
 
 
