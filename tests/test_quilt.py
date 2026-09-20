@@ -242,7 +242,12 @@ class TestBreeder(unittest.TestCase):
         t, v, L = build_demo_b()
         geno = breeder.genotype(t)
         rows2 = breeder.decode(geno)
-        self.assertEqual(rows2, [r for r in t.rows
+        # the genome is the spine minus WAL chain fields (hash/prev are
+        # per-instance evidence, not genome), ids renumbered by first
+        # appearance — for a fresh-tape build that is exactly the raw spine.
+        self.assertEqual(rows2, [{k: r[k] for k in ("t", "id", "data", "op",
+                                                    "p") if k in r}
+                                 for r in t.rows
                                  if r["t"] in ("BIND", "LINK")])
         sink2, vals2 = breeder.materialize(rows2)
         sink2.backward()
@@ -326,10 +331,10 @@ class TestPortsFromLaneAH2(unittest.TestCase):
         self.assertEqual({v.id: v.grad for v in L.topo()}, canonical)
 
     def test_genotype_namespace_independent(self):
-        # same graph built after unrelated Values shifted the global id
-        # counter: raw rows differ, canon genotype hashes the same.
+        # same graph built twice WITHOUT reset_ids, after unrelated Values
+        # shifted the global id counter: raw rows differ, canon genotype
+        # hashes the same. (reset-id determinism is covered separately.)
         def build_once():
-            engine.Value.reset_ids()
             t = tape.Tape()
             with tape.attach(t):
                 a = engine.Value(1.5)
@@ -337,8 +342,10 @@ class TestPortsFromLaneAH2(unittest.TestCase):
                 c = a * b + a ** 2
                 (c + b).backward()
             return t
+        engine.Value.reset_ids()
         t1 = build_once()
         _ = engine.Value(99.0)          # shift the id namespace
+        _ = engine.Value(101.0)
         t2 = build_once()
         raw1 = [r for r in t1.rows if r["t"] in ("BIND", "LINK")]
         raw2 = [r for r in t2.rows if r["t"] in ("BIND", "LINK")]

@@ -52,12 +52,26 @@ def _canon_ids(rows):
     return out
 
 
+def _spine(rows):
+    """BIND/LINK rows projected to genome form — structure + constants only.
+    The WAL's hash/prev chain fields are per-instance evidence, NOT genome:
+    they differ across materializations by construction."""
+    out = []
+    for r in rows:
+        if r["t"] == "BIND":
+            out.append({"t": "BIND", "id": r["id"], "data": r["data"]})
+        elif r["t"] == "LINK":
+            out.append({"t": "LINK", "id": r["id"], "op": r["op"],
+                        "p": list(r["p"])})
+    return out
+
+
 def genotype(tape):
-    """The genome: canonical JSON of the tape's BIND/LINK rows (the forward
+    """The genome: canonical JSON of the tape's BIND/LINK spine (the forward
     graph — everything backward needs is derivable by replay), ids renumbered
     by first appearance (see _canon_ids)."""
-    rows = [r for r in tape.rows if r["t"] in ("BIND", "LINK")]
-    return json.dumps(_canon_ids(rows), sort_keys=True, separators=(",", ":"))
+    return json.dumps(_canon_ids(_spine(tape.rows)),
+                      sort_keys=True, separators=(",", ":"))
 
 
 def decode(geno):
