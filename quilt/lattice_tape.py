@@ -71,7 +71,26 @@ def replay_lattice(rows, evaluate=True, resolution=None, max_sweeps=10_000):
     resolution/max_sweeps pass through to Lattice.evaluate — cyclic graphs
     terminate at the resolution floor, so callers replaying cycles must
     pass the SAME resolution the original evaluated under (default exact
-    zero stays correct for acyclic graphs)."""
+    zero stays correct for acyclic graphs).
+
+    Lane AK slice 4 (hop-cost historical fidelity): the replayed fuel's
+    hop_cost is derived from the ROWS, not from replay-time placement —
+    hop_cost = Σ over LINK rows of Σ_p |row.k − parent_row.k|, using the
+    k coordinates recorded when the tape was written. The slice-2 build
+    charged cyclic rows from a transient min-adjusted k the replayed cell
+    never actually occupied (measured: live cycle graph hop_cost=5,
+    replay charged 0), so a WAL replay could never re-derive the receipt
+    a live run had fused. Rows are the op record: the replayed receipt
+    counts exactly the ops that have rows. Consequence, stated not hidden:
+    a live receipt can count ops that left no row (the canonical cycle
+    pattern builds a successor cell, then drops it from the graph before
+    taping — its construction energy stays in the LIVE ledger but has no
+    row, so replay cannot and does not count it). The tape's receipt is
+    the durable, re-derivable one; the live ledger's excess is off-tape
+    construction history. Op counts (fwd_adds/fwd_muls) follow the same
+    law: one per LINK row. For acyclic graphs the row-derived hop equals
+    the engine's construction-time accounting exactly (pinned by test)."""
+    row_k = {r["id"]: r.get("k", 0) for r in rows if r["t"] in ("BIND", "LINK")}
     lat = Lattice()
     cells = {}
     deferred = []
@@ -136,11 +155,22 @@ def replay_lattice(rows, evaluate=True, resolution=None, max_sweeps=10_000):
         c.parents = ps
         if ps:
             c.k = min(c.k, max(p.k for p in ps) + 1)
-            for p in ps:
-                lat.fuel.hop_cost += abs(c.k - p.k)
+        # hop fuel intentionally NOT bumped here — slice 4 charges all
+        # LINK rows from recorded row k in one post-pass (historical
+        # fidelity; see replay_lattice docstring).
         c.k, c.s = r.get("k", c.k), r.get("s", c.s)
         lat._layer_next_s[c.k] = max(
             lat._layer_next_s.get(c.k, 0), c.s + 1)
+    # hop-cost historical fidelity (slice 4): charge every LINK row from
+    # the k coordinates RECORDED IN THE ROWS — a pure function of the tape,
+    # identical on every replay, never dependent on replay-time placement
+    # order. Overwrites the engine's construction-time bumps (equal for
+    # acyclic graphs; the only honest value for cyclic rows).
+    lat.fuel.hop_cost = sum(
+        abs(r["k"] - row_k[i])
+        for r in rows if r["t"] == "LINK"
+        for i in r["p"]
+    )
     if evaluate:
         lat.evaluate(max_sweeps=max_sweeps, resolution=resolution)
     return lat, cells
