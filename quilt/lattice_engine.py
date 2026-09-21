@@ -192,9 +192,28 @@ class Cell:
 # Fuel ledger — Q3. Per-op energy: mul/add counts × lattice-hop distance.
 # ---------------------------------------------------------------------------
 
+class ReceiptFrozenError(ValueError):
+    """Raised on any write to a frozen FuelReceipt.
+
+    A receipt that has been fused into a tape VIEW row is attestation
+    evidence; silent rewrites would desync the recorded canonical string
+    from the object callers hold. Freeze is the discipline: amend via
+    thaw() (your attestation then fails re-derivation — honest) or issue
+    a fresh receipt via Lattice.reset_fuel() / a new backward()."""
+    pass
+
+
 @dataclass
 class FuelReceipt:
-    """Deterministic energy receipt for a backward pass."""
+    """Deterministic energy receipt for a backward pass.
+
+    Lane AK slice 3 (guard): a receipt is MUTABLE while its backward pass
+    accumulates, then frozen at issuance (Lattice.backward freezes before
+    returning). Post-freeze writes raise ReceiptFrozenError. This closes
+    the slice-2 hazard where a second backward pass silently rewrote a
+    receipt a caller had already fused into a tape VIEW row. Discipline:
+    hold receipts you attest (snapshot() for a frozen copy), let re-runs
+    issue new receipts; every sink attests its own fuel."""
 
     fwd_adds: int = 0
     fwd_muls: int = 0
@@ -204,6 +223,42 @@ class FuelReceipt:
     hop_cost: int = 0
     cells_touched: int = 0
     residual: "Q16 | None" = None  # exact residual at termination (None for pure forward)
+    _frozen: bool = field(default=False, repr=False, compare=False)
+
+    # -- issuance guard (slice 3) -------------------------------------------
+    def __setattr__(self, name, value):
+        if getattr(self, "_frozen", False):
+            raise ReceiptFrozenError(
+                f"fuel receipt is frozen (attestation evidence); "
+                f"cannot set {name!r} — thaw() to amend honestly (breaks "
+                f"re-derivation) or issue a fresh receipt via reset_fuel()"
+            )
+        super().__setattr__(name, value)
+
+    @property
+    def frozen(self) -> bool:
+        return self._frozen
+
+    def freeze(self) -> "FuelReceipt":
+        """Issue: refuse all further writes. Called by backward() before
+        returning; idempotent."""
+        object.__setattr__(self, "_frozen", True)
+        return self
+
+    def thaw(self) -> "FuelReceipt":
+        """Explicit amendment. DISCIPLINE: any fuse VIEW row already
+        recorded for this receipt will fail re-derivation after a thawed
+        change — that failure is the honest signal, not a bug."""
+        object.__setattr__(self, "_frozen", False)
+        return self
+
+    def snapshot(self) -> "FuelReceipt":
+        """A private frozen copy — the deepcopy discipline for callers
+        who attest: fuse the snapshot's canonical string, keep the live
+        ledger untouched."""
+        import copy
+        c = copy.deepcopy(self)
+        return c.freeze()
 
     def canonical(self) -> str:
         return (
@@ -361,6 +416,11 @@ class Lattice:
         Cycles are legal: a cell's grad reaches equilibrium like heat."""
         if resolution is None:
             resolution = Q16(0, 1)
+        if self.fuel.frozen:
+            # second pass: issue a FRESH receipt. The held receipt from the
+            # prior pass stays frozen and valid — every sink attests its
+            # own fuel (slice-2 multi-sink fusion discipline).
+            self.fuel = FuelReceipt()
         self.evaluate(resolution=resolution)
         self.fuel.residual = None
         for c in self.cells:
@@ -397,6 +457,13 @@ class Lattice:
             self.fuel.residual = max_delta
         self.fuel.sweeps = sweeps
         self.fuel.cells_touched = sum(1 for c in self.cells if not c.grad.is_zero() or c is seed)
+        return self.fuel.freeze()
+
+    def reset_fuel(self) -> FuelReceipt:
+        """Discard the current receipt (frozen/attested or not) and open a
+        fresh mutable ledger — e.g. before building new cells after a
+        backward pass froze the old one."""
+        self.fuel = FuelReceipt()
         return self.fuel
 
     # -- Q1: where do my numbers live? -----------------------------------------
@@ -467,5 +534,6 @@ def twist(cell: Cell, K: int) -> Cell:
 
 __all__ = [
     "SCALE", "Q16", "ZERO", "ONE", "commensurate", "Cell", "FuelReceipt",
+    "ReceiptFrozenError",
     "Lattice", "twist",
 ]

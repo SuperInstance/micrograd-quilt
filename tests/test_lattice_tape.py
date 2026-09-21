@@ -8,6 +8,7 @@ tamper evidence, and exact lattice backward as the auditor's ground truth.
 import os
 import sys
 import unittest
+from copy import deepcopy
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -85,12 +86,15 @@ class TestLatticeTape(unittest.TestCase):
         rows = list(t.rows)
         ok, _ = lt.verify_fusion(rows, fuel)
         self.assertTrue(ok)
-        # tamper fuel: sweeps bumped → fusion must fail
-        fuel.sweeps += 1
-        ok, _ = lt.verify_fusion(rows, fuel)
+        # tamper fuel: sweeps bumped on a THAWED copy → fusion must fail.
+        # (slice-3 guard: the frozen receipt itself refuses the write —
+        # honest tamper simulation amends a private copy instead.)
+        fuel_bad = deepcopy(fuel)
+        fuel_bad.thaw()
+        fuel_bad.sweeps += 1
+        ok, _ = lt.verify_fusion(rows, fuel_bad)
         self.assertFalse(ok)
         # tamper tape: mutate a LINK parent list → fusion must fail
-        fuel.sweeps -= 1
         for r in rows:
             if r["t"] == "LINK":
                 r["p"] = list(reversed(r["p"]))
