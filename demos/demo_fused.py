@@ -22,7 +22,11 @@ Story, in order:
 Honest limits (per M3-01): this is a determinism/regression guard and
 energy attestation, NOT an equivalence theorem. Cyclic replay reproduces
 the fixed point AT THE RESOLUTION the original evaluated under; hop_cost
-for cyclic rows is recomputed from final placement, not historically exact.
+is charged from the k coordinates RECORDED in the rows (slice 4: a pure
+function of the tape, re-derivable on every replay). The LIVE ledger may
+differ where construction history never reached the tape (this demo's
+cycle drops its successor cell before taping: live hop 5 vs row-faithful
+3 — stated in tests/test_hopcost_fidelity.py, not papered).
 
 Run from repo root: python3 -m demos.demo_fused
 """
