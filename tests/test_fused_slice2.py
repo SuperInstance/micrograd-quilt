@@ -142,10 +142,10 @@ class TestMultiSinkFusion(unittest.TestCase):
         t = lt.tape_lattice(lat)
         fuel_y = deepcopy(lat.backward(y))
         f_y = lt.fuse_receipt(t, fuel_y, node=y.k)
-        # NOTE: backward() mutates lat.fuel IN PLACE and returns it — a
-        # second backward pass would silently rewrite the receipt fuel_y
-        # aliases. deepcopy at capture is the caller-side discipline; the
-        # VIEW row itself snapshots fuel.canonical() at fuse time.
+        # SLICE 3: backward() freezes its receipt at issuance and re-runs
+        # issue FRESH receipts — the old "in-place rewrite" hazard is now
+        # law-enforced (ReceiptFrozenError), not a caller-side comment.
+        # deepcopy at capture stays as belt-and-suspenders.
         fuel_ab = deepcopy(lat.backward(ab))
         f_ab = lt.fuse_receipt(t, fuel_ab, node=ab.k)
         self.assertNotEqual(f_y, f_ab)
@@ -167,10 +167,14 @@ class TestMultiSinkFusion(unittest.TestCase):
         self.assertFalse(lt.verify_fusion(rows, fuel_y)[0])
         self.assertFalse(lt.verify_fusion(rows, fuel_ab)[0])
         # ...but a pure fuel tamper on one receipt only breaks its own
+        # (slice 3: the frozen receipt refuses direct writes — honest
+        # tamper simulation amends a thawed copy, same as the tape test)
         rows = [dict(r) for r in t.rows]
-        fuel_ab.sweeps += 1
+        fuel_ab_bad = deepcopy(fuel_ab)
+        fuel_ab_bad.thaw()
+        fuel_ab_bad.sweeps += 1
         self.assertTrue(lt.verify_fusion(rows, fuel_y)[0])
-        self.assertFalse(lt.verify_fusion(rows, fuel_ab)[0])
+        self.assertFalse(lt.verify_fusion(rows, fuel_ab_bad)[0])
 
 
 class TestAuditorBridge(unittest.TestCase):

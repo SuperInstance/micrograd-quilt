@@ -153,13 +153,19 @@ def fuse_receipt(t, fuel, node=None, record=True):
     ANY tape row changes the tip (hash chain); tampering with ANY fuel field
     changes the canonical string; either breaks the fusion. If record=True,
     a VIEW row carrying fuse + fuel is emitted and chained — the attestation
-    itself becomes part of the guarded log (verify() covers it)."""
-    payload = {"tip": t._hash, "fuel": fuel.canonical()}
+    itself becomes part of the guarded log (verify() covers it).
+
+    Slice-3 discipline: the canonical string is taken from fuel.snapshot()
+    (a private frozen copy) and computed ONCE, so the payload and the VIEW
+    row can never disagree even if the caller's live receipt is amended
+    (thawed) after this call."""
+    canon = fuel.snapshot().canonical()
+    payload = {"tip": t._hash, "fuel": canon}
     h = tape.fnv1a_64(json.dumps(payload, sort_keys=True,
                                  separators=(",", ":")))
     if record:
         t._emit({"t": "VIEW", "node": -1 if node is None else node,
-                 "fuse": h, "fuel": fuel.canonical()})
+                 "fuse": h, "fuel": canon})
     return h
 
 
