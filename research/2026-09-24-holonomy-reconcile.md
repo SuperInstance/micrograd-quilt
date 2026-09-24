@@ -54,10 +54,15 @@ not silently accepted and not silently dropped.
 
 ## Next slices (each independently committable)
 
-- Wire `reconcile()` output flags into typed ledger rows (REFUSED-adjacent
-  family) so the executor's tick cron can crosscheck fleet logs.
-- Adjudication policy: who may clear an `acted_during_blackout_on_revoked` row,
-  and how the clearance itself becomes a receipt (chain, not edit).
-- GL(9) zero-holonomy framing from research/2026-09-24-quilt-organism-scout.md:
-  `chain_intact()` is a 1-D zero-holonomy check; reconcile is the 2-log case of
-  the same walk — revoked witness → re-walk, don't rewrite.
+- DONE (slice 2): flags booked as typed hash-chained rows + adjudication
+  receipts (`book_flags`, `adjudicate`; unknown decisions refused not
+  booked).
+- DONE (final slice): `holonomy/walk.py` — GL(9) zero-holonomy framing,
+  exact GF(7) arithmetic. `chain_intact` ≡ zero holonomy on the 1-D path;
+  `reconcile` ≡ path-dependence between local and hub paths
+  (`deviation = H⁻¹·L`); the flag IS the holonomy element; the doctrine
+  answer is re-walk — closure edge `C = L·H⁻¹` appended as a NEW edge,
+  history never rewritten (pin 9/10 verify original rows untouched).
+  Non-abelian lesson the pins forced: `deviation⁻¹ ≠ L·H⁻¹`; the closure
+  edge and the inverse deviation differ unless the group element commutes.
+  11/11 pins (`python3 holonomy/test_walk.py`).
