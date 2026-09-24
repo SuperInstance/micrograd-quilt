@@ -124,3 +124,36 @@ def reconcile(local, hub):
     for f in flags:
         f.pop("_k", None)
     return merged, flags
+
+
+# Typed adjudication receipt ops (quilt-executor doctrine: refusals are
+# hash-committed rows, never silent drops). A flag that nobody adjudicates
+# is decorative — the deletion test.
+ADJUDICATION_DECISIONS = ("uphold", "declined")
+
+
+def book_flags(chain, flags, actor="holonomy"):
+    """Surface every reconcile flag as a typed, hash-chained row.
+
+    Returns flag_hash -> row, so adjudication can parent-link by hash.
+    """
+    booked = {}
+    for f in flags:
+        row = append(chain, actor, "flag", dict(f))
+        booked[fnv1a64(canonical(f))] = row  # flags are payloads, not chain rows
+    return booked
+
+
+def adjudicate(chain, flag_hash, adjudicator, decision, reason=""):
+    """Book one adjudication row parent-linked to its flag row by hash.
+
+    decision 'uphold'   -> the flagged act is voided downstream (EFFECT-shaped)
+    decision 'declined' -> flag rejected, flagged row stands (REFUSED-shaped)
+    Unknown decisions are refused, not booked — the gate is the type system.
+    """
+    if decision not in ADJUDICATION_DECISIONS:
+        return append(chain, adjudicator, "refused",
+                      {"attempt": "adjudicate", "decision": decision,
+                       "flag": flag_hash, "reason": "unknown_decision"})
+    return append(chain, adjudicator, "adjudicate",
+                  {"flag": flag_hash, "decision": decision, "reason": reason})

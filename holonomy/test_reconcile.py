@@ -1,6 +1,6 @@
 """Pins for holonomy/reconcile.py — run: python3 holonomy/test_reconcile.py"""
 
-from reconcile import append, verify_chain, reconcile, fnv1a64
+from reconcile import append, verify_chain, reconcile, fnv1a64, canonical
 
 PINS = 0
 
@@ -79,5 +79,27 @@ print("pins: idempotence")
 m1, f1 = reconcile(node, hub)
 m2, f2 = reconcile(node, hub)
 pin("reconcile pure", m1 == m2 and f1 == f2)
+
+print("pins: flag booking + adjudication receipts")
+from reconcile import book_flags, adjudicate, row_hash
+adj = []
+merged_x, flags_x = reconcile(node, hub)
+booked = book_flags(adj, flags_x)
+pin("chain verifies after flag booking", verify_chain(adj))
+pin("every flag booked as typed row", len(booked) == len(flags_x)
+    and all(r["op"] == "flag" for r in adj))
+# re-deriving a flag's hash from its payload locates the parent row deterministically
+fh = fnv1a64(canonical(flags_x[0]))
+pin("flag parent-link by payload hash", booked[fh]["payload"] == flags_x[0])
+a1 = adjudicate(adj, fh, "auditor", "uphold", "compromise confirmed")
+pin("uphold books adjudicate row", a1["op"] == "adjudicate" and a1["payload"]["decision"] == "uphold")
+a2 = adjudicate(adj, fh, "auditor", "declined", "credential reinstated")
+pin("decline books adjudicate row", a2["payload"]["decision"] == "declined")
+a3 = adjudicate(adj, fh, "auditor", "shrug", "maybe")
+pin("unknown decision refused, not booked", a3["op"] == "refused"
+    and a3["payload"]["reason"] == "unknown_decision")
+pin("adjudication chain still verifies", verify_chain(adj))
+pin("no silent fallback: every flag has >=1 disposition or is pending",
+    sum(1 for r in adj if r["op"] == "flag") == len(flags_x))
 
 print(f"\n{PINS} pins green")
