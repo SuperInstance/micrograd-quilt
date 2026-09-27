@@ -198,3 +198,19 @@ python -m pytest
 ### The quilt
 
 *exactness × auditability × breeding × commensuration — a layer over the engine that answers "how much do you trust that gradient?" with measurements, not vibes. Stdlib only (`math`, `json`, `fractions`, `random`, `hashlib`, `unittest`).*
+
+<!-- QUILT:LINKS:START — generated from .quilt/links.yml by quilt-links.mjs. Do not edit by hand. -->
+## Cross-pollination — the Reader's Fold
+
+*Part of the **quilt** family. Under [Law 6](https://github.com/SuperInstance/jev-quilt), this repo carries no verdicts about its neighbors — only content-addressed pointers you fold under your own weights.*
+
+**Folded from** — [karpathy/micrograd](https://github.com/karpathy/micrograd) — kept byte-for-byte; the quilt/ layer asks where floats lie
+
+**Grown on** — [jev-quilt](https://github.com/SuperInstance/jev-quilt)
+
+**Related** (1-hop siblings — Law 7)
+- [laya4quilt](https://github.com/SuperInstance/laya4quilt) — sibling quilt fork, same "fold a new layer onto an upstream engine" shape
+- [hermes-construct](https://github.com/SuperInstance/hermes-construct) — sibling quilt fork, same "fold a new layer onto an upstream engine" shape
+
+<sub>Regenerate: `node quilt-links.mjs` · Fleet map: [FLEET.md](https://github.com/SuperInstance/fleet-seeds/blob/main/FLEET.md)</sub>
+<!-- QUILT:LINKS:END -->

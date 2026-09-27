@@ -1,0 +1,20 @@
+# .quilt/links.yml — the Reader's Fold manifest (jev-quilt Law 6).
+# This repo carries NO verdicts about its neighbors — only content-addressed
+# pointers each reader folds under its own weights. Edit this file; never edit
+# the generated block in README.md by hand.
+
+repo: micrograd-quilt
+family: quilt
+
+substrate:                       # What this repo is GROWN ON (the upstream spine).
+  - repo: jev-quilt               # the fold's structural spine; quilt/tape.py's BIND/LINK/EFFECT/VIEW/TICK is the same opcode doctrine
+
+related:                         # Sideways siblings — 1 HOP ONLY (Law 7, the Reach Bound).
+  - repo: laya4quilt
+    why: sibling quilt fork, same "fold a new layer onto an upstream engine" shape
+  - repo: hermes-construct
+    why: sibling quilt fork, same "fold a new layer onto an upstream engine" shape
+
+upstream:                        # FORKS ONLY — the folded-in origin (may be outside the org).
+  repo: karpathy/micrograd
+  why: kept byte-for-byte; the quilt/ layer asks where floats lie
