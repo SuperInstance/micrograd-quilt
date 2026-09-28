@@ -65,10 +65,60 @@ balance >= 0.45:
 **Finding 4 (RESOLVED):** seed CHOICE beats seed FITNESS. Seed the
 skeleton, not the partial solution. Doctrine update for the lab:
 init champions at zero-fitness structural prefixes of the target
-class; let promotion earn the slope. INFERRED next: exp007 — same
-skeleton-seeding on a 2-qubit Bell target with mode="balance"
-(min(c00,c11)) to test whether the trap generalizes (cheap control).
+class; let promotion earn the slope. INFERRED next: exp007 (below)
+— same skeleton-seeding on a 2-qubit Bell balance target to test
+whether the trap generalizes (cheap control).
 
+## exp007 — Bell-balance skeleton-seed control at n=2 (VERIFIED)
+
+the exp006 INFERRED control, run: 2-qubit Bell balance,
+targets ("01","10") (the psi+ pair), mode="balance", same named
+seeds + jitter-dropped policy, success = held-out balance >= 0.45.
+Birth balances measured on train seed 101: the WRONG-BELL phi+
+skeleton [h(0),cx(0,1)] scores **0.0000** (maximally entangled but
+its counts are 00/11 — target mismatch, not weakness; one x(0)
+insert converts phi+ to psi+); the product |++> seed [h(0),h(1)]
+scores **0.2246** with its slope already present — and |++> is a
+fixed point of either cx, a true trap (any cx insert is a no-op;
+escape needs two coordinated moves).
+
+| lane | birth balance | champion | verify balance | first >=0.45 gen |
+|---|---|---|---|---|
+| unseeded random birth | — | [h(1), cx(0,1), h(0)] | 0.234 | **never (12 gens)** |
+| A: phi+ skeleton (wrong bell) | 0.0000 | [x(1), h(0), cx(0,1)] | **0.482** | **gen 5** |
+| B: \|++> product trap | 0.2246 | unchanged [h(0), h(1)] | 0.234 | **never (12 gens)** |
+
+- **H1 REFUTED (VERIFIED):** the n=2 Bell-balance problem is NOT
+  already easy. Unseeded champion-local search never leaves the
+  product plateau (12 gens, frozen at 0.234). The exp005 stall was
+  not an n=3 artifact — champion-local mutation is the bottleneck
+  class on the engine's home turf too. Note the unseeded champion's
+  verify (0.234) equals the trap lane's exactly: unaided search
+  falls INTO the |++>-class plateau here.
+- **Doctrine holds at n=2 (VERIFIED):** the zero-fitness structural
+  prefix (phi+ skeleton, balance 0.0 at birth) crosses at gen 5 to a
+  real psi+ producer [x(1), h(0), cx(0,1)] — phi+ with the x(1)
+  flip — held-out 0.482. Zero fitness at birth, one move from
+  correlation: the prescription works at both qubit counts tested.
+- **Trap generalizes (VERIFIED):** the |++> mid-slope seed never
+  escaped in 12 gens × 16 draws (champion byte-unchanged). Finding
+  4's trap class is real at n=2 as well.
+- **Meta-finding (VERIFIED):** exp001-004's home target (mode="any",
+  P("01")) is a product-state lottery — every champion those rounds
+  produced, parsimony-minimal [x(0)] included, is a PRODUCT state;
+  none ever earned entanglement. Only the balance witness makes the
+  target an entanglement gate. Under the honest witness the engine
+  has NEVER solved its home problem unaided — the seeded-restart
+  doctrine is not a patch for hard lanes, it is the price of honest
+  targets.
+- Harness guard: default lane reproduces exp001 byte-identical (pass).
+- Results: `experiments/exp007.results.json` + per-lane telemetry.
+
+**Finding 5 (RESOLVED):** the exp006 doctrine is engine-general,
+not n=3-specific: seed zero-fitness structural prefixes of the
+target class; never mid-slope partial solutions; unaided
+champion-local search plateaus at product-symmetry balance on any
+entanglement-gated target tested (n=2 and n=3).
 
 ## Provenance
 
@@ -209,14 +259,17 @@ jitter was only burning candidate draws in the mixed neighborhood.
 
 ## Next iterations (queued to snowball-queue)
 
-- exp004 DONE (see above): jitter-drop crosses at gen 2 vs control
-  gen 4, champion and held-out honesty unchanged.
-- exp005 candidate: n=3 qubits, target a 3-bit distribution (entangled target —
-  current target is product-state easy); with the exp003 lesson:
-  expect discrete gate moves to carry the search there too.
+- exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
+- exp005 DONE: balance witness gates entanglement; unaided search
+  frozen at n=3 (Finding 3).
+- exp006 DONE: GHZ-prefix seeded restart confirmed; partial entangler
+  = trap (Finding 4).
+- exp007 DONE: doctrine engine-general at n=2; |++> trap confirmed;
+  unaided search plateaus on any entanglement-gated target
+  (Finding 5, meta: exp001-004 champions were all product states).
 - PROOF statevector witness cell at a TICK (MicroMoth-quilt lane
   follow-on; champion ledger currently emits per-gate prefixes
   O(gates²) sims — n=4+ needs the subset, not full prefixes).
-- Seal exp002/exp003 as in-repo experiment receipts
+- Seal exp002-exp007 as in-repo experiment receipts
   (`receipts/exp00X-*.json`) once a MicroMoth-quilt PR lane reopens —
   same shape as the exp001 receipt PR (#5, Casey-gated).
