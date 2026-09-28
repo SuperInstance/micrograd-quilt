@@ -1,0 +1,427 @@
+{
+  "control_reproduces_exp001": true,
+  "policy": "drop jitter (restrict=('replace','indel'))",
+  "runs": {
+    "seedA_ghz_prefix": {
+      "champion_genome": [
+        [
+          "h",
+          0
+        ],
+        [
+          "crx",
+          1.0,
+          0,
+          2
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ],
+      "champion_len": 3,
+      "champion_train_p": 0.498046875,
+      "champion_verify_p": 0.482421875,
+      "curve": [
+        {
+          "gen": 0,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.0,
+          "verify_p": 0.0
+        },
+        {
+          "gen": 1,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.0,
+          "verify_p": 0.0
+        },
+        {
+          "gen": 2,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "crx",
+              1.0,
+              0,
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.498,
+          "verify_p": 0.4824
+        },
+        {
+          "gen": 3,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "crx",
+              1.0,
+              0,
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.498,
+          "verify_p": 0.4824
+        },
+        {
+          "gen": 4,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "crx",
+              1.0,
+              0,
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.498,
+          "verify_p": 0.4824
+        },
+        {
+          "gen": 5,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "crx",
+              1.0,
+              0,
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.498,
+          "verify_p": 0.4824
+        },
+        {
+          "gen": 6,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "crx",
+              1.0,
+              0,
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.498,
+          "verify_p": 0.4824
+        },
+        {
+          "gen": 7,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "crx",
+              1.0,
+              0,
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.498,
+          "verify_p": 0.4824
+        }
+      ],
+      "first_verify_ge_045_gen": 2,
+      "seed_genome": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ]
+    },
+    "seedB_partial_entangler": {
+      "champion_genome": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "h",
+          2
+        ]
+      ],
+      "champion_len": 3,
+      "champion_train_p": 0.255859375,
+      "champion_verify_p": 0.2421875,
+      "curve": [
+        {
+          "gen": 0,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 1,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 2,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 3,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 4,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 5,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 6,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        },
+        {
+          "gen": 7,
+          "genome": [
+            [
+              "h",
+              0
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              2
+            ]
+          ],
+          "promoted": true,
+          "train_p": 0.2559,
+          "verify_p": 0.2422
+        }
+      ],
+      "first_verify_ge_045_gen": null,
+      "seed_genome": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "h",
+          2
+        ]
+      ]
+    }
+  },
+  "seeds": {
+    "root": 7,
+    "shots": 512,
+    "train": 101,
+    "verify": 202
+  },
+  "success_threshold_verify_balance": 0.45
+}

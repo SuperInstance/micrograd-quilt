@@ -39,6 +39,36 @@ birth; (b) pop 64 for the n=3 lane; (c) curriculum: balance witness on
 2 qubits (Bell min(c00,c11)) before n=3. INFERRED: (a) is the cheapest
 first move — it reuses an already-proven doctrine.
 
+## exp006 — Finding 3 candidate (a): GHZ-prefix seeded restart (VERIFIED)
+
+Two seeded lanes, same seeds/policy as exp005, success = held-out
+balance >= 0.45:
+
+| lane | seed | champion | verify balance | first >=0.45 gen |
+|---|---|---|---|---|
+| A: bare GHZ prefix | [h(0), cx(0,1)] (fitness 0.0) | [h(0), crx(1.0,0,2), cx(0,1)] | **0.482** | **gen 2** |
+| B: partial entangler | [h(0), cx(0,1), h(2)] (fitness 0.256) | unchanged | 0.242 | never (8 gens) |
+
+- **Candidate (a) CONFIRMED (VERIFIED):** seeding the bare skeleton —
+  zero fitness at birth, but ONE indel/replace move from correlation —
+  crosses to near-balanced GHZ in 2 generations. Birth proximity is
+  the whole game: exp005's 180 random-local draws found nothing,
+  exp006 lane A's 32 draws around the prefix found it twice over.
+- **Bonus finding (VERIFIED):** the PARTIAL entangler is a fitness
+  TRAP, not a ladder. Lane B never sampled above 0.256 in 120 draws
+  (telemetry max = 0.2559): the min-witness rewards the h(2) plateau
+  and the single winning replace move (h(2)→cx(1,2), ~1%/draw) is
+  too rare under the jitter-dropped policy. More fitness is not more
+  reachable — a mid-slope seed can be worse than a zero-fitness seed.
+- Harness guard: default lane reproduces exp001 byte-identical (pass).
+
+**Finding 4 (RESOLVED):** seed CHOICE beats seed FITNESS. Seed the
+skeleton, not the partial solution. Doctrine update for the lab:
+init champions at zero-fitness structural prefixes of the target
+class; let promotion earn the slope. INFERRED next: exp007 — same
+skeleton-seeding on a 2-qubit Bell target with mode="balance"
+(min(c00,c11)) to test whether the trap generalizes (cheap control).
+
 
 ## Provenance
 

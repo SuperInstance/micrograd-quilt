@@ -170,10 +170,13 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
                telemetry_path=None, parsimony: float = 0.0,
                mutate_fn=None, max_resample: int = 10000,
                targets=("01",), n_qubits: int = 2,
-               mode: str = "any") -> dict:
+               mode: str = "any", seed_genome=None) -> dict:
     """mutate_fn defaults to mutate(); exp003 passes a class-restricted
     wrapper. Default path must stay byte-identical to exp001/exp002.
     targets/n_qubits/mode default to exp001's 2-qubit |01> problem.
+    seed_genome (exp006): optional initial champion — the loadCoev
+    seeds-around-champs doctrine applied at BIRTH. None = the exp001
+    random 3-gate init (default unchanged, byte-identical).
 
     max_resample bounds how long we wait for a restricted mutator to
     find an applicable move; exceeding it raises MutationDeadlock — a
@@ -181,8 +184,11 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
     if mutate_fn is None:
         mutate_fn = mutate
     rng = random.Random(root_seed)
-    champion = Candidate(genome=[random_gate(rng, n_qubits)
-                                 for _ in range(3)])
+    if seed_genome is not None:
+        champion = Candidate(genome=[list(g) for g in seed_genome])
+    else:
+        champion = Candidate(genome=[random_gate(rng, n_qubits)
+                                     for _ in range(3)])
     champion.train_p = p_target(champion.genome, train_seed, shots,
                                 targets, n_qubits, mode)
     champion.verify_p = p_target(champion.genome, verify_seed, shots,
