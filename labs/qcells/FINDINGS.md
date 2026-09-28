@@ -430,6 +430,56 @@ replicated crossing path (exp006/007/008 across n=2/3/4). Any future
 by design — single-root crossings are lottery tickets until 2+ roots
 agree. Results: `experiments/exp012.results.json` + per-arm telemetry.
 
+## exp013 — curriculum (2-q Bell before n=3): CROSSES but ROOT-LOTTERY again (VERIFIED)
+
+The last unreplicated crossing-class idea, run multi-root at birth per
+exp012 doctrine. Design pinned pre-run: phase 1 = 2-qubit Bell balance
+curriculum (targets ("01","10"), exp007 prescription seed
+[["h",0],["cx",0,1]]); phase 2 = the EARNED champion transplanted
+op-for-op onto qubits {0,1} of the n=3 GHZ balance lane (exp005
+exact lane, targets ("000","111"), jitter-dropped, pop 16, 12 gens),
+vs the unaided freeze control. Transplant rule pinned: indices
+unchanged, qubit 2 enters as |0> — the transplant births psi+|0>,
+balance 0.0, zero-fitness structural prefix earned by solving the
+smaller problem.
+
+| root | phase-1 Bell | curriculum n=3 | unaided n=3 |
+|---|---|---|---|
+| 7 | crossed 0.4824 | 0.2480 plateau | 0.0000 frozen |
+| 11 | crossed 0.4824 | 0.2422 plateau | 0.0000 frozen |
+| 23 | crossed 0.4824 | 0.2422 plateau | 0.0000 frozen |
+| 42 | crossed 0.4824 | **crossed 0.4824, gen 1** | 0.0000 frozen |
+
+- **Phase 1 REPLICATES (VERIFIED):** the Bell curriculum itself crosses
+  4/4 roots (3/4 the identical psi+ champion [x(1),h(0),cx(0,1)],
+  root 42 a different rx route — curriculum learning at n=2 is
+  root-robust).
+- **Curriculum transplant = ROOT-LOTTERY (VERIFIED):** 1/4 roots
+  crossed (r42, at gen 1 — the fastest crossing in the lab; one move
+  from the transplant inserts cx(0,2) and lands 0.4824). 0/3 other
+  roots. Per exp012 doctrine, 1/4 is a lottery ticket, not a law.
+- **The trap mechanism is visible in the telemetry:** the transplant
+  births psi+|0> — a PARTIAL entangler against the GHZ target, i.e.
+  exactly the Finding-4 trap manufactured at birth. 3/4 lanes stall at
+  the 0.2422 plateau (r11/r23 champions end as |+>-style product
+  escapes, not correlations); only r42's first-cloud draw found the
+  coordinated second entangling move. exp006's doctrine — 'seed the
+  SKELETON, never the partial solution' — predicts this exactly:
+  an earned 2-qubit solution IS a partial solution at n=3.
+- **Unaided freeze replicates 4/4** (0.0000 every root) — exp005/012
+  verdicts stand, again.
+- **Doctrine update (VERIFIED):** curriculum-as-transplant REFUTED as
+  a replicated crossing path; the only replicated path remains
+  HAND-BUILT zero-fitness skeletons (exp006/007/008). The distinction
+  is now sharp: seeds must carry NO slope on the target (skeleton),
+  not earned slope from a smaller problem (transplant) — earned slope
+  at the wrong scale is the trap, not the ladder.
+- Harness guard: exp001 default lane reproduces in-harness at every
+  root before results are written (the guard re-runs the canonical
+  root-7 exp001 lane, matching exp005-012; a first-draft per-root
+  guard variant was caught and fixed pre-results).
+- Results: `experiments/exp013.results.json` + per-root telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
@@ -448,9 +498,10 @@ agree. Results: `experiments/exp012.results.json` + per-arm telemetry.
 - exp012 DONE: arm B 3-seed replication = ROOT-LOTTERY (0/3 new roots
   crossed; unaided freeze 3/3 replicated). Multi-root replication is
   now lab doctrine for any 'unaided crossing' claim.
-- exp013 candidate: curriculum (2-qubit Bell balance before n=3) —
-  the only remaining unreplicated crossing-class idea; per exp012
-  doctrine it needs multi-root design at birth.
+- exp013 DONE: curriculum (Bell->n=3 transplant) = ROOT-LOTTERY
+  (1/4; r42 gen 1, others trapped at 0.2422 partial plateau);
+  phase-1 curriculum itself replicates 4/4; skeleton-not-transplant
+  doctrine sharpened.
 - PROOF statevector witness cell at a TICK DONE: qcell/stepper.py
   walks the statevector incrementally (one O(gates) pass, bit-identical
   to per-gate prefix simulation — pinned over 25 random circuits);
