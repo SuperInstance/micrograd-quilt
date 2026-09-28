@@ -397,6 +397,39 @@ jitter-dropped replace/indel classes), plus their combination:
   next run before doctrine-hardening.
 - Results: `experiments/exp011.results.json` + per-arm telemetry.
 
+## exp012 — arm B replication across root seeds: ROOT-LOTTERY (VERIFIED)
+
+The exp011 honest limit, run before any doctrine-hardening: vary ONLY
+the root seed (new 11/23/42; 7 = exp011), everything else on the
+named exp005 lane. Per root, TWO arms: the unaided baseline
+(parent_pool=False — the freeze control) and arm B (parent_pool=True).
+
+| root | unaided verify | poolB verify | poolB crossed (>=0.45) |
+|---|---|---|---|
+| 7 (exp011) | 0.0000 | 0.4824 | **gen 5** |
+| 11 | 0.0000 | 0.2031 | never |
+| 23 | 0.0000 | 0.0000 | never |
+| 42 | 0.0000 | 0.0000 | never |
+
+- **Unaided freeze REPLICATES (VERIFIED):** 3/3 new roots frozen at
+  0.0000, zero signal sampled. The exp005 freeze verdict is root-robust.
+- **Arm B does NOT replicate (VERIFIED):** 0/3 new roots crossed. The
+  one unaided crossing in the whole lab (exp011 root 7) is a
+  root-LOTTERY, not a reach law. 'Genealogy fixes the freeze' is
+  REFUTED as doctrine; it fixes one genealogy in four.
+- Root 11 poolB reached 0.2031 — it DID sample the signal region but
+  stalled on the partial-plateau (Finding 4 class: min-witness rewards
+  half-built correlation, single winning move too rare). Reach without
+  crossing = the trap, seen from the other side.
+- Harness guard: exp001 default lane reproduces in-harness (printed
+  True before results written).
+
+**Doctrine update (VERIFIED):** seeding/curriculum stays the ONLY
+replicated crossing path (exp006/007/008 across n=2/3/4). Any future
+'unaided crossing' claim in this lab must carry multi-root replication
+by design — single-root crossings are lottery tickets until 2+ roots
+agree. Results: `experiments/exp012.results.json` + per-arm telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
@@ -409,9 +442,15 @@ jitter-dropped replace/indel classes), plus their combination:
   (Finding 5, meta: exp001-004 champions were all product states).
 - exp010 DONE: pop 16/32/64 all frozen byte-identical — pop scaling
   multiplies draws, not reach (Finding 3 candidate (b) RESOLVED).
-- exp011 candidate: reach-class mutator — cloud children drawn from
-  two-move / non-champion parents, testing whether widening the
-  neighborhood unfreezes the unaided lane without any seeding.
+- exp011 DONE: reach-class mutators — non-champion-parent cloud
+  crossed UNSEEDED (root 7 only); two-move arms froze; reach fix is
+  GENEALOGY not move-count.
+- exp012 DONE: arm B 3-seed replication = ROOT-LOTTERY (0/3 new roots
+  crossed; unaided freeze 3/3 replicated). Multi-root replication is
+  now lab doctrine for any 'unaided crossing' claim.
+- exp013 candidate: curriculum (2-qubit Bell balance before n=3) —
+  the only remaining unreplicated crossing-class idea; per exp012
+  doctrine it needs multi-root design at birth.
 - PROOF statevector witness cell at a TICK DONE: qcell/stepper.py
   walks the statevector incrementally (one O(gates) pass, bit-identical
   to per-gate prefix simulation — pinned over 25 random circuits);
