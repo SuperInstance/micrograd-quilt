@@ -594,3 +594,17 @@ scientific target: what makes a root resist both mechanisms?
   receipts (`receipts/expNNN-*.json`) — exp002 shipped as PR #7
   (commit 6746e7c, Casey-gated); same shape as the exp001 receipt PR
   (#5). Old 'exp002-exp009' bullet superseded.
+- exp015 MAP-Elites illumination (ELITISM-ARTIFACT partial, VERIFIED):
+  QD archives (A1: verify-bucket x length, 36 cells; A2: balance x
+  entropy, 30 cells) over the exact exp005 unaided lane, 3 configs x
+  roots 7/11/23.  Unaided archives DO hold verify>0 elites (max
+  0.248, r23) that single-fitness champion search discarded every
+  generation - the freeze hides reachable signal; but illumination
+  only lifts the unaided ceiling to the Finding-4 partial-plateau
+  class (0.2422/0.248); the 0.45 crossing stays skeleton-only 3/3
+  (r7 transplant got 0.4355, below bar).  FREEZE verdict REFINED not
+  refuted: illumination moves the ceiling 0 -> 0.248; seeding moves
+  it 0.248 -> 0.4824.  Selection-regime-invariance holds for the
+  crossing claim, fails for the zero-signal claim.  Transplant
+  (archive-elite injection) is NOT a third crossing class - 0/3
+  roots.  exp001 guard green.  Commit 7368f20, local lab repo.
