@@ -257,6 +257,37 @@ jitter was only burning candidate draws in the mixed neighborhood.
   start genome when the target needs gates it was never given).
 - Results: `experiments/exp004.results.json` + per-arm telemetry.
 
+## exp008 — n=4 GHZ balance: doctrine holds, trap class partially REFUTED (VERIFIED)
+
+First experiment the new TICK-witness cell unblocked (stepper.py made
+emit O(gates) — n=4+ was the named blocker). Scale test of the
+exp005-007 doctrine on the n=4 GHZ balance target {|0000>,|1111>},
+mode="balance" (still an entanglement gate: product states score 0.0).
+Same named seeds, same jitter-dropped policy, success bar verify>=0.45.
+
+- **Unaided search frozen at n=4 too (VERIFIED):** random-birth
+  control: champion train=0.000 verify=0.000, never crossed 12 gens.
+  The never-solves-entanglement-unaided meta-finding (Finding 5)
+  generalizes across scale.
+- **Skeleton-seed doctrine holds at n=4 (VERIFIED):** zero-fitness
+  GHZ3 structural prefix [h(0),cx(0,1),cx(1,2)] crosses at gen 5,
+  held-out verify 0.482. Champion found a NON-canonical route:
+  [h(0),cx(0,1),crx(1.0,1,3),cx(1,2)] — a partial-rotation entangler
+  rather than textbook GHZ4 — the seed supplied the correlation
+  neighborhood, search supplied the exact gate.
+- **Finding-4 trap PARTIALLY REFUTED at n=4 (VERIFIED, honest):** the
+  |++> fixed-point trap that froze 12 gens at n=2 (exp007) ESCAPES at
+  n=4: |++++> birth balance 0.0566 crossed at gen 8 (champion
+  [h(0),cx(0,1),cx(1,2),cx(0,3)] verify 0.482 — a genuinely
+  entangled champion, the balance witness guarantees it). The trap
+  slows (gen 8 vs skeleton's gen 5) but does not freeze — the trap
+  strength is dimension-dependent, not a universal engine law.
+- Doctrine update: seed zero-fitness STRUCTURAL prefixes still the
+  fastest lane at every n tested (n=2,3,4); the product-trap caveat
+  from exp006/007 is downgraded from 'never escapes' to 'slows
+  escape' at n>=4.
+- Results: `experiments/exp008.results.json` + per-lane telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
