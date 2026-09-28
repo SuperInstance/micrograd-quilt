@@ -170,13 +170,20 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
                telemetry_path=None, parsimony: float = 0.0,
                mutate_fn=None, max_resample: int = 10000,
                targets=("01",), n_qubits: int = 2,
-               mode: str = "any", seed_genome=None) -> dict:
+               mode: str = "any", seed_genome=None,
+        parent_pool: bool = False) -> dict:
     """mutate_fn defaults to mutate(); exp003 passes a class-restricted
     wrapper. Default path must stay byte-identical to exp001/exp002.
     targets/n_qubits/mode default to exp001's 2-qubit |01> problem.
     seed_genome (exp006): optional initial champion — the loadCoev
     seeds-around-champs doctrine applied at BIRTH. None = the exp001
     random 3-gate init (default unchanged, byte-identical).
+    parent_pool (exp011): when True, each cloud child is mutated from
+    a parent sampled uniformly from the current candidate list
+    (champion + already-generated children) instead of always from the
+    champion — a reach-class widening (non-champion parents). Default
+    False leaves the rng stream and parent choice byte-identical to
+    exp001.
 
     max_resample bounds how long we wait for a restricted mutator to
     find an applicable move; exceeding it raises MutationDeadlock — a
@@ -197,9 +204,14 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
     for gen in range(generations):
         cands = [champion]
         while len(cands) < pop:
+            # exp011: parent_pool widens REACH by sampling parents from
+            # the cloud itself; False keeps the champion-local exp001
+            # stream byte-identical.
+            parent = rng.choice(cands).genome if parent_pool \
+                else champion.genome
             genome = _NoApplicableMove
             for _ in range(max_resample):
-                genome = mutate_fn(champion.genome, rng, budget,
+                genome = mutate_fn(parent, rng, budget,
                                    n_qubits=n_qubits)
                 if genome is not None:
                     break

@@ -349,6 +349,54 @@ rests on 'zero promotions across 3 pops x 12 gens', i.e. no child
 ever beat 0.0 by any margin.
 - Results: `experiments/exp010.results.json` + per-pop telemetry.
 
+## exp011 — reach-class mutators: NON-CHAMPION-PARENT cloud crosses UNSEEDED (VERIFIED)
+
+exp009 (budget) and exp010 (pop) both verified the unaided n=3
+freeze is not a leash artifact; the remaining reach-class candidates
+were a wider mutator. This experiment runs both reach-class arms on
+the exact exp005 unaided lane (same seeds root7/train101/verify202/
+shots512, pop 16, 12 gens, balance targets ("000","111"),
+jitter-dropped replace/indel classes), plus their combination:
+
+  - **A: two-move children** (mutate_classed applied twice per child)
+    — doubles the neighborhood diameter per draw.
+  - **B: non-champion-parent cloud** — new `parent_pool` run_search
+    option (default False, byte-identical): each child mutated from a
+    parent sampled uniformly from the candidate list (champion +
+    already-generated children), one move each.
+  - **C: both** — two-move children off non-champion parents.
+
+- **Arm B CROSSED, UNSEEDED (VERIFIED):** champion
+  `[swap(2,1), rx(0.5,2), cx(1,2), cx(2,1), rz(0.5,0), cx(1,0)]`,
+  held-out verify balance **0.4824** at **gen 5**, frozen there
+  through gen 11 (telemetry: monotonic promotions 0.107 -> 0.115 ->
+  0.242 -> 0.4824, never regressing). The engine solved its home
+  entanglement problem with NO seed, NO curriculum — the first
+  unaided crossing on any balance-gated target.
+- **Arms A and C FROZE (VERIFIED):** two-move ends at verify 0.2422
+  (champion nonzero 12/12 gens — it MOVES but plateaus at the h(2)
+  class); both ends at 0.2422 too. Two-move diversity alone does not
+  reach the signal region; and it does not stack with parent_pool.
+- **Doctrine update (VERIFIED):** the reach fix is GENEALOGY, not
+  move-count. A cloud whose children sample many parents retains
+  parallel evolutionary lines (arm B's gen-1 champion is a different
+  lineage than the final winner); a two-move cloud around ONE parent
+  still collapses onto that parent's neighborhood. 'Birth proximity
+  is the whole game' (exp006) gains its boundary: proximity can be
+  manufactured at runtime by parent diversity, not only at seed time.
+- **Boundary condition on the old verdicts:** exp005/007/008's
+  'frozen unaided' verdicts are ENGINE-DEFAULT verdicts — they hold
+  for the champion-local mutator. They do not hold for
+  parent_pool=True. Any future 'unaided freeze' claim must name the
+  cloud genealogy.
+- Harness change: `run_search(..., parent_pool=False)` added,
+  default byte-identical (exp001 control guard reproduces exp001
+  curve+champion in-harness, printed True before results written).
+- Honest limit: single root seed; the A/C freeze vs B crossing could
+  carry seed variance. A 3-seed replication of arm B is the cheap
+  next run before doctrine-hardening.
+- Results: `experiments/exp011.results.json` + per-arm telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
