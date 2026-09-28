@@ -480,6 +480,67 @@ smaller problem.
   guard variant was caught and fixed pre-results).
 - Results: `experiments/exp013.results.json` + per-root telemetry.
 
+## exp014 — skeleton-seed multi-root replication: SKELETON IS A RATE (VERIFIED)
+
+The hole in the doctrine chain, named and closed: exp012/013 both
+conclude "hand-built zero-fitness skeletons are the ONLY replicated
+crossing path" — but every skeleton crossing ever measured ran on
+ROOT 7 ONLY (exp006 n=3, exp007 n=2, exp008 n=4). "Replicated"
+was replication across TARGETS, never across ROOTS. This experiment
+runs the skeleton on 8 fresh roots (3/5/13/17/19/29/31/37) on the
+exp005 exact unaided n=3 balance lane, S arm = exp006 prescription
+seed [h(0),cx(0,1)] champion-local; P arm = parent_pool unaided
+(extends the exp012 rate sample). Verdicts pre-registered: >=7/8
+SKELETON ROOT-ROBUST; 3-6/8 SKELETON IS A RATE; <=2/8 ROOT-LOTTERY
+TOO.
+
+| root | S: skeleton | P: parent_pool |
+|---|---|---|
+| 3  | **cross gen 6** (0.4824) | frozen 0.0000 |
+| 5  | trapped 0.2422 | **cross gen 6** (0.4824) |
+| 13 | **cross gen 0** (0.4824) | **cross gen 11** (0.4824) |
+| 17 | **cross gen 3** (0.4824) | trapped 0.2422 |
+| 19 | **cross gen 0** (0.4824) | **cross gen 9** (0.4824) |
+| 29 | trapped 0.2422 | stalled 0.1055 |
+| 31 | trapped 0.2422 | stalled 0.2031 |
+| 37 | trapped 0.2422 | frozen 0.0000 |
+
+- **VERDICT: SKELETON IS A RATE — 4/8 fresh roots (5/9 incl exp006
+  root 7).** The "only replicated path" was itself a root-7-flavored
+  lottery. No crossing mechanism in this engine is root-invariant.
+- **The freeze IS the invariant (VERIFIED):** champion-local unaided
+  search has now crossed 0/11 independent configs (exp005 r7; exp010
+  pops 16/32/64; exp012 r11/23/42; exp013 r7/11/23/42) while every
+  seeded/reach mechanism crosses at a measurable rate. Doctrine
+  rewrite, pinned: **the freeze is the law; the crossing is always a
+  rate.**
+- **Crossing-rate table (n=3 GHZ balance, verify >= 0.45):**
+  skeleton 5/9 (56%, cross gens 0-6, minimal 3-gate champions) >
+  parent_pool 4/12 (33%, cross gens 5-11, 4-6-gate champions) >
+  curriculum transplant 1/4 (25%, exp013) >> unaided 0/11 (0%).
+  Skeleton keeps the top rate AND the fastest crossings — the
+  practical prescription survives, demoted from law to best-measured
+  mechanism.
+- **Root difficulty classes exist (VERIFIED):** r13/r19 crossed under
+  BOTH mechanisms (easy roots); r3/r17 skeleton-only, r5 pool-only
+  (mechanism-specific — matching is luck, not fit); r29/r31/r37
+  resisted BOTH (hard roots — r31 pool sampled signal 0.2031 and
+  stalled, Finding-4 class). A root's difficulty is a property of the
+  root x mechanism pair, not of the root alone.
+- Every crossed champion held out at 0.4824 — the same near-balanced
+  GHZ class, nine independent ways.
+- Harness guard: exp001 default lane reproduces byte-identical
+  in-harness before results written. Design + verdicts pinned pre-run
+  in the runner docstring.
+- Results: `experiments/exp014.results.json` + per-arm per-root
+  telemetry (17 jsonl files incl control).
+
+**Doctrine update (VERIFIED):** any crossing claim in this lab must
+carry its measured rate over named roots ("N/M roots, gens a-b"),
+never bare "crosses". Mechanism ranking by rate is real and useful;
+mechanism-as-law is dead. Hard roots (r29/31/37 class) are the next
+scientific target: what makes a root resist both mechanisms?
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
@@ -502,6 +563,22 @@ smaller problem.
   (1/4; r42 gen 1, others trapped at 0.2422 partial plateau);
   phase-1 curriculum itself replicates 4/4; skeleton-not-transplant
   doctrine sharpened.
+- exp014 DONE: skeleton multi-root replication = SKELETON IS A RATE
+  (4/8 fresh roots, 5/9 incl root 7). THE FREEZE IS THE LAW; THE
+  CROSSING IS ALWAYS A RATE. Rate table: skeleton 5/9 > pool 4/12 >
+  transplant 1/4 >> unaided 0/11. Root classes: easy (13/19),
+  mechanism-specific (3/5/17), hard (29/31/37). Next target: what
+  makes hard roots resist both mechanisms?
+- Seal exp003-exp014 as in-repo experiment receipts
+  (`receipts/expNNN-*.json`) once a MicroMoth-quilt PR lane reopens —
+  exp002 shipped as PR #7 (commit 6746e7c, Casey-gated); same shape
+  as the exp001 receipt PR (#5).
+- exp015 candidate: HARD-ROOT AUTOPSY — r29/31/37 resisted both
+  mechanisms. Birth-cloud telemetry deep-read: did the winning move
+  class ever get drawn? (If never drawn = reach problem at that root;
+  if drawn-but-not-promoted = fitness/witness problem.) Cheap:
+  instrument one run per hard root with full-cloud (not just champion)
+  telemetry, or run pool+two_move combined arm on hard roots only.
 - PROOF statevector witness cell at a TICK DONE: qcell/stepper.py
   walks the statevector incrementally (one O(gates) pass, bit-identical
   to per-gate prefix simulation — pinned over 25 random circuits);
@@ -513,6 +590,7 @@ smaller problem.
   it stay valid.  exp001 champion ledger re-emitted: every hash
   byte-identical, TICK rows gained witnesses only; replay OK.
   7/7 pins green (tests/test_tick_witness.py).
-- Seal exp002-exp009 as in-repo experiment receipts
-  (`receipts/exp00X-*.json`) once a MicroMoth-quilt PR lane reopens —
-  same shape as the exp001 receipt PR (#5, Casey-gated).
+- exp003+ receipts: seal exp003-exp014 as in-repo experiment
+  receipts (`receipts/expNNN-*.json`) — exp002 shipped as PR #7
+  (commit 6746e7c, Casey-gated); same shape as the exp001 receipt PR
+  (#5). Old 'exp002-exp009' bullet superseded.
