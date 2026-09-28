@@ -288,6 +288,33 @@ Same named seeds, same jitter-dropped policy, success bar verify>=0.45.
   escape' at n>=4.
 - Results: `experiments/exp008.results.json` + per-lane telemetry.
 
+## exp009 — budget>6 length control at n=4: ceiling NOT binding (VERIFIED)
+
+Isolation test for the one structural variable every frozen-unaided
+verdict (exp005-008) was recorded under: the 6-gate budget. If the
+ceiling ever mattered, 'mutation locality is the bottleneck' would be
+confounded by a short leash. Swept budget 6 -> 8 -> 12 on the one
+lane that reliably crosses (seedA GHZ3 skeleton, n=4 GHZ balance,
+restrict=('replace','indel'), same named seeds).
+
+- **All three budgets byte-identical outcomes (VERIFIED):** same
+  champion `[h(0),cx(0,1),crx(1.0,1,3),cx(1,2)]` (the exp008
+  non-canonical route), same crossing gen 5, same held-out verify
+  0.482. Identical genomes, identical curves.
+- **Identical is the honest result, not a harness bug:** champion
+  length never exceeded 4 (max_champion_len_seen=4 at every budget;
+  a 4-gate champion's indel children top out at 5 gates < 6).
+  Budget only enters the move choice at len>=budget, which never
+  occurs — a budget sweep can only be a no-op on this lane, and it
+  was. Anti-laundering rationale recorded in the exp docstring.
+- **Doctrine consequence:** the exp005-008 'frozen unaided' verdicts
+  stand as engine laws, not leash artifacts (the unseeded cloud
+  already had room to reach 6; a longer leash would not unfreeze
+  it). Finding 5/meta gains its first boundary condition: length
+  control is NOT the constraint class on entanglement-gated targets
+  at n<=4; champion-local mutation locality is.
+- Results: `experiments/exp009.results.json` + per-budget telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
@@ -309,6 +336,6 @@ Same named seeds, same jitter-dropped policy, success bar verify>=0.45.
   it stay valid.  exp001 champion ledger re-emitted: every hash
   byte-identical, TICK rows gained witnesses only; replay OK.
   7/7 pins green (tests/test_tick_witness.py).
-- Seal exp002-exp007 as in-repo experiment receipts
+- Seal exp002-exp009 as in-repo experiment receipts
   (`receipts/exp00X-*.json`) once a MicroMoth-quilt PR lane reopens —
   same shape as the exp001 receipt PR (#5, Casey-gated).
