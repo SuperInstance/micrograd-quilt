@@ -23,6 +23,8 @@ from dataclasses import dataclass, field
 import micromoth
 from micromoth import QuantumCircuit
 
+from qcell import stepper
+
 FNV_OFFSET = 0xCBF29CE484222325
 FNV_PRIME = 0x100000001B3
 MASK64 = (1 << 64) - 1
@@ -96,9 +98,7 @@ def emit_ledger(qc: QuantumCircuit, seed: int, shots: int, path: str,
     seq += 1
 
     prev = rows[-1]["hash"]
-    for ticker, gate in enumerate(prog, start=1):
-        prefix = program_to_circuit(prog[:ticker], qc.num_qubits)
-        sv = micromoth.simulate(prefix, get="statevector")
+    for ticker, (gate, sv) in enumerate(zip(prog, stepper.walk(prog, qc.num_qubits)), start=1):
         row = Row(op="EFFECT", args={"gate": list(gate), "ticker": ticker},
                   cell=bind.cell, seq=seq, prev_hash=prev)
         row.witness = {"state_sha256": sv_digest(sv)}
@@ -107,6 +107,11 @@ def emit_ledger(qc: QuantumCircuit, seed: int, shots: int, path: str,
         prev = rows[-1]["hash"]
         tick = Row(op="TICK", args={"ticker": ticker}, cell=bind.cell,
                    seq=seq, prev_hash=prev)
+        # PROOF statevector witness cell at a TICK: the clock row itself
+        # asserts the statevector at that tick (single O(gates) walk via
+        # qcell.stepper — per-gate prefix re-simulation would be
+        # O(gates^2) and does not scale past n=4).
+        tick.witness = {"state_sha256": sv_digest(sv)}
         rows.append(tick.seal())
         seq += 1
         prev = rows[-1]["hash"]

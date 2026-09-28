@@ -267,9 +267,17 @@ jitter was only burning candidate draws in the mixed neighborhood.
 - exp007 DONE: doctrine engine-general at n=2; |++> trap confirmed;
   unaided search plateaus on any entanglement-gated target
   (Finding 5, meta: exp001-004 champions were all product states).
-- PROOF statevector witness cell at a TICK (MicroMoth-quilt lane
-  follow-on; champion ledger currently emits per-gate prefixes
-  O(gates²) sims — n=4+ needs the subset, not full prefixes).
+- PROOF statevector witness cell at a TICK DONE: qcell/stepper.py
+  walks the statevector incrementally (one O(gates) pass, bit-identical
+  to per-gate prefix simulation — pinned over 25 random circuits);
+  TICK rows now carry their own state_sha256 witness, so the clock row
+  itself is the re-executable proof cell, not just a counter.  Emit
+  dropped from O(gates^2) prefix sims to exactly ONE simulation (WORLD
+  sampling) — the n=4+ blocker named here is gone.  Replay verifies
+  the TICK witness (tamper caught by seq) while legacy ledgers without
+  it stay valid.  exp001 champion ledger re-emitted: every hash
+  byte-identical, TICK rows gained witnesses only; replay OK.
+  7/7 pins green (tests/test_tick_witness.py).
 - Seal exp002-exp007 as in-repo experiment receipts
   (`receipts/exp00X-*.json`) once a MicroMoth-quilt PR lane reopens —
   same shape as the exp001 receipt PR (#5, Casey-gated).

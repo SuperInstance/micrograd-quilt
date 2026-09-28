@@ -53,6 +53,15 @@ def replay_ledger(path: str) -> dict:
         elif row["op"] == "TICK":
             if row["args"]["ticker"] != ticker:
                 errors.append(f"seq {row['seq']}: TICK ticker != effect ticker")
+            wit = row.get("witness")
+            if wit is not None:
+                # PROOF at a TICK: the clock row asserts the statevector
+                # itself.  Legacy ledgers (pre-TICK-witness) have no
+                # witness field and stay valid — absence is not drift.
+                prefix = program_to_circuit(prog[:ticker], n)
+                sv = micromoth.simulate(prefix, get="statevector")
+                if sv_digest(sv) != wit["state_sha256"]:
+                    errors.append(f"seq {row['seq']}: TICK statevector witness drift")
         elif row["op"] == "WORLD":
             if row["args"]["seed"] is None:
                 errors.append(f"seq {row['seq']}: UNSEALED WORLD row refused")
