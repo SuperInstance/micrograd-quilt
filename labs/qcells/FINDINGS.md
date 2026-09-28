@@ -315,6 +315,40 @@ restrict=('replace','indel'), same named seeds).
   at n<=4; champion-local mutation locality is.
 - Results: `experiments/exp009.results.json` + per-budget telemetry.
 
+## exp010 — pop scaling on the frozen unseeded n=3 lane: pop-invariant FREEZE (VERIFIED)
+
+Finding 3 candidate (b) — 'pop 64 for the n=3 lane' — was ranked but
+never run. This experiment runs it: the exact exp005 unaided lane
+(no seed, targets ("000","111"), mode="balance", jitter-dropped
+replace/indel cloud, same named seeds root7/train101/verify202/
+shots512) swept pop 16 -> 32 -> 64, 12 gens each.
+
+- **Frozen at every population (VERIFIED):** all three pops end with
+the IDENTICAL champion `[h(1),cx(2,0),x(2)]`, train 0.000, verify
+0.000, no generation ever promoted above 0.0 (telemetry: 12/12
+champion rows at 0.000 per pop). Byte-identical outcomes across a
+4x population range.
+- **Why identical is the honest result, not a harness bug:** with a
+zero-fitness champion, the cloud's children must beat 0.0 to promote.
+exp005 measured the local signal density at 2.6% (52/2000 RANDOM
+Genomes) — but the champion-local move distribution never samples
+that region (exp005: 180 draws, zero hits). Pop scaling multiplies
+DRAWS, not REACH: 4x more children of the same zero-fitness
+neighborhood still never draw the winning move class. No promotion
+at any pop -> champion never changes -> rng stream differences never
+surface -> identical champions.
+- **Boundary condition gained (VERIFIED):** the exp005/007/008
+'frozen unaided' verdicts now hold across BOTH structural axes
+tested — length budget (exp009: not the constraint class) and
+population (exp010: not the constraint class). Draws alone do not
+fix locality; the working fixes are reach-class — seeding structural
+prefixes (exp006 doctrine), curriculum, or a wider mutator.
+- Honest limit: telemetry logs promoted (champion) rows only; the
+cloud's max child balance is not directly recorded — the verdict
+rests on 'zero promotions across 3 pops x 12 gens', i.e. no child
+ever beat 0.0 by any margin.
+- Results: `experiments/exp010.results.json` + per-pop telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
 - exp004 DONE: jitter-drop crosses at gen 2 vs control gen 4.
@@ -325,6 +359,11 @@ restrict=('replace','indel'), same named seeds).
 - exp007 DONE: doctrine engine-general at n=2; |++> trap confirmed;
   unaided search plateaus on any entanglement-gated target
   (Finding 5, meta: exp001-004 champions were all product states).
+- exp010 DONE: pop 16/32/64 all frozen byte-identical — pop scaling
+  multiplies draws, not reach (Finding 3 candidate (b) RESOLVED).
+- exp011 candidate: reach-class mutator — cloud children drawn from
+  two-move / non-champion parents, testing whether widening the
+  neighborhood unfreezes the unaided lane without any seeding.
 - PROOF statevector witness cell at a TICK DONE: qcell/stepper.py
   walks the statevector incrementally (one O(gates) pass, bit-identical
   to per-gate prefix simulation — pinned over 25 random circuits);
