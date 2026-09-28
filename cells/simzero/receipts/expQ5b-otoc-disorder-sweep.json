@@ -1,0 +1,134 @@
+{
+ "experiment": "Q5-otoc-disorder-sweep",
+ "at": "2026-09-27T03:00:07Z",
+ "substrate": {
+  "engine": "otoc-echo-v1",
+  "machine": "aer",
+  "exact": true,
+  "n_sites": 8,
+  "depth": 8,
+  "kick_site": 7,
+  "kick": "Z",
+  "seed": 20260927,
+  "disorder_axis": "additive per-gate angle jitter, std radians, 0..1 step 0.1 (11 matched jobs)"
+ },
+ "curve": [
+  {
+   "disorder": 0.0,
+   "near_far_ratio": 1.042,
+   "far_mean": 0.7826,
+   "near_mean": 0.8152,
+   "late_echo_build": 0.3908,
+   "job_id": "a5d475d7-7742-4ca1-873a-11ce88803d4c",
+   "warnings": []
+  },
+  {
+   "disorder": 0.1,
+   "near_far_ratio": 1.117,
+   "far_mean": 0.7541,
+   "near_mean": 0.842,
+   "late_echo_build": 0.2381,
+   "job_id": "c0e64702-c3c5-4138-b4d6-90b8ba8d2c9f",
+   "warnings": []
+  },
+  {
+   "disorder": 0.2,
+   "near_far_ratio": 1.29,
+   "far_mean": 0.6957,
+   "near_mean": 0.8973,
+   "late_echo_build": 0.0704,
+   "job_id": "d2b240c4-0d4a-4d27-ac88-eaab77a98186",
+   "warnings": []
+  },
+  {
+   "disorder": 0.3,
+   "near_far_ratio": 1.342,
+   "far_mean": 0.7076,
+   "near_mean": 0.9495,
+   "late_echo_build": 0.141,
+   "job_id": "2ca36168-b7a7-4c75-8917-2b65e52fa92d",
+   "warnings": []
+  },
+  {
+   "disorder": 0.4,
+   "near_far_ratio": 1.381,
+   "far_mean": 0.7102,
+   "near_mean": 0.981,
+   "late_echo_build": -0.0231,
+   "job_id": "9e83fc09-901d-4bac-b17e-6b090e7531e9",
+   "warnings": []
+  },
+  {
+   "disorder": 0.5,
+   "near_far_ratio": 1.453,
+   "far_mean": 0.6849,
+   "near_mean": 0.9948,
+   "late_echo_build": -0.2176,
+   "job_id": "6019d4ac-4a56-4a37-9527-ac59b24beee7",
+   "warnings": []
+  },
+  {
+   "disorder": 0.6,
+   "near_far_ratio": 1.517,
+   "far_mean": 0.6586,
+   "near_mean": 0.9989,
+   "late_echo_build": -0.2637,
+   "job_id": "5349cb65-d155-4d0d-b2b9-e68ee97d3767",
+   "warnings": []
+  },
+  {
+   "disorder": 0.7,
+   "near_far_ratio": 1.465,
+   "far_mean": 0.6826,
+   "near_mean": 0.9999,
+   "late_echo_build": -0.1543,
+   "job_id": "f64503ba-c53a-4664-b202-e583e7659bdd",
+   "warnings": []
+  },
+  {
+   "disorder": 0.8,
+   "near_far_ratio": 1.326,
+   "far_mean": 0.7539,
+   "near_mean": 0.9997,
+   "late_echo_build": -0.1074,
+   "job_id": "ab5ca745-3462-40b8-b9b5-edbe79109ec0",
+   "warnings": []
+  },
+  {
+   "disorder": 0.9,
+   "near_far_ratio": 1.315,
+   "far_mean": 0.7589,
+   "near_mean": 0.9982,
+   "late_echo_build": -0.3159,
+   "job_id": "b17b5328-61b2-46a3-a2ab-7c119bf93bc5",
+   "warnings": []
+  },
+  {
+   "disorder": 1.0,
+   "near_far_ratio": 1.317,
+   "far_mean": 0.7565,
+   "near_mean": 0.9964,
+   "late_echo_build": -0.3546,
+   "job_id": "30108b5a-5940-4316-96cc-2aa256ba57f0",
+   "warnings": []
+  }
+ ],
+ "threshold_probe": {
+  "nf_at_0": 1.042,
+  "nf_at_1.0": 1.317,
+  "midpoint_disorder": 0.2,
+  "reading": "near/far ratio rises monotonically-ish with disorder = distance attenuation growing; the disorder value where the curve crosses its own midpoint is the localization-dose proxy"
+ },
+ "honest_note": "Same kick, 11 coupling-noise doses, one tensor receipt. The analogy stays an analogy; what is loadbearing is the full localization curve of THIS instrument on THIS chain.",
+ "sha256": "91220279e8fb1aeb",
+ "mbl_reading": {
+  "regimes": {
+   "ballistic(0.0-0.2)": "kick reaches far sites; late echo positive and large",
+   "crossover(0.3-0.4)": "late-echo sign flip at 0.4 \u2014 the return dies here",
+   "localized(0.5-0.6)": "near/far peaks 1.517 at d=0.6 \u2014 maximum distance attenuation",
+   "frozen(0.7-1.0)": "ratios relax toward ~1.32 while late echo keeps sinking: near field stops evolving too \u2014 everything saturates"
+  },
+  "trust_inflation_dose": "the dose that buries a kick: disorder >= 0.4 rad kills the late-time return; 0.5-0.6 is the worst neighborhood; beyond 0.7 the chain is not noisy but frozen \u2014 MORE noise, not less, is how a lattice stops whispering entirely",
+  "analogy_to_fleet": "VERIFIED edges = clean couplings; trust inflation = additive angle jitter; the receipted curve is the localization phase diagram of THIS instrument on THIS 8-chain"
+ }
+}

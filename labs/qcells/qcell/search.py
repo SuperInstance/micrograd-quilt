@@ -94,6 +94,47 @@ def mutate(genome, rng: random.Random, budget: int = 6):
     return g
 
 
+# exp003 (Finding 2): which mutation class crosses the plateau? The
+# sampler below draws the SAME move value from the same rng stream as
+# mutate() — only the APPLICATION is restricted. A restricted class that
+# cannot apply (indel on a full/short genome, jitter with no rotation
+# gate) returns None and the caller resamples; nothing silently falls
+# back to a different class, or the ablation would be a lie.
+MUT_CLASSES = ("replace", "indel", "jitter")
+
+
+def mutate_classed(genome, rng: random.Random, budget: int = 6,
+                   restrict: tuple = MUT_CLASSES):
+    g = [list(gate) for gate in genome]
+    if not g:
+        return [random_gate(rng)]
+    move = rng.random()
+    i = rng.randrange(len(g))
+    if move < 0.30 or len(g) >= budget:
+        if "replace" not in restrict:
+            return None
+        g[i] = random_gate(rng)
+    elif move < 0.55 and len(g) < budget:
+        if "indel" not in restrict:
+            return None
+        g.insert(i, random_gate(rng))
+    elif move < 0.75 and len(g) > 1:
+        if "indel" not in restrict:
+            return None
+        g.pop(i)
+    else:
+        if "jitter" not in restrict:
+            return None
+        hit = False
+        for gate in g:
+            if gate[0].startswith("r") and rng.random() < 0.5:
+                gate[1] = max(0.05, min(1.0, gate[1] + rng.choice([-0.25, 0.25])))
+                hit = True
+        if not hit:
+            return None
+    return g
+
+
 def fitness(c: Candidate, parsimony: float = 0.0) -> float:
     """Selection score: train fitness minus a per-gate parsimony penalty.
 
@@ -104,9 +145,28 @@ def fitness(c: Candidate, parsimony: float = 0.0) -> float:
     return c.train_p - parsimony * len(c.genome)
 
 
+class MutationDeadlock(RuntimeError):
+    """Raised when a class-restricted mutator (exp003) has no applicable
+    move for the current champion — the ablation arm literally cannot
+    act. Recorded as a result, never worked around silently."""
+
+
+class _NoApplicableMove:
+    pass
+
+
 def run_search(root_seed: int, generations: int, pop: int, shots: int,
                train_seed: int, verify_seed: int, budget: int = 6,
-               telemetry_path=None, parsimony: float = 0.0) -> dict:
+               telemetry_path=None, parsimony: float = 0.0,
+               mutate_fn=None, max_resample: int = 10000) -> dict:
+    """mutate_fn defaults to mutate(); exp003 passes a class-restricted
+    wrapper. Default path must stay byte-identical to exp001/exp002.
+
+    max_resample bounds how long we wait for a restricted mutator to
+    find an applicable move; exceeding it raises MutationDeadlock — a
+    no-move-exists verdict on the current champion, not a hang."""
+    if mutate_fn is None:
+        mutate_fn = mutate
     rng = random.Random(root_seed)
     champion = Candidate(genome=[random_gate(rng) for _ in range(3)])
     champion.train_p = p_target(champion.genome, train_seed, shots)
@@ -115,7 +175,16 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
     for gen in range(generations):
         cands = [champion]
         while len(cands) < pop:
-            child = Candidate(genome=mutate(champion.genome, rng, budget))
+            genome = _NoApplicableMove
+            for _ in range(max_resample):
+                genome = mutate_fn(champion.genome, rng, budget)
+                if genome is not None:
+                    break
+            if genome is None:
+                raise MutationDeadlock(
+                    f"no applicable mutation for champion "
+                    f"{champion.genome} at gen {gen}")
+            child = Candidate(genome=genome)
             child.train_p = p_target(child.genome, train_seed, shots)
             cands.append(child)
         best = max(cands, key=lambda c: fitness(c, parsimony))

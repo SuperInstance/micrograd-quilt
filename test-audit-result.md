@@ -1,1 +1,0 @@
-sunset-ecosystem/tests/ contains 69 test files with ~1182 test functions; 5 files carry @pytest.mark.slow (test_cuda_benchmark.py, test_hardware_nas.py, test_hardware_profiler.py, test_npu_router.py, test_performance.py) and test_grammar_server.py contains a 2s sleep.

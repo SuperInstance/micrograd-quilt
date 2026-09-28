@@ -1,0 +1,111 @@
+Writing the digest now.
+
+---
+
+# Engineering digest: `4sitespasted.md`
+
+**Corpus note:** the file holds **four** full article pages, not five (`grep -c "Skip to Main ContentSkip to Main Menu"` → 2 site boundaries + 2 page starts). Two are paywalled past their abstract (Muller review, Xu spirals) — for those I extracted the abstract, full reference graph, and (for Xu) all Extended Data captions, which carry the quantitative content. Flagging so you know which sections rest on thinner source text.
+
+---
+
+## A1 — Verzhbinsky, Daume, Cheng, Rutishauser & Halgren (Nat Neurosci 2026) — *Co-ripples and distributed working memory*
+
+**Core mechanism.** Brief ~90 Hz oscillatory bursts (~70 ms) occur independently across hippocampus, amygdala, vmPFC, ACC and preSMA. When two distant sites ripple within a ≥25 ms overlap window, spiking between them becomes genuinely coordinated — a ~30–34% co-firing increase that survives rate correction (STTC +117%, Poisson-null +56%). Those windows are content-bearing: during retrieval they preferentially reinstate the *same* cross-region co-firing pattern that a specific stimulus produced during encoding, and how well they do so predicts reaction time.
+
+**Five load-bearing numbers.**
+1. Ripple center frequency is essentially identical everywhere: 90.7–91.3 Hz across all five regions; duration 69–75 ms.
+2. Co-ripple → co-firing gain is **distance-invariant**: 5% co-occurrence intra-hemispheric (71–203 mm) vs 4.9% cross-hemispheric (35–223 mm) — a 0.1% difference. Co-firing gain actually rises *slightly* with fiber distance (r = 0.04, P = 5.3e-14).
+3. Band specificity for load coding: ripple CNR = 12.42 at retrieval, vs 10.13 for non-oscillatory very-high-γ and 6.21 for low-γ; 12/15 site pairs load-modulated for ripples, 2 for low-γ, **0** for very-high-γ.
+4. Reinstatement: 0.29% of cell-pair trials repeat encoding→retrieval co-firing during co-ripples vs 0.14% without — and fast-RT trials hit 0.36% vs slow-RT 0.23%.
+5. Ripple *rates* explain only ~5% of firing-rate variance; task-phase co-firing gain is 28/29/24% during co-ripples but 1%/−3%/−4% during no-ripple periods.
+
+**Two verbatim quotes.**
+> "This distance invariance suggests an emergent network phenomenon rather than simple point-to-point transmission of activity"
+
+> "This suggests that the load-dependent coordination that we observed is specific to the temporal co-occurrence of discrete ripple events rather than a general property of correlated high-frequency power."
+
+**Implications for the substrate.** This is the strongest empirical brief for **ripple commits**. A commit is not a continuous correlation — A1's amplitude-envelope analysis (Extended Data Fig. 9) *failed* to show load modulation in every band; only discrete ≥25 ms event overlap carried the signal. So: commit = intersection of two short-lived local events, detected by overlap, not by envelope similarity. Commits are load-adaptive (admission control scales with queue depth) and content-addressed (the commit re-instantiates an encoding-time pattern, and the re-hit rate *is* the latency predictor). Critically, the mechanism that makes zero-lag coordination possible over 220 mm at all is *redundant pathways* — a commit should require ≥2 routes, and route redundancy is what buys you simultaneity rather than fighting it.
+
+---
+
+## A2 — Muller, Busch, Davis & Reynolds (Neuron 2026) — *Neural traveling waves in cortex*
+
+**Core mechanism.** Traveling waves are organized phase gradients that arise either intrinsically (from horizontal-fiber conduction delays) or from events, and they structure activity *within* a cortical region rather than merely relaying between areas. Because a wave sweeps a map serially, the region's own state at time t encodes its sensory history — the wave is a temporal integration primitive, not overhead. That yields spatiotemporal dependencies feedforward/feedback graphs can't express, and a generative framework: waves as the substrate's prediction operator.
+
+**Five load-bearing facts.**
+1. Explicit framing: nTWs introduce dependencies "not naturally captured by purely feedforward or feedback processing" — i.e. they are a *third* term beyond the F/B dichotomy.
+2. Mechanism lineage: spontaneous waves emerge from horizontal fiber time delays traveling through locally asynchronous-irregular states (Davis 2021 Nat Commun); horizontal connections then shape those intrinsic waves into **feature-selective motifs** that set perceptual sensitivity (Davis 2024 Cell Rep).
+3. Computational result: waves over a visual-space map "ignite short-term predictions of sensory input" (Benigno 2023 Nat Commun).
+4. Exact solvability exists: Budzinski 2024 (Commun Phys) gives an exact math description of computation with transient spatiotemporal dynamics in a complex-valued RNN; Liboni 2025 (PNAS) does image segmentation with traveling waves in an exactly solvable RNN. Keller & Welling's Neural Wave Machines (ICML 2023) do it with locally coupled oscillatory RNNs.
+5. Caution ref: Orsher 2024 (eLife) — sequentially activated discrete modules *masquerade* as traveling waves under limited spatiotemporal sampling.
+
+**Two verbatim quotes.**
+> "By structuring neural activity within individual cortical regions, nTWs introduce spatiotemporal dependencies across sensory maps that are not naturally captured by purely feedforward or feedback processing."
+
+> "Second, we highlight how nTWs can implement spatiotemporal computations, such as predicting upcoming sensory inputs, by embedding sensory history in the evolving activity pattern of an individual cortical region."
+
+**Implications for the substrate.** This is the **idea field** charter. Two design consequences. First, prefer *closed-form* wave operators over trained ones — the Budzinski/Liboni line shows you can get real computation (segmentation, prediction) from exactly solvable wave dynamics, which means auditable, replayable operators rather than opaque learned ones. Second, the wiring topology *is* the program: horizontal connection structure converts generic intrinsic waves into feature-selective motifs, so your field's link geometry, not its update rule, determines what computations are available. And keep Orsher 2024 as a standing lint check: with sparse sampling of your field, "we found a wave" may just be "we found a sequence."
+
+---
+
+## A3 — Xu, Long, Feng & Gong (Nat Hum Behav 2023) — *Brain spirals*
+
+**Core mechanism.** Cortical phase fields contain rotational wave patterns anchored at **phase singularity centers**, which drift across the flattened cortex while rotating. Spirals are densest at boundaries between functional networks and their interaction rules are finite: opposite chiralities annihilate, same chirality repel, and forcibly reversing chirality reorganizes large-scale activity flow across a wide "region of coordination." Chirality and location are task-informative, and spirals coordinate coupled activation/deactivation across distributed regions — the flip switch between bottom-up and top-down flow.
+
+**Five load-bearing facts.**
+1. n = 100 HCP subjects; spiral density maps computed on the flattened cortical sheet, 0.01–0.1 Hz band.
+2. The null model preserves **both** the 2-D power spectrum *and* spatial autocorrelation (Moran's I) *and* temporal autocorrelation — spirals survive a null that matches first- and second-order statistics.
+3. Spiral density does **not** differ across sulci/gyri/inflection topology → not a cortical-folding artifact.
+4. Interaction primitives are explicitly demonstrated: full annihilation (opposite chirality), repulsion (same chirality), chirality reversal → flow reorganization with a defined region-of-coordination.
+5. Spirals coordinate DMN deactivations (PCC/IPC/LTC) during math and correlated activations during story tasks; 0-back vs 2-back and correct vs incorrect trials show different chirality-dominance maps.
+
+**Two verbatim quotes.**
+> "These brain spirals propagate across the cortex while rotating around their phase singularity centres, giving rise to spatiotemporal activity dynamics with non-stationary features."
+
+> "multiple, interacting brain spirals are involved in coordinating the correlated activations and de-activations of distributed functional regions; this mechanism enables flexible reconfiguration of task-driven activity flow between bottom-up and top-down directions during cognitive processing."
+
+**Implications for the substrate.** This is the **spiral operator** spec, and it's unusually implementable because the algebra is closed under three moves: `annihilate(A_cw, B_acw)`, `repel(A_cw, B_cw)`, `flip_chirality(A)`. Chirality is a one-bit *sign* on every operator — that's your merge-vs-mutual-exclusion discriminator and your bottom-up/top-down routing polarity. Phase singularities are *mobile operator sites*, so operators are first-class relocatable objects, not fixed nodes. And their placement rule is the most actionable thing in the whole corpus: **operators nucleate at network boundaries, not inside modules.** In your topology that means spiral operators belong at partition interfaces — which is exactly where a reconcile/holonomy layer already lives.
+
+---
+
+## A4 — Vishne, Gerber, Knight & Deouell (Cell Reports 2023) — *Sustained representational dynamics in conscious perception*
+
+**Core mechanism.** Images shown for 300–1500 ms produce an enormous onset response that then collapses ~5-fold — yet multivariate decoding of category and exemplar stays flat for the full stimulus duration, and the *same* classifier trained at onset works at 900 ms. Content therefore lives in a time-invariant low-dimensional subspace orthogonal to the collapsing amplitude dimensions. Frontoparietal cortex does the opposite: a transient ~150–600 ms content "ignition" at onset, independent of stimulus duration — a discrete update event riding on top of a continuous sensory representation.
+
+**Five load-bearing numbers.**
+1. 10 patients, 907 noise-free ECoG electrodes → 430 visually responsive, 236 category-selective; HFA = 70–150 Hz.
+2. Amplitude attenuation 81.8% ± 1.1% by 800–900 ms; single-electrode category selectivity down 77.4% ± 1.1% — **while decoding holds**.
+3. Peak pairwise category decoding: VT 99.6% ± 0.3%, Occ 98.1% ± 1.6%, PFC 84.1% ± 2.3%, Par 86% ± 1.7%.
+4. Sustained window: VT face-watch AUC 99.8% averaged over 100–900 ms; PFC/Par transient, mostly ~150–600 ms.
+5. Offset lag scales with stimulus: ~450 ms after 300 ms stimuli vs ~230 ms after 900/1500 ms — and only VT/Occ track duration.
+
+**Two verbatim quotes.**
+> "This may also explain why repeating stimuli seem identical despite the ubiquitous phenomenon of neuronal repetition suppression—we suggest that as long as the response to a stimulus occupies the same location within the 'experience subspace,' it will be similarly perceived regardless of the initial or sustained amplitude of response."
+
+> "In contrast, we found a burst ("ignition") of visual information in the PFC and Par cortex, even though no report was required."
+
+**Implications for the substrate.** The **experience subspace** is your readout contract. Separate the *content* channel (a subspace direction/geometry) from the *energy* channel (overall amplitude), and make commit verification subspace-based: check angular proximity to a stored address, never magnitude. That makes the system robust to the equivalent of repetition suppression — re-committing the same idea shouldn't require the same energy, and shouldn't be mistaken for a different idea just because it's quieter. A4 also hands you the write-barrier: the frontoparietal ignition is a bounded ~150–600 ms discrete event, duration-independent, that fires on *update* rather than on *persistence*. Two-phase architecture, empirically.
+
+---
+
+# Cross-cutting: 8 connections across the corpus
+
+**1. The same band, two incompatible operators.** A1's ripples are 90–91 Hz; A4's HFA is 70–150 Hz — overlapping bands. But A1 shows 120–190 Hz non-oscillatory power is *useless* for long-range coordination (0/15 pairs) while 70–100 Hz oscillation is the best signal, and A4 uses broad 70–150 Hz *amplitude* for presence detection. Same spectrum, two operators: **event-coincidence for transfer, envelope power for presence.** A substrate that collapses them into one "gamma" channel loses one of the two.
+
+**2. Discrete events beat continuous correlation — and A1 has the null result to prove it.** Every band's *amplitude-envelope correlation* failed A1's load modulation test; only discrete ≥25 ms event overlap passed. This is the single most transferable engineering lesson in the file: build commits on event intersection, and treat any continuous-field correlation you compute as a diagnostic, not a mechanism.
+
+**3. Four papers, one two-timescale architecture.** ~70 ms ripples nested inside second-scale task phases (A1); a ~150–600 ms ignition nested inside 1500 ms of sustained representation (A4); 0.01–0.1 Hz spirals organizing faster activity (A3); fast waves sweeping slow maps (A2). Convergent design: **fast carrier over slow topology.** Your field should have a slow structural layer that is *not* where computation happens, and a fast event layer that is.
+
+**4. Delay doesn't break synchrony — it generates the waves.** A1 argues zero-lag sync over 220 mm is possible only with multiple pathways between oscillators; A2's mechanism section says spontaneous waves *emerge from horizontal fiber time delays* passing through asynchronous-irregular states. Same physics, two readings: the latency you'd be tempted to engineer away is the wave source. Make routing delay a first-class generator, not a defect.
+
+**5. Structure nucleates at boundaries.** A3's Extended Data Fig. 3 puts peak curl variability at the boundary between the 7 functional networks; A1's strongest co-ripple gains are between *different* structures (HIP–preSMA 48%, vmPFC–HIP 21%), not within. Heterogeneous interfaces are where order parameters live. Place operators at partition seams; don't expect emergent structure inside homogeneous modules.
+
+**6. Content survives a 5× amplitude collapse — so verify geometry, not energy.** A4: 81.8% attenuation, 77.4% selectivity loss, decoding unchanged. A1: ripple rate explains only ~5% of firing variance, yet reinstatement doubles and predicts RT. Both point the same way: the causal variable is relational/geometric, never magnitude. Any commit-verification step keyed on energy will be wrong in both directions.
+
+**7. Reinstatement and the rectangular TGM are the same primitive: content addressing by pattern identity.** A1's encoding→retrieval co-firing repetition (0.29% vs 0.14%; fast 0.36% vs slow 0.23%) and A4's off-diagonal temporal-generalization rectangle (one classifier spans onset→900 ms) both implement *"same pattern re-appears ⇒ same item."* Reaction time and perceptual stability both fall out of **address re-hit rate**. That's a hash table whose hash function is a subspace direction.
+
+**8. All three empirical papers run the same artifact exorcism — and A2 cites the failure mode.** A3 built a null preserving power spectrum + Moran's I + temporal autocorrelation and checked sulcal topology. A1 used STTC *and* a Poisson expected-co-firing null before claiming synchrony. A4 downsampled sensory electrodes to match PFC coverage before claiming sustained-vs-transient. A2's reference list names the trap: Orsher 2024 — discrete sequential modules *appear* as traveling waves under limited sampling. Before claiming your field produces spirals or ripples, run the equivalent null: match your field's marginals and re-measure under degraded sampling. If the pattern survives both, it's structure; if not, it's your probe.
+
+---
+
+**One-line synthesis for the build:** idea field = A2's closed-form wave medium; ripple commits = A1's discrete distance-invariant ≥25 ms overlap windows with redundant routes; spiral operators = A3's three-move chiral algebra sited at partition boundaries; readout/verification = A4's experience subspace, tested by angle not amplitude — all under the A3/A1/A4 null-model discipline with A2's Orsher caveat as the standing linter.

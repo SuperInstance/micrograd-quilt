@@ -1,0 +1,90 @@
+{
+ "experiment": "Q5-otoc-of-ideas",
+ "at": "2026-09-27T02:39:20Z",
+ "question": "does a VERIFIED edge chain echo a kick that a noisy chain localizes?",
+ "substrate": {
+  "engine": "otoc-echo-v1",
+  "machine": "aer",
+  "exact": true,
+  "n_sites": 8,
+  "depth": 8,
+  "kick_site": 7,
+  "kick": "Z",
+  "lattice": "chain",
+  "seed": 20260927,
+  "theta_x": 0.9425,
+  "theta_zz": 1.0996,
+  "theta_z": 0.0,
+  "note": "8 sites = the eight VERIFIED referral-graph edges (edge #8 minted 09:42 in quilt-tools#18); kick_site=7 = the newest edge"
+ },
+ "runs": {
+  "clean": {
+   "job_id": "e7f41c5c-ddca-440f-bd21-f9e8a3787de6",
+   "per_site_meanF": [
+    0.948,
+    0.8043,
+    0.764,
+    0.7447,
+    0.7798,
+    0.8013,
+    0.744,
+    0.8055
+   ],
+   "far_mean": 0.7827,
+   "near_mean": 0.8153,
+   "far_by_depth": [
+    0.5196,
+    0.7236,
+    0.7761,
+    0.7275,
+    0.794,
+    0.9134,
+    0.8963,
+    0.9104
+   ],
+   "taps_emitted": 42,
+   "warnings": [],
+   "provenance_seed": 20260927,
+   "near_far_ratio": 1.042,
+   "late_echo_growth": 0.3908,
+   "late_echo_build": 0.3908
+  },
+  "disordered": {
+   "job_id": "60a9735c-f716-4082-82aa-10a53fb0253c",
+   "per_site_meanF": [
+    0.9949,
+    0.9585,
+    0.9592,
+    0.8855,
+    0.9239,
+    0.5754,
+    0.5634,
+    0.7678
+   ],
+   "far_mean": 0.7076,
+   "near_mean": 0.9495,
+   "far_by_depth": [
+    0.6504,
+    0.9624,
+    0.5212,
+    0.7252,
+    0.7507,
+    0.6011,
+    0.6587,
+    0.7913
+   ],
+   "taps_emitted": 43,
+   "warnings": [],
+   "provenance_seed": 20260927,
+   "near_far_ratio": 1.342,
+   "late_echo_growth": 0.1409,
+   "late_echo_build": 0.1409
+  }
+ },
+ "delta_far": 0.0751,
+ "delta_ratio": 1.11,
+ "verdict": "LOCALIZATION CONFIRMED IN DIRECTION: clean chain near/far=1.042 (kick travels freely; late-time echo builds +0.391 with depth), disordered near/far=1.342 (32% distance attenuation; no late build, +0.141 fluctuating). A verified lattice carries a kick to distance; a noisy one traps it at home. Magnitude at disorder=0.3 is moderate (far-delta +0.075) \u2014 the loadbearing signal is the near/far contrast + late-time build, not the far mean. Disorder sweep is the next dial.",
+ "honest_note": "Analogy instrument, not proof: the quantum substrate is real (aer exact OTOC), the mapping sites->edges is ours. What is loadbearing: the instrument distinguishes structured vs noisy coupling worlds in one kick. Next dial: disorder sweep 0..1 to find the localization threshold = the trust-inflation dose that buries a kick.",
+ "sha256": "32b9a8250685fd43",
+ "localization_contrast": 0.3
+}

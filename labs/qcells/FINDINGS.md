@@ -73,24 +73,63 @@ should select `x(0)` alone. Exp-002: add parsimony, re-run, check the
 champion genome shrinks while P(01) stays 1.0, and measure whether
 convergence generation moves.
 
-## Finding 2 — plateau before breakthrough (INFERRED → exp003)
+## Finding 2 — plateau before breakthrough (RESOLVED by exp003)
 
 Gens 1–3 stalled at 0.502 while single-mutation moves couldn't cross
-to 1.0; gen 4 crossed via (likely) an insert/replace that completed
-the deterministic path. Theta-jitter mutations dominated early
-(continuous angles, small effect); discrete gate moves are the
-load-bearing class. Exp-003: ablate mutation classes (replace-only,
-insert/delete-only, jitter-only) and record which class crosses the
-plateau — tells the fleet whether quantum-cell search wants discrete
-or continuous neighborhoods, a reusable tile for other search lanes.
+to 1.0. Exp003 ablated mutation classes on identical seeds to find
+which class actually crosses the plateau (see below).
+
+## exp003 — mutation-class ablation: gate substitution is the entire
+engine (VERIFIED)
+
+Same search, same named seeds, four arms. Ablation is honest at the
+sampler level: `mutate_classed` draws the SAME move value from the
+same rng stream as `mutate()` and only the APPLICATION is restricted;
+a class that cannot apply (indel on a full/short genome, jitter on a
+no-rotation genome) is RESAMPLED, never silently replaced. A hard
+no-move state raises `MutationDeadlock`, recorded as the arm's result.
+
+| arm | champion | verify P(01) | first perfect gen |
+|---|---|---|---|
+| control (full mutate) | `[h(1),h(1),x(0)]` | 1.000 | 4 |
+| replace-only | `[h(1),h(1),x(0)]` | 1.000 | **1** |
+| indel-only | `[cx(0,1),h(0)]` | 0.518 | never |
+| jitter-only | — | — | DEADLOCK at gen 0 |
+
+- **Control reproduces exp001 byte-for-byte** (curve + champion) —
+  the ablation harness changed nothing about default behavior.
+- **Replace-only matches the champion AND crosses at gen 1 instead of
+  gen 4.** Gate substitution alone is sufficient, and strictly faster
+  than the mixed neighborhood. The gen-1→4 stall in the control was
+  the OTHER classes burning candidate draws, not search difficulty.
+- **Indel-only never crosses** (stalls at 0.518, below even the
+  plateau): with only 3 fixed gates to shuffle, topology changes
+  cannot repair wrong gates. Inserts/deletes are genome-length
+  plumbing, not fitness engines.
+- **Jitter-only deadlocks at birth**: the seed champion has zero
+  rotation gates, and jitter can never introduce one (it only nudges
+  existing angles). Continuous-only search cannot even leave the
+  starting genome here — and in general cannot reach a target whose
+  solution needs gates it was never given.
+- **Fleet tile:** quantum-cell search wants a DISCRETE gate
+  neighborhood as the engine; keep insert/delete for length control,
+  drop or heavily down-weight pure angle-jitter when the genome class
+  matters more than fine angles. The same ablation seam
+  (`mutate_classed` + `MutationDeadlock`) is reusable for any other
+  search lane in the fleet.
+- Results: `experiments/exp003.results.json` + per-arm telemetry.
 
 ## Next iterations (queued to snowball-queue)
 
-- exp002 parsimony/MDL pressure; exp003 mutation-class ablation.
+- exp004 candidate: drop the jitter branch entirely (exp003 says it
+  only burns draws) and measure convergence vs control — a one-line
+  mutation-policy change, same harness.
 - n=3 qubits, target a 3-bit distribution (entangled target —
-  current target is product-state easy).
-- Champion ledger currently emits per-gate prefixes O(gates²) sims;
-  n=4+ needs the PROOF-witness-at-TICK subset, not full prefixes.
-- When MicroMoth-quilt#3 lands: seal exp001 as
-  `receipts/exp001-bias-search.json` in-repo (the lane's first
-  experiment receipt) + PR.
+  current target is product-state easy); with the exp003 lesson:
+  expect discrete gate moves to carry the search there too.
+- PROOF statevector witness cell at a TICK (MicroMoth-quilt lane
+  follow-on; champion ledger currently emits per-gate prefixes
+  O(gates²) sims — n=4+ needs the subset, not full prefixes).
+- Seal exp002/exp003 as in-repo experiment receipts
+  (`receipts/exp00X-*.json`) once a MicroMoth-quilt PR lane reopens —
+  same shape as the exp001 receipt PR (#5, Casey-gated).
