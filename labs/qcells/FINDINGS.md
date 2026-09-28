@@ -119,12 +119,34 @@ no-move state raises `MutationDeadlock`, recorded as the arm's result.
   search lane in the fleet.
 - Results: `experiments/exp003.results.json` + per-arm telemetry.
 
+## exp004 — jitter-drop policy: convergence 2× faster, champion
+unchanged (VERIFIED)
+
+Same search, same named seeds, ONE policy change: the jitter branch is
+dropped entirely (`mutate_classed restrict=("replace","indel")`) —
+zero harness change, reusing exp003's ablation seam as the policy
+knob. Control lane re-run inside this harness still reproduces exp001
+byte-for-byte (curve + champion equal to `exp001.results.json`).
+
+| policy | champion | verify P(01) | first perfect gen |
+|---|---|---|---|
+| full mutate (control) | `[h(1),h(1),x(0)]` | 1.000 | 4 |
+| jitter dropped | `[h(1),h(1),x(0)]` | 1.000 | **2** |
+
+- **Same champion, same held-out honesty (verify 1.000), convergence
+twice as fast (gen 2 vs gen 4).** The exp003 fleet tile's
+recommendation holds at the policy level, not just the ablation level:
+jitter was only burning candidate draws in the mixed neighborhood.
+- This is a discrete-gate search target; the recommendation is scoped
+  to that class (exp003: continuous-only search cannot even leave the
+  start genome when the target needs gates it was never given).
+- Results: `experiments/exp004.results.json` + per-arm telemetry.
+
 ## Next iterations (queued to snowball-queue)
 
-- exp004 candidate: drop the jitter branch entirely (exp003 says it
-  only burns draws) and measure convergence vs control — a one-line
-  mutation-policy change, same harness.
-- n=3 qubits, target a 3-bit distribution (entangled target —
+- exp004 DONE (see above): jitter-drop crosses at gen 2 vs control
+  gen 4, champion and held-out honesty unchanged.
+- exp005 candidate: n=3 qubits, target a 3-bit distribution (entangled target —
   current target is product-state easy); with the exp003 lesson:
   expect discrete gate moves to carry the search there too.
 - PROOF statevector witness cell at a TICK (MicroMoth-quilt lane
