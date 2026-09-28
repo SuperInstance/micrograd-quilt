@@ -5,6 +5,41 @@ locally per directive 2026-09-28 ("actually using it… iterate locally…
 learning system like the many in quilt"). Claim tags: **VERIFIED**
 (measured this date, real output), **INFERRED** (proposed next).
 
+## exp005 — n=3 entangled target: engine does NOT generalize as-is (VERIFIED)
+
+Question: same engine, 3 qubits, balanced GHZ {|000>,|111>} target.
+Design pin BEFORE running (anti-laundering): a bare counts-set target
+is hit at 1.0 by any deterministic product state (|000> is in the
+set), so fitness = the **balance witness** min(c[000],c[111])/shots
+(`mode="balance"`) — a product state scores 0.0 because its losing
+branch never fires; only genuine 3-way correlation scores.
+
+- **Witness gates entanglement (VERIFIED):** hand GHZ
+  h(0),cx(0,1),cx(1,2) balance = 0.482 on seed 202; product h(0)
+  balance = 0.000.
+- **Gradient exists (VERIFIED):** h,cx partial = 0.0, +h(2) = 0.256,
+  +cx(1,2) = 0.498. The landscape is a needle WITH slope, not a flat
+  desert. Signal density: 52/2000 random genomes score >0 (2.6%).
+- **Search FAILED at 12 gens × pop 16 (VERIFIED):** champion frozen at
+  balance 0.000 from gen 0 (telemetry: 12/12 promoted rows all 0.0).
+  exp004's jitter-dropped replace/indel cloud around a 0-fitness
+  champion never sampled the 2.6% signal region — 180 champion-local
+  draws, all zero.
+- **Harness not at fault (VERIFIED):** default 2-qubit control lane
+  inside this harness config reproduces exp001 curve+champion
+  byte-identical (runner guard passed).
+
+**Finding 3 (RESOLVED):** the engine that crossed the 2-qubit plateau
+in 2 generations cannot reach an entangled target without seed
+proximity — champion-local mutation is the bottleneck class, not the
+fitness shape. Candidates, ranked: (a) champion-seeded restarts from a
+GHZ PREFIX (h + one cx) instead of pure random init — the exp001
+lesson (loadCoev seeds around champs, pong-quilt #73) applied at
+birth; (b) pop 64 for the n=3 lane; (c) curriculum: balance witness on
+2 qubits (Bell min(c00,c11)) before n=3. INFERRED: (a) is the cheapest
+first move — it reuses an already-proven doctrine.
+
+
 ## Provenance
 
 - Engine: `micromoth.py` vendored at `bbd10ac2ffd4…` (matches the

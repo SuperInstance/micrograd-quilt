@@ -68,21 +68,31 @@ def genome_circuit(genome, n_qubits=2):
     return qc
 
 
-def p_target(genome, seed: int, shots: int, target: str = "01") -> float:
+def p_target(genome, seed: int, shots: int, targets=("01",),
+             n_qubits: int = 2, mode: str = "any") -> float:
+    """Seeded P(targets). mode="any": sum of target counts / shots
+    (exp001 semantics; targets=("01",) is byte-identical to the old
+    target="01"). mode="balance": MIN of the per-target counts / shots
+    — an entanglement gate, not a basis-state lottery: a deterministic
+    product state scores 0.0 because its losing target never fires.
+    """
     random.seed(seed)
-    qc = genome_circuit(genome)
+    qc = genome_circuit(genome, n_qubits=n_qubits)
     counts = micromoth.simulate(qc, shots=shots, get="counts")
-    return counts.get(target, 0) / shots
+    if mode == "balance":
+        return min(counts.get(t, 0) for t in targets) / shots
+    return sum(counts.get(t, 0) for t in targets) / shots
 
 
-def mutate(genome, rng: random.Random, budget: int = 6):
+def mutate(genome, rng: random.Random, budget: int = 6,
+           n_qubits: int = 2):
     g = [list(gate) for gate in genome]
     if not g:
-        return [random_gate(rng)]
+        return [random_gate(rng, n_qubits)]
     move = rng.random()
     i = rng.randrange(len(g))
     if move < 0.30 or len(g) >= budget:
-        g[i] = random_gate(rng)
+        g[i] = random_gate(rng, n_qubits)
     elif move < 0.55 and len(g) < budget:
         g.insert(i, random_gate(rng))
     elif move < 0.75 and len(g) > 1:
@@ -104,20 +114,20 @@ MUT_CLASSES = ("replace", "indel", "jitter")
 
 
 def mutate_classed(genome, rng: random.Random, budget: int = 6,
-                   restrict: tuple = MUT_CLASSES):
+                   restrict: tuple = MUT_CLASSES, n_qubits: int = 2):
     g = [list(gate) for gate in genome]
     if not g:
-        return [random_gate(rng)]
+        return [random_gate(rng, n_qubits)]
     move = rng.random()
     i = rng.randrange(len(g))
     if move < 0.30 or len(g) >= budget:
         if "replace" not in restrict:
             return None
-        g[i] = random_gate(rng)
+        g[i] = random_gate(rng, n_qubits)
     elif move < 0.55 and len(g) < budget:
         if "indel" not in restrict:
             return None
-        g.insert(i, random_gate(rng))
+        g.insert(i, random_gate(rng, n_qubits))
     elif move < 0.75 and len(g) > 1:
         if "indel" not in restrict:
             return None
@@ -158,9 +168,12 @@ class _NoApplicableMove:
 def run_search(root_seed: int, generations: int, pop: int, shots: int,
                train_seed: int, verify_seed: int, budget: int = 6,
                telemetry_path=None, parsimony: float = 0.0,
-               mutate_fn=None, max_resample: int = 10000) -> dict:
+               mutate_fn=None, max_resample: int = 10000,
+               targets=("01",), n_qubits: int = 2,
+               mode: str = "any") -> dict:
     """mutate_fn defaults to mutate(); exp003 passes a class-restricted
     wrapper. Default path must stay byte-identical to exp001/exp002.
+    targets/n_qubits/mode default to exp001's 2-qubit |01> problem.
 
     max_resample bounds how long we wait for a restricted mutator to
     find an applicable move; exceeding it raises MutationDeadlock — a
@@ -168,16 +181,20 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
     if mutate_fn is None:
         mutate_fn = mutate
     rng = random.Random(root_seed)
-    champion = Candidate(genome=[random_gate(rng) for _ in range(3)])
-    champion.train_p = p_target(champion.genome, train_seed, shots)
-    champion.verify_p = p_target(champion.genome, verify_seed, shots)
+    champion = Candidate(genome=[random_gate(rng, n_qubits)
+                                 for _ in range(3)])
+    champion.train_p = p_target(champion.genome, train_seed, shots,
+                                targets, n_qubits, mode)
+    champion.verify_p = p_target(champion.genome, verify_seed, shots,
+                                 targets, n_qubits, mode)
     curve = []
     for gen in range(generations):
         cands = [champion]
         while len(cands) < pop:
             genome = _NoApplicableMove
             for _ in range(max_resample):
-                genome = mutate_fn(champion.genome, rng, budget)
+                genome = mutate_fn(champion.genome, rng, budget,
+                                   n_qubits=n_qubits)
                 if genome is not None:
                     break
             if genome is None:
@@ -185,10 +202,12 @@ def run_search(root_seed: int, generations: int, pop: int, shots: int,
                     f"no applicable mutation for champion "
                     f"{champion.genome} at gen {gen}")
             child = Candidate(genome=genome)
-            child.train_p = p_target(child.genome, train_seed, shots)
+            child.train_p = p_target(child.genome, train_seed, shots,
+                                     targets, n_qubits, mode)
             cands.append(child)
         best = max(cands, key=lambda c: fitness(c, parsimony))
-        best.verify_p = p_target(best.genome, verify_seed, shots)
+        best.verify_p = p_target(best.genome, verify_seed, shots,
+                                 targets, n_qubits, mode)
         promoted = best.verify_p >= champion.verify_p
         if promoted:
             champion = best
