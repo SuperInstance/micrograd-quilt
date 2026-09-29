@@ -963,3 +963,46 @@ scientific target: what makes a root resist both mechanisms?
   (push creds wiped).
   results: experiments/exp031c.results.json;
   script: experiments/exp031c_sequential_joint_null.py
+- exp032 CENSUS-N PRE-REGISTRATION OF THE PER-STREAM RATE LANE
+  (named next by exp031c: the lane re-opens ONLY at census-n
+  pre-registration).  SEALED BEFORE ANY NEW STREAM RUNS — block E =
+  8 census-only streams, salts k16-k23, seeds 31016-31023, protocol
+  byte-identical to exp024 (passive cloud census, POP 16 / GENS 12 /
+  BUDGET 6), ONE committed batch, NO PEEKING (exp029 protocol);
+  family CLOSES at n=24 — no further blocks for this question, any
+  escalation requires a FRESH pre-registration (seal kills the
+  look-again ladder).  SEALED NULL HAZARD w_hat = 10/2009 (full-
+  corpus pooled MLE, fixed, never re-estimated; exp031c's
+  pilot-pooled W stands for exp031c only — labeled).  SEALED GATE:
+  per stream p_plus = P(Bin(n_s,w_hat) >= h_s), p_minus = P(Bin(n_s,
+  w_hat) <= h_s), two-sided Bonferroni over the family of 24 at
+  g = 0.05/24; FAMILY REFUTED iff any stream trips; PER-STREAM-HOT
+  p_plus <= g; PER-STREAM-FROZEN p_minus <= g.  PROBES (pure exact
+  Binomial arithmetic, no rng / no MC): Q1 family size under the
+  null — pi_s exact per stream (existing at actual n_s, block E at
+  design n=169, the mean of the 16 observed stream totals, labeled);
+  P(family trip) = 0.0330 <= 0.05 → SIZE-CALIBRATED.  Q2 design-
+  fixed power (exp028 two-class alt: 3 hot at 10x / 5 frozen at
+  0.1x among block E, n=169 labeled): a 10x-hot stream trips w.p.
+  0.9268 → P(at least one of 3 hot trips) = 0.9996; a 3x stream only
+  0.1105; the frozen arm 0.0000.  Q3 frozen-side visibility: a
+  zero-hit stream needs n >= 1238 draws to trip the lower gate vs
+  design n=169 → FROZEN-SIDE-BLIND at census-n per-stream (a 0.1x
+  stream expects ~0.084 hits in 169 draws; only the family-level
+  pooled deviance, exp028's design, can see the frozen arm — sealed
+  in prose BEFORE the number).  Q4 POST-HOC context read on the
+  current 16-stream corpus at gate 0.05/16: NO stream trips
+  (consistent with exp026's conservative marginals and with the
+  shrink-toward-middle caveat: the 10 existing hits set w_hat);
+  labeled context, not a verdict.  Guards green: 16-stream corpus
+  re-derived from raw telemetry vs sealed per-stream table, totals
+  2009/10; suite 7/7 green outside this file; consecutive re-run
+  digest byte-identical 8133e23b.  SYNTHESIS: the per-stream gate
+  is honest at census-n on the hot side (a real 10x stream is
+  named with probability 0.9996 across the block) and honestly
+  blind on the frozen side; after block E the per-stream question
+  CLOSES at n=24 whatever the reads.  NEXT: Casey commits the
+  block-E batch (the run is a separate experiment, exp033).
+  Local only (push creds wiped).
+  results: experiments/exp032.results.json;
+  script: experiments/exp032_censusn_prereg.py
