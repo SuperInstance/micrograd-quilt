@@ -1048,3 +1048,27 @@ scientific target: what makes a root resist both mechanisms?
   wiped).
   results: experiments/exp034.results.json;
   script: experiments/exp034_pair_joint_gates_prereg.py
+- exp035 PAIRED-STREAM JOINT GATES EVALUATION (the exp034 seal
+  evaluated once): all 276 pairs x 2 probes run against the sealed
+  null w_pair=15/3078 at gate 0.05/552.  ZERO trips on BOTH
+  probes — VERDICT: FAMILY-PAIR-HAZARD RETAINED at pair
+  resolution.  Closest approach probe A: min p=0.005168 on
+  k3+k20 (h=3 of n=71, 57x above gate; k13+k20 ties — identical
+  sealed counts 16/1); closest probe B: min p=0.0585 on k12+k20
+  (646x above gate) — the exp034 structural-silence prediction
+  for Fisher at census-n margins holds exactly.  READS: (1) no
+  pair deviates from the pooled hazard; (2) no pair shows
+  internal heterogeneity.  exp029's pooled REFUTED
+  (p=0.003256) does not decompose into any nameable unit at
+  EITHER per-stream (exp033) or per-pair (exp035) resolution at
+  census-n — field reads smooth low-rate heterogeneity below
+  pair resolution, all three reads condition on the 15 hits
+  that set the hazard (shrink-toward-middle labeled).
+  PAIR LANE CLOSED per the exp034 seal — finest resolution
+  reached; any finer = fresh pre-registration.  Guards green
+  (24 streams re-derived, totals 3078/15); suite 7/7 green;
+  re-run digest byte-identical 076a3790.  Local only (push
+  creds wiped).  NEXT: Casey reads the exp029-vs-exp033/exp035
+  tension face; rate lane fully closed at pair resolution.
+  results: experiments/exp035.results.json;
+  script: experiments/exp035_pair_gates_evaluation.py

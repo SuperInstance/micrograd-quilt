@@ -1,0 +1,37 @@
+{
+ "closest_probe_a": {
+  "h": 3,
+  "n": 71,
+  "p": 0.005167603327875381,
+  "pair": [
+   "k3",
+   "k20"
+  ]
+ },
+ "closest_probe_b": {
+  "p": 0.05854517442500789,
+  "pair": [
+   "k12",
+   "k20"
+  ]
+ },
+ "experiment": "exp035 paired-stream joint gates EVALUATION of the exp034 seal (276 pairs x 2 probes, w_pair=15/3078 fixed, gate 0.05/552)",
+ "family": {
+  "gate": 9.057971014492754e-05,
+  "pairs": 276,
+  "probes": 2,
+  "tests": 552
+ },
+ "guard_ok": true,
+ "guards": {
+  "streams": 24,
+  "total_draws": 3078,
+  "total_hits": 15,
+  "w_pair_matches_mle": true
+ },
+ "rerun_digest": "076a3790",
+ "synthesis": "All 276 sealed pairs x 2 probes evaluated against the exp034 seal (w_pair=15/3078 FIXED, gate 0.05/552).  ZERO trips on both probes.  Closest approach: probe A min p=0.0051676 on k3+k20 (h=3 of n=71, 57x above gate); probe B min p=0.0585452 on k12+k20 (646x above gate).  The exp034 prediction that probe B is structurally silent at census-n margins holds exactly (min Fisher p 0.0586 >> gate 9.06e-05).  Reads: (1) NO pair deviates from the pooled hazard \u2014 exp029's pooled REFUTED does not decompose into any nameable PAIR either; (2) NO pair shows internal heterogeneity \u2014 within-pair contrast finds nothing the pooled read missed.  Pair lane CLOSED at n=24 per the exp034 seal: finest resolution reached, no triples, no re-pairing.  The surviving tension is now fully Casey-facing: pooled exact deviance REFUTES one-shared-hazard (exp029, p=0.003256) while neither per-stream (exp033) nor per-pair (exp035) resolution can name a deviating unit at census-n \u2014 the field reads 'smooth low-rate heterogeneity below pair resolution', consistent with shrink-toward-middle labeling since all three reads condition on the 15 hits that set the hazard.",
+ "trips_probe_a": [],
+ "trips_probe_b": [],
+ "verdict": "FAMILY-PAIR-HAZARD RETAINED at pair resolution"
+}
