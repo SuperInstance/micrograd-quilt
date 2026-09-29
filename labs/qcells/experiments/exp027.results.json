@@ -1,0 +1,135 @@
+{
+ "experiment": "exp027 birth-order + breaker-set statistics under the shared desert hazard",
+ "design": "pure exact analysis of the sealed 8-stream census corpus; per-stream first-birth-time PMFs under the sealed pooled p (never re-estimated); independent discrete order statistics; exhaustive 336 ordered-breaker-triple enumeration; exact conditional deviance over all 330 hit-count compositions; no rng, no re-run",
+ "honesty": "4 events / 8 streams, deep-pilot class; every verdict reads 'what ONE shared hazard predicts about ORDER/SET composition', never 'proves per-stream rates differ'; Q2's percentile compares probabilities across exhaustive discrete configurations; exposure was design-fixed so Q3 is descriptive; Q4's two procedures share the same null and conditioning but use different statistics \u2014 their disagreement at pilot-n is itself the finding, sealed for Casey, not adjudicated here",
+ "guard_rederivation_vs_sealed": {
+  "desert_gens": [
+   74,
+   74
+  ],
+  "desert_draws": [
+   1037,
+   1037
+  ],
+  "desert_hits": [
+   4,
+   4
+  ],
+  "ok": true
+ },
+ "q1_order_table": {
+  "birth_order": [
+   {
+    "stream": "k3",
+    "birth_gen": 0,
+    "cum_desert_draws_at_birth": 16,
+    "total_desert_draws": 16
+   },
+   {
+    "stream": "k5",
+    "birth_gen": 3,
+    "cum_desert_draws_at_birth": 54,
+    "total_desert_draws": 54
+   },
+   {
+    "stream": "k6",
+    "birth_gen": 8,
+    "cum_desert_draws_at_birth": 121,
+    "total_desert_draws": 121
+   }
+  ],
+  "censored_streams": [
+   {
+    "stream": "k4",
+    "total_desert_draws": 165
+   },
+   {
+    "stream": "k7",
+    "total_desert_draws": 163
+   },
+   {
+    "stream": "k0",
+    "total_desert_draws": 174
+   },
+   {
+    "stream": "k1",
+    "total_desert_draws": 175
+   },
+   {
+    "stream": "k2",
+    "total_desert_draws": 169
+   }
+  ],
+  "exposure_monotone_at_birth": true,
+  "P_observed_order_unconditional": 0.001740482959522856,
+  "P_all_three_crossers_break": 0.004218675754285881,
+  "P_observed_order_CONDITIONAL_on_all_three_breaking": 0.4125661844844668,
+  "order_ignorant_baseline_1_over_6": 0.16666666666666666,
+  "verdict": "ORDER-AS-EXPECTED",
+  "read": "unconditionally P(observed order)=0.00174 \u2014 it subsumes the improbable WHO.  The real order question is conditional: given the three crossers break at all, P(k3 first, k5 second, k6 third) = 0.4126 vs 0.1667 order-ignorant"
+ },
+ "q2_full_configuration": {
+  "P_observed_configuration_exact": 6.617803628189779e-05,
+  "n_ordered_configurations": 336,
+  "observed_percentile": 0.35714285714285715,
+  "median_configuration_p": 0.000351384335267509,
+  "verdict": "BELOW-MEDIAN-NOT-TAIL",
+  "read": "where the exact observed outcome sits among all 336 ordered breaker triples under the shared hazard (a joint WHO+order comparison)"
+ },
+ "q3_breaker_set_exposure_consistency": {
+  "sealed_fact": "breakers carry the three LOWEST total desert exposures (16/54/121); all five non-crossers sit at 163-175",
+  "bottom3_by_exposure": [
+   "k3",
+   "k5",
+   "k6"
+  ],
+  "top3_by_exposure": [
+   "k2",
+   "k0",
+   "k1"
+  ],
+  "observed_breaker_set": [
+   "k3",
+   "k5",
+   "k6"
+  ],
+  "set_equals_bottom3": true,
+  "P_at_least_one_birth_per_stream_shared_hazard": {
+   "k3": 0.059962795981501116,
+   "k4": 0.47148386964835864,
+   "k5": 0.18835799123013786,
+   "k6": 0.3735168699459248,
+   "k7": 0.46738288691935337,
+   "k0": 0.4895510289403595,
+   "k1": 0.4915199738624796,
+   "k2": 0.47959134943725423
+  },
+  "P_break_set_is_bottom3_orderfree": 7.96890965981818e-05,
+  "P_break_set_is_top3_orderfree": 0.011755667209981066,
+  "P_observed_breaker_set_orderfree": 7.96890965981818e-05,
+  "P_none_of_the_five_heavy_streams_break": 0.038022800464556195,
+  "order_ignoring_baseline_1_over_56": 0.017857142857142856,
+  "verdict": "SET-SURPRISING",
+  "read": "under the shared hazard the five heavy streams each break w.p. ~0.47-0.49 and the observed breakers w.p. 0.06/0.19/0.37; P(none of the five heavy streams break) = 0.0380, and P(the break set is exactly the three light streams) = 7.97e-05 vs 0.01786 flat"
+ },
+ "q4_exact_conditional_homogeneity_guard": {
+  "test": "conditional deviance G^2 of the hit-count vector under Multinomial(4; w), exact over all 330 compositions (chi2 approximation invalid at expected counts 0.06-1.7)",
+  "observed_count_vector": {
+   "k3": 1,
+   "k4": 0,
+   "k5": 1,
+   "k6": 2,
+   "k7": 0,
+   "k0": 0,
+   "k1": 0,
+   "k2": 0
+  },
+  "observed_conditional_deviance": 14.528623779121798,
+  "exact_p_value": 0.005344580610707676,
+  "n_compositions_enumerated": 330,
+  "exp026_conditional_verdict": "HOMOGENEOUS-AT-PILOT-N (Bonferroni marginal tails, all >= 0.48)",
+  "verdict": "DISAGREES-WITH-EXP026-SEALED-FOR-CASEY",
+  "read": "two EXACT tests of the same shared-hazard null DISAGREE at 0.05: the joint deviance rejects (all 4 hits concentrated in the three LIGHTEST streams while 846 heavy-stream draws yield nothing) while exp026's one-stream-at-a-time Bonferroni tails cannot see the joint pattern and do not.  Named honestly: procedure-dependent at n=4, sealed for Casey as a disagreement, not adjudicated in this run"
+ },
+ "headline": "ORDER CARRIES NOTHING; THE SET CARRIES EVERYTHING.  Conditional on who breaks, the observed order is the shared hazard's ordinary outcome (P=0.413 vs 1/6) \u2014 but WHO breaks is the shock: the three breakers are the three LOWEST-exposure streams (P(set)=7.97e-05, ~200x below flat 1/56; exact joint deviance p=0.0053 vs exp026's Bonferroni HOMOGENEOUS >= 0.48 \u2014 two exact procedures disagree at pilot-n).  Read: the order statistics add no per-stream-rate evidence, but the JOINT set statistic puts the one-shared-hazard null in the tail; 'some salts hot, some frozen' is back on the table as a procedure-dependent, pilot-n finding for Casey \u2014 a disagreement to adjudicate, not a refutation of exp026."
+}

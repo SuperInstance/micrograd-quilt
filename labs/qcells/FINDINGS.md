@@ -739,3 +739,38 @@ scientific target: what makes a root resist both mechanisms?
   order k3<=k5<=k6 carry more evidence than the marginals used
   here?) or prospector E3/E4.  results: experiments/exp026.results.json;
   script: experiments/exp026_first_birth_timing.py
+- exp027 BIRTH-ORDER + BREAKER-SET STATISTICS (ORDER-AS-EXPECTED /
+  SET-SURPRISING / PROCEDURE-DISAGREEMENT-SEALED): pure exact
+  analysis of the sealed 8-stream census corpus, no rng, no re-run.
+  Q1 ORDER: asked two ways.  Unconditional P(observed order
+  k3<k5<k6) = 1.74e-3 SUBSUMES the improbable WHO; the real order
+  question is conditional — given the three crossers break at all,
+  P(k3 first, k5 second, k6 third) = 0.4126 vs 1/6 order-ignorant:
+  the order is the shared hazard's ORDINARY outcome.  ORDER CARRIES
+  NOTHING.  Q2 the full configuration sits at percentile 0.357 of
+  all 336 ordered breaker triples — below median, not tail (a
+  joint WHO+order read).  Q3 SET (the shock): the three breakers
+  carry the THREE LOWEST total desert exposures (16/54/121 draws);
+  all five non-crossers sit at 163-175.  Under the shared hazard
+  the heavy five each break w.p. ~0.47-0.49 (P(none break) =
+  0.038) while the observed breakers break w.p. 0.06/0.19/0.37;
+  P(break set = exactly the three light streams) = 7.97e-5, ~200x
+  below the flat 1/56.  SET CARRIES EVERYTHING.  Q4 CONSISTENCY
+  GUARD: exact conditional homogeneity deviance (Multinomial(4; w),
+  all 330 compositions enumerated; chi2_7 approximation INVALID at
+  expected counts 0.06-1.7) gives G^2 = 14.53, exact p = 0.0053 —
+  REJECTING the shared hazard — while exp026's one-stream-at-a-time
+  Bonferroni tails (same null, same conditioning) were all >= 0.48.
+  TWO EXACT PROCEDURES DISAGREE at pilot-n; the disagreement is
+  sealed for Casey, not adjudicated here.  Read: the JOINT set
+  statistic puts 'one shared hazard + censoring' in the tail;
+  'some salts hot, some frozen' is back on the table as a
+  procedure-dependent, n=4 finding — a disagreement to
+  adjudicate, never a refutation of exp026.  Honest limits: 4
+  events / 8 streams; exposure design-fixed (Q3 descriptive); Q2
+  percentile compares exhaustive discrete configurations, not a
+  nested alternative.  Named next: Casey adjudicates deviance-vs-
+  Bonferroni at this n (or pre-registers the tiebreaker on a
+  larger census); qcells lane otherwise awaits credential restore.
+  results: experiments/exp027.results.json;
+  script: experiments/exp027_birth_order_stats.py
