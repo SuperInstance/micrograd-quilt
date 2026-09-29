@@ -1,0 +1,114 @@
+{
+ "corpus": {
+  "crossers": [
+   "k3",
+   "k5",
+   "k6",
+   "k8",
+   "k9",
+   "k11",
+   "k13",
+   "k15"
+  ],
+  "desert_draws": 2009,
+  "desert_hits": 10,
+  "non_crossers": [
+   "k4",
+   "k7",
+   "k0",
+   "k1",
+   "k2",
+   "k10",
+   "k12",
+   "k14"
+  ],
+  "streams": 16,
+  "w_pooled": 0.004977600796416127
+ },
+ "experiment": "exp031a non-crosser ceiling vs pooled hazard at census-n",
+ "guards": {
+  "census_rederivation_vs_sealed": {
+   "desert_draws": [
+    972,
+    972,
+    true
+   ],
+   "desert_gens": [
+    69,
+    69,
+    true
+   ],
+   "desert_hits": [
+    6,
+    6,
+    true
+   ]
+  },
+  "noncrosser_rederivation_vs_sealed": {
+   "desert_draws": [
+    1360,
+    1360,
+    true
+   ],
+   "desert_hits": [
+    0,
+    0,
+    true
+   ],
+   "streams": [
+    8,
+    8,
+    true
+   ]
+  },
+  "pilot_rederivation_vs_sealed": {
+   "desert_draws": [
+    1037,
+    1037,
+    true
+   ],
+   "desert_gens": [
+    74,
+    74,
+    true
+   ],
+   "desert_hits": [
+    4,
+    4,
+    true
+   ]
+  }
+ },
+ "honesty": "Named exp030 candidate-a executed with its 0.0022 one-sided UB convention, and the exp026 two-sided convention is also reported; both are below w. This does NOT re-adjudicate exp029 (pooled deviance p=0.003256); it is the ceiling face of the same allocation shock. Pure exact arithmetic, no rng.",
+ "noncrosser_panel": {
+  "desert_draws": 1360,
+  "desert_hits": 0,
+  "expected_hits_if_pooled_w": 6.7695370831259325,
+  "streams": [
+   "k4",
+   "k7",
+   "k0",
+   "k1",
+   "k2",
+   "k10",
+   "k12",
+   "k14"
+  ]
+ },
+ "rerun_digest": "2238e686959aa81846759a46633e11d4",
+ "rule1_point_null_zero_hits": {
+  "alpha": 0.05,
+  "exact_P_X_eq_0_under_null": 0.0011289794140556724,
+  "null": "non-crosser desert draws are Bernoulli(w=10/2009)",
+  "read": "zero hits in 1360 non-crosser draws is below the shared hazard's ordinary mood at the pooled point",
+  "verdict": "INCOMPATIBLE"
+ },
+ "rule2_confidence_bounds_read_only": {
+  "onesided_ub_below_pooled_w": true,
+  "pooled_w": 0.004977600796416127,
+  "read": "both conventions put the non-crosser 95% ceiling below the pooled point",
+  "twosided_ub_below_pooled_w": true,
+  "ub95_onesided_clopper_pearson": 0.002200320057858418,
+  "ub95_twosided_exp026_definition": 0.002708736099310771
+ }
+}

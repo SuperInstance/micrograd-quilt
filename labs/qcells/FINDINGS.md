@@ -863,3 +863,24 @@ scientific target: what makes a root resist both mechanisms?
   experiments/exp030.results.json (re-run digest 45467dd1,
   byte-identical consecutive runs 1988279b);
   script: experiments/exp030_birth_structure.py
+- exp031a NON-CROSSER CEILING VS POOLED HAZARD AT CENSUS-N
+  (INCOMPATIBLE / CONVENTION-ROBUST): sealed exp030 candidate-a executed
+  verbatim against the pooled 16-stream corpus. Guards green: pilot
+  74/1037/4, census 972/6, non-crosser panel 8 streams / 1360 desert draws /
+  0 hits. RULE-1 point-null diagnostic: under shared per-draw hazard
+  w = 10/2009 = 0.0049776, X=0 in n0=1360 has exact probability
+  p0 = 0.0011289794 < 0.05 → INCOMPATIBLE. RULE-2 confidence-bound read:
+  the candidate's one-sided Clopper-Pearson UB95 = 0.0022003201, and the
+  exp026-definition two-sided UB95 = 0.0027087361; BOTH sit below the pooled
+  point w = 0.0049776. Expected non-crosser hits at pooled w would be 6.77;
+  observed 0. Read: the frozen/barren majority is no longer merely
+  compatible with a low shared hazard at census-n; the pooled point itself
+  is above the non-crosser 95% ceiling. This is the ceiling face of the same
+  allocation shock exp029 measured by pooled deviance (p=0.003256); it does
+  not re-adjudicate that verdict. Named next (pre-registration required):
+  exp031b exposure-EXOGENOUS allocation test — weights from salt identity /
+  draw-order, not post-birth-truncated totals — to close the endogeneity gap
+  in exp027 Q3 + exp029. Pure exact arithmetic, no rng; re-run digest
+  2238e686959aa81846759a46633e11d4; suite 7/7 green outside this file.
+  results: experiments/exp031.results.json;
+  script: experiments/exp031_noncrosser_ceiling.py
