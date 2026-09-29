@@ -804,3 +804,62 @@ scientific target: what makes a root resist both mechanisms?
   adjudication corpus is ONE pulse of runs away whenever Casey
   commits the batch.  results: experiments/exp028.results.json;
   script: experiments/exp028_adjudication_prereg.py
+- exp029 ADJUDICATION CENSUS BLOCK EXECUTED (SHARED-HAZARD NULL
+  REFUTED — BACKFILLED from sealed receipt 988428d, appended here
+  at exp030 time because the pulse receipt reached the snowball
+  queue but not this log): exp028-pre-registered b*=1 block run
+  verbatim — salts k8–k15, seeds 31008–31015, exp021 Q1 tiesample
+  semantics POP16 GENS12 BUDGET6, ONE committed batch, no peeking;
+  determinism verified by in-memory re-run before any statistic.
+  Block facts: 972 desert draws / 6 hits; births k8 g4, k9 g7,
+  k11 g6 (2 hits), k13 g0 (16 draws — the k3 signature),
+  k15 g11; non-crossers k10/k12/k14.  Pooled corpus: 16 streams /
+  2009 draws / 10 hits.  SEALED RULE DECISION: pooled exact
+  conditional deviance p = 0.003256 < 0.05 → shared-hazard null
+  REFUTED; reverse sensitivity rule (refute only if both reject)
+  RETAINED — exp027's Bonferroni diagnostic-only lane stays silent
+  as constructed.  Guards: pilot re-derivation vs sealed 74/1037/4
+  byte-match; exp001 instrument reproduced byte-identical; suite
+  7/7 green outside this file.  Local only (push creds wiped).
+  results: experiments/exp029.results.json + exp029.telemetry.k8..k15;
+  script: experiments/exp029_adjudication_census.py
+- exp030 BIRTH-STRUCTURE DECOMPOSITION (MULTIPLICITY-CONSISTENT /
+  COUNT-CALIBRATED / TAUTOLOGY-GUARDED): pure exact analysis of the
+  pooled 16-stream corpus, no rng, no new stream runs.  DEFINITIONS
+  GUARD sealed first: birth = first desert gen with >=1 newborn
+  >= BAR(0.45) and the desert regime ENDS at birth, so
+  hits>=1 iff birth — any hit-rate test conditioned on crossing
+  status is DEFINITIONAL and was BANNED as evidence before any
+  rule was written.  RULE-1 multiplicity dispersion: the 8 birth
+  events (k3,k5,k6,k8,k9,k11,k13,k15; birth gens carry only
+  12–16 newborns by POP16 design; hits 1,1,2,1,1,2,1,1) allocated
+  by exact weighted-composition deviance — p = 0.9978 CONSISTENT:
+  within birth clouds the shared per-draw hazard predicts the
+  multiplicity structure exactly, the two doubles (k6, k11) are
+  its ordinary mood.  RULE-2 birth count vs counterfactual
+  exposure: p_s = 1-(1-w)^E_s with w = 10/2009 and E_s = FULL
+  12-gen newborn count (formula re-verified against exp027's
+  sealed table to 1e-9 before use; guard caught this experimenter
+  using BAR=0.72 — sealed constant is 0.45 — BEFORE any statistic
+  touched the corpus, run aborted and re-run clean).  Every stream
+  carries p_s ~ 0.54–0.59; E[births] = 9.08; observed 8;
+  exact Poisson-binomial upper tail P(X >= 8) = 0.7889 CALIBRATED.
+  RULE-3 birth timing: labeled EXPLORATORY histogram only.
+  SYNTHESIS with exp026/027/029: the shared per-draw hazard now
+  survives every MARGINAL question the lineage has asked — how many
+  births (calibrated), multiplicity within births (consistent) —
+  and fails exactly one JOINT question: which streams, given their
+  observed exposures (exp027 set p=7.97e-5; exp029 pooled deviance
+  p=0.003256).  The two-regime shape (exp025 title claim) sharpens
+  to: stream-level Bernoulli(~0.5 over full exposure) birth events,
+  allocation across streams NOT the exposure-weighted lottery the
+  shared hazard books.  Named next (pre-registration required):
+  exp031 non-crosser upper-bound vs pooled w at census-n — 1360
+  barren draws, 0 hits; exact UB95 = 0.0022 < w = 0.00498, which
+  would pit exp026's frozen-compatible verdict against the enlarged
+  corpus; and an exposure-EXOGENOUS allocation test (weights from
+  salt identities / draw-order, not post-birth-truncated totals) to
+  close the endogeneity gap in both exp027 Q3 and exp029.  results:
+  experiments/exp030.results.json (re-run digest 45467dd1,
+  byte-identical consecutive runs 1988279b);
+  script: experiments/exp030_birth_structure.py
