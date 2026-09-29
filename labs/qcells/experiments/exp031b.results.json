@@ -1,0 +1,173 @@
+{
+ "corpus": {
+  "birth_count_conditioned_on": "exp030 validated the count as CALIBRATED (P(X>=8)=0.7889)",
+  "birth_set": [
+   "k11",
+   "k13",
+   "k15",
+   "k3",
+   "k5",
+   "k6",
+   "k8",
+   "k9"
+  ],
+  "desert_draws": 2009,
+  "desert_hits": 10,
+  "streams": 16
+ },
+ "exogenous_handles": {
+  "cohort": {
+   "census_exp029_block": [
+    "k8",
+    "k9",
+    "k10",
+    "k11",
+    "k12",
+    "k13",
+    "k14",
+    "k15"
+   ],
+   "pilot_pre_adjudication": [
+    "k0",
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6",
+    "k7"
+   ]
+  },
+  "run_order": [
+   "k3",
+   "k4",
+   "k5",
+   "k6",
+   "k7",
+   "k0",
+   "k1",
+   "k2",
+   "k8",
+   "k9",
+   "k10",
+   "k11",
+   "k12",
+   "k13",
+   "k14",
+   "k15"
+  ],
+  "salt_label_equals_seed_minus_31000": true
+ },
+ "experiment": "exp031b exposure-exogenous allocation test",
+ "family_bonferroni_diagnostic_only": {
+  "note": "diagnostic only, per the lab's Bonferroni convention",
+  "smallest_p_x3": 0.9846153846153847
+ },
+ "guards": {
+  "birth_set_vs_sealed": [
+   [
+    "k11",
+    "k13",
+    "k15",
+    "k3",
+    "k5",
+    "k6",
+    "k8",
+    "k9"
+   ],
+   [
+    "k11",
+    "k13",
+    "k15",
+    "k3",
+    "k5",
+    "k6",
+    "k8",
+    "k9"
+   ],
+   true
+  ],
+  "census_rederivation_vs_sealed": {
+   "desert_draws": [
+    972,
+    972,
+    true
+   ],
+   "desert_gens": [
+    69,
+    69,
+    true
+   ],
+   "desert_hits": [
+    6,
+    6,
+    true
+   ]
+  },
+  "noncrosser_rederivation_vs_sealed": {
+   "desert_draws": [
+    1360,
+    1360,
+    true
+   ],
+   "desert_hits": [
+    0,
+    0,
+    true
+   ],
+   "streams": [
+    8,
+    8,
+    true
+   ]
+  },
+  "pilot_rederivation_vs_sealed": {
+   "desert_draws": [
+    1037,
+    1037,
+    true
+   ],
+   "desert_gens": [
+    74,
+    74,
+    true
+   ],
+   "desert_hits": [
+    4,
+    4,
+    true
+   ]
+  }
+ },
+ "honesty": "Pure exact arithmetic over the 12870-set composition space, no rng, no Monte Carlo, no normal approximation. Conditioning on the birth count is explicit because exp030 already calibrated the count; the enumeration is conditional exact, not unconditional. Salt label and seed are one covariate (seed = 31000+label for all 16 streams), so P2 is a single probe, not two.",
+ "null": "streams are iid rng replicas of one protocol under the shared hazard => exchangeable across salts => conditional on 8 births every 8-subset of the 16 salts is uniform over C(16,8)=12870 sets; statistics use exogenous handles only",
+ "preregistration": "sealed in FINDINGS at exp031a time: weights from salt identity / draw-order, not post-birth-truncated totals; probes P1-P3 and verdicts sealed in this script's docstring BEFORE any statistic ran",
+ "probes": {
+  "P1_cohort": {
+   "exact_two_sided_p": 0.6192696192696193,
+   "observed_pilot_births": 3,
+   "observed_statistic": 1,
+   "sets_at_least_as_extreme": 7970,
+   "statistic": "|pilot_births - 4|",
+   "verdict": "SILENT"
+  },
+  "P2_salt_seed_rank": {
+   "exact_two_sided_p": 0.3282051282051282,
+   "observed_rank_sum": 78,
+   "observed_statistic": 10,
+   "sets_at_least_as_extreme": 4224,
+   "statistic": "|rank_sum(birth labels) - 68|",
+   "verdict": "SILENT"
+  },
+  "P3_run_order_rank": {
+   "exact_two_sided_p": 0.9591297591297592,
+   "observed_position_sum": 61,
+   "observed_statistic": 1,
+   "sets_at_least_as_extreme": 12344,
+   "statistic": "|position_sum(birth streams) - 60|",
+   "verdict": "SILENT"
+  }
+ },
+ "rerun_digest": "0a9018d0865089377408b26a9cfed8a3",
+ "synthesis": "All three exogenous probes are SILENT: the exp029 allocation shock has no signature in any handle the design fixed before the rng ran (cohort, salt/seed identity, run order). Its only predictor remains endogenous post-birth-truncated exposure itself. exp027's P(set)=7.97e-5 is therefore downgraded to ENDOGENOUSLY-CONDITIONED (not re-computed here \u2014 its null needs the full sequential joint of (birth, n) under w, a separate pre-registration). This closes the exogenous side of the question; it does NOT re-adjudicate exp029's conditional deviance verdict (p=0.003256), which stands as valid conditional arithmetic given exposure."
+}

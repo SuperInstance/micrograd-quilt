@@ -884,3 +884,39 @@ scientific target: what makes a root resist both mechanisms?
   2238e686959aa81846759a46633e11d4; suite 7/7 green outside this file.
   results: experiments/exp031.results.json;
   script: experiments/exp031_noncrosser_ceiling.py
+- exp031b EXPOSURE-EXOGENOUS ALLOCATION TEST (ALL PROBES SILENT /
+  EXOGENOUS SIDE CLOSED): sealed in FINDINGS at exp031a time —
+  weights from salt identity / draw-order, not post-birth-truncated
+  totals. THE GAP (stated once): exp027's P(set)=7.97e-5 and
+  exp029's deviance both rank/weight streams by post-birth-truncated
+  exposure n_s, which is an OUTCOME — under any per-draw hazard an
+  early breaker stops accumulating desert draws by construction, so
+  low exposure is partly mechanical. EXCHANGEABLE NULL: all 16
+  streams are iid rng replicas of one protocol (salt k <-> seed
+  31000+k, byte-identical census harness, exp029 instrument guard),
+  so under the shared hazard stream outcomes are exchangeable across
+  salts; conditional on the birth count (8; exp030 already validated
+  the count as CALIBRATED, P(X>=8)=0.7889) every 8-subset of the 16
+  salts is uniform over C(16,8)=12870 sets. Three sealed probes,
+  full exact enumeration, no rng / no MC / no normal approx:
+  P1 COHORT |pilot_births-4| = 1 (3 pilot births of 8) ->
+  exact two-sided p = 0.6193 SILENT.  P2 SALT/SEED RANK |R-68| = 10
+  (R=78) -> exact two-sided p = 0.3282 SILENT.  P3 RUN-ORDER RANK
+  |pos-60| = 1 (pos=61) -> exact two-sided p = 0.9591 SILENT.
+  Family Bonferroni x3 = 0.985 (diagnostic only). SYNTHESIS: the
+  exp029 allocation shock has NO signature in any handle the design
+  fixed before the rng ran; its only predictor remains endogenous
+  exposure itself, and exp027's P(set)=7.97e-5 is downgraded to
+  ENDOGENOUSLY-CONDITIONED (its null would need the full sequential
+  joint of (birth, n) under w — separate pre-registration, not done
+  here). exp029's conditional verdict (p=0.003256) stands untouched
+  as valid conditional arithmetic; this closes the exogenous side,
+  it does not re-adjudicate. Found-by-running: guard-check crash on
+  mixed dict/list guard entry (fixed before any statistic touched
+  the corpus; re-run clean). Guards green: pilot 74/1037/4, census
+  972/6, pooled 16/2009/10, non-crossers 8/1360/0, birth set =
+  sealed {k3,k5,k6,k8,k9,k11,k13,k15}; suite 7/7 green outside this
+  file; consecutive re-run digest byte-identical 0a9018d0. Local
+  only (push creds wiped).
+  results: experiments/exp031b.results.json;
+  script: experiments/exp031b_exogenous_allocation.py
