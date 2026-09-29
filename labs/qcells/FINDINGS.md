@@ -1072,3 +1072,45 @@ scientific target: what makes a root resist both mechanisms?
   tension face; rate lane fully closed at pair resolution.
   results: experiments/exp035.results.json;
   script: experiments/exp035_pair_gates_evaluation.py
+
+## exp036 — TRIPLET-STREAM JOINT GATES PRE-REGISTRATION (VERIFIED, seal only)
+
+Escalation lane named by the tension doc (triplet-gate seal needs fresh
+pre-registration). Sealed BEFORE any triplet statistic exists: exhaustive
+C(24,3)=2024 triplet enumeration, 4 tests per triplet (probe A joint-count
++ the 3 in-triplet pairwise Fisher contrasts), gate g=0.05/8096, null
+w_tri=15/3078 fixed; closure sealed: triplets = LAST analytic rung of the
+rate lane over these 24 streams — beyond = new telemetry under a fresh
+pre-registration, not more arithmetic on the same 15 hits. Q4 deliberately
+absent (no real-data triplet statistic computed anywhere, not even a
+would-trip peek).
+
+- **Q1 family (VERIFIED):** 8096 exact-valid tests, union bound closes
+  family at exactly 0.05 with NO independence assumption (in-triplet
+  Fisher dependence is real and irrelevant to the bound); exact expected
+  null trips: probe A 0.0056, probe B 0.00000294 (linearity sum over the
+  6072 pair-instances, memoized margins).
+- **Q2 design power, labeled (VERIFIED):** exp028 3-hot/5-frozen
+  composition, triplet n=507: probe A trips HHH 0.9969 / HHF 0.8453 /
+  HFF 0.0833 / FFF 0.0833-at-0.1x→0.0000-see-json; probe B HF contrast
+  0.0015 at the sealed gate. Hot side RETAINS power at resolution 3.
+- **Q3 frozen visibility (VERIFIED):** n_zero=2456 vs design triplet
+  n=507 -> FROZEN-TRIPLET-BLIND under probe A; probe B structurally
+  silent at census-n margins (exp035 measured min Fisher p 0.0585 vs a
+  LOOSER 9.06e-5 gate). Frozen side has NO instrument at resolution 3.
+- **Verdict:** a triplet evaluation is worth running ONLY as a hot-side
+  check under fresh design assumptions; as a read on the observed 15 hits
+  it cannot decompose anything the pair lane did not (exp035 zero trips)
+  and it closes the frozen side completely. Rate lane CLOSES analytically
+  at triplets: hot-side escalation needs new telemetry (fresh census
+  block under its own pre-registration), frozen-side escalation has no
+  instrument at any resolution.
+- Guards green (24 streams re-derived, totals 3078/15); suite 18/18
+  green; FAIL-first verified (digest pin trips RED on corrupted results,
+  restored green); re-run digest byte-identical 95727bafe1f38140eb62755fc04b13e1.
+  Local only (push creds wiped). NEXT: Casey reads the tension face; the
+  analytic ladder is now sealed end-to-end (stream exp033 / pair exp035 /
+  triplet exp036-seal) — next rung anywhere = fresh census block.
+  results: experiments/exp036.results.json;
+  script: experiments/exp036_triplet_joint_gates_prereg.py;
+  pins: tests/test_triplet_prereg.py (5 pins)
