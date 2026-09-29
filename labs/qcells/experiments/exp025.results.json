@@ -1,0 +1,217 @@
+{
+ "experiment": "exp025 birth-cloud per-draw odds model",
+ "design": "pure analysis of the sealed cloud-census corpus (8 stream-runs: exp022 k3-k7 tie_sample lane, exp024 k0-k2 replicate census; the exp021 q1 salt telemetry has no cloud rows and is named-excluded); draw = a cloud cell NEWLY BORN at gen g (genome absent from last gen's cloud+champion; corrected at first run \u2014 carried lineage members are not births); hit = train_p >= 0.45 (exp021 lane BAR); birth = >=1 newborn hit at a gen; p_hat pooled never refit per stratum",
+ "honesty": "hits cluster within streams (a break gen lands its whole hit set at once) so per-draw CIs understate stream-level variance \u2014 stream table is the honest unit for rates; n=16 stream-runs is PILOT class; replicate cohort C is the same salts as A re-censused, labeled never merged; per-draw odds answer HOW OFTEN, not WHEN",
+ "q1_pooled_per_draw": {
+  "draws": 1350,
+  "hits": 88,
+  "p_hat": 0.06518518518518518,
+  "ci95_clopper_pearson": [
+   0.05241339341759074,
+   0.08001313040927877
+  ],
+  "read": "about 1 in 15 cloud draws births a >=BAR cell"
+ },
+ "q2_tie_width_strata": {
+  "strata": {
+   "n_tied=1": {
+    "draws": 152,
+    "hits": 2,
+    "rate": 0.013157894736842105,
+    "ci95": [
+     0.0015974191444217307,
+     0.04679867811938471
+    ]
+   },
+   "n_tied=2-3": {
+    "draws": 102,
+    "hits": 4,
+    "rate": 0.0392156862745098,
+    "ci95": [
+     0.010782277309163733,
+     0.09761631008127797
+    ]
+   },
+   "n_tied>=4": {
+    "draws": 1096,
+    "hits": 82,
+    "rate": 0.07481751824817519,
+    "ci95": [
+     0.05972466970389777,
+     0.09238640094737632
+    ]
+   }
+  },
+  "verdict": "FLAT"
+ },
+ "q3_per_gen_birth_model": {
+  "model": "P(>=1 hit | gen) = 1-(1-p_hat)^D_g",
+  "calibration_by_tier": {
+   "n_tied=1": {
+    "gens": 11,
+    "observed_birth_gens": 2,
+    "expected_birth_gens": 6.6121,
+    "prediction_interval_95": [
+     4,
+     10
+    ],
+    "in_interval": false
+   },
+   "n_tied=2-3": {
+    "gens": 7,
+    "observed_birth_gens": 2,
+    "expected_birth_gens": 4.3772,
+    "prediction_interval_95": [
+     2,
+     7
+    ],
+    "in_interval": true
+   },
+   "n_tied>=4": {
+    "gens": 78,
+    "observed_birth_gens": 21,
+    "expected_birth_gens": 47.6063,
+    "prediction_interval_95": [
+     40,
+     56
+    ],
+    "in_interval": false
+   }
+  },
+  "verdict": "MISCALIBRATED",
+  "explanation_if_miscalibrated": "pooled p_hat mixes two stream regimes (see q4); per-gen draw count alone cannot predict births without the regime state"
+ },
+ "q4_two_regime_odds": {
+  "regimes": {
+   "desert": {
+    "gens": 74,
+    "draws": 1037,
+    "hits": 4,
+    "rate": 0.003857280617164899,
+    "ci95": [
+     0.0010515115660763353,
+     0.009876264981316496
+    ]
+   },
+   "plateau": {
+    "gens": 22,
+    "draws": 313,
+    "hits": 84,
+    "rate": 0.268370607028754,
+    "ci95": [
+     0.21938136021225563,
+     0.3220662401692721
+    ]
+   }
+  },
+  "verdict": "TWO-REGIME",
+  "evidence": [
+   "plateau CI excludes desert point estimate",
+   "desert CI excludes plateau point estimate"
+  ],
+  "read": "desert: a first bar birth is ~1-in-259 newborns per gen across ~74 desert gens (the exp023 invisible event, quantified); plateau: ~1-in-4 newborns is a fresh BAR variant (neutral re-decomposition churn)"
+ },
+ "stream_table": {
+  "B_exp022_tiesample:k3": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": true,
+   "gens": 12,
+   "newborn_draws": 167,
+   "hits": 38,
+   "birth_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "B_exp022_tiesample:k4": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": false,
+   "gens": 12,
+   "newborn_draws": 165,
+   "hits": 0,
+   "birth_gens": []
+  },
+  "B_exp022_tiesample:k5": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": true,
+   "gens": 12,
+   "newborn_draws": 171,
+   "hits": 39,
+   "birth_gens": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "B_exp022_tiesample:k6": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": true,
+   "gens": 12,
+   "newborn_draws": 166,
+   "hits": 11,
+   "birth_gens": [
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "B_exp022_tiesample:k7": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": false,
+   "gens": 12,
+   "newborn_draws": 163,
+   "hits": 0,
+   "birth_gens": []
+  },
+  "C_exp024_replicate:k0": {
+   "cohort": "C_exp024_replicate",
+   "crossed_sealed": false,
+   "gens": 12,
+   "newborn_draws": 174,
+   "hits": 0,
+   "birth_gens": []
+  },
+  "C_exp024_replicate:k1": {
+   "cohort": "C_exp024_replicate",
+   "crossed_sealed": false,
+   "gens": 12,
+   "newborn_draws": 175,
+   "hits": 0,
+   "birth_gens": []
+  },
+  "C_exp024_replicate:k2": {
+   "cohort": "C_exp024_replicate",
+   "crossed_sealed": false,
+   "gens": 12,
+   "newborn_draws": 169,
+   "hits": 0,
+   "birth_gens": []
+  }
+ },
+ "carried_contrast": {
+  "rows": 186,
+  "bar_rows": 30
+ },
+ "cross_check": {
+  "corpus_births": 25,
+  "crossing_streams_with_birth": 3,
+  "noncrossing_streams_with_birth": 0
+ }
+}
