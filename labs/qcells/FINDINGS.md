@@ -649,3 +649,25 @@ scientific target: what makes a root resist both mechanisms?
   crossing on canonical 31 (desert 12/12 gens) keeps
   RETENTION-ASSEMBLY as the only no-break mechanism.  Local lab
   repo only (push credentials still wiped).
+- exp023 DESERT-BREAK PREDICTOR SCREEN (NOT SEPARABLE AT AVAILABLE N):
+  pure analysis of the sealed exp022 telemetry (no re-run, no rng, no
+  new sims) answering exp022's named question — what distinguishes
+  break streams PRE-break?  Four candidate predictors numbered
+  pre-run from named doctrine steps (C1 win2presence/exp018,
+  C2 nearbar40/exp022's k4 band, C3 tiewidth4/exp020-022 tie-band
+  read, C4 activity3/desert activity), two symmetric windows
+  (W1 at-birth gen 0; W2 pre-peak, k3 undefined — peak at g0).
+  RESULT: zero separation in either window.  Detail reads: win2
+  presence is UNIVERSAL at birth (5/5 streams — reach truly not the
+  constraint, exp018 confirmed at stream level); C2 trips only k3
+  (its break gen IS gen 0 — at-birth break, no pre-window exists);
+  C4 ANTI-CORRELATES in W2 — the non-crossing near-miss stream k4
+  was MORE active pre-peak (3+ distinct signal-born cells) than
+  crosser k5 (0) — cloud activity does not predict the break, an
+  active desert still freezes.  VERDICT: the desert break is a
+  per-gen BIRTH event invisible pre-break; exp018 doctrine holds at
+  stream level; prediction must target birth-cloud per-draw odds,
+  not trajectories.  n=5/n=4 pilot class; validation lane named =
+  exp024 (census the 3 remaining exp021 Q1 salts k0/k1/k2, test
+  surviving predictors blind).  results: experiments/
+  exp023.results.json; screen: experiments/exp023_predictor_screen.py
