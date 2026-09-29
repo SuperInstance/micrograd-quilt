@@ -774,3 +774,33 @@ scientific target: what makes a root resist both mechanisms?
   larger census); qcells lane otherwise awaits credential restore.
   results: experiments/exp027.results.json;
   script: experiments/exp027_birth_order_stats.py
+- exp028 PROCEDURE-DISAGREEMENT ADJUDICATION PRE-REGISTRATION
+  (OBSERVED-DIRECTION-SURPRISING / RULE-SEALED / POWER-LABELED):
+  pure exact analysis, no rng, no new stream runs.  Q1 exact
+  disagreement base rate under the shared hazard itself: enumerate
+  all 330 Multinomial(4; w) compositions, per-composition exact
+  deviance p AND exp026's own procedure (Marginal-Binomial(4, w_s)
+  tails, Bonferroni x8 — reproduced live, min tail >= 0.48 guard).
+  P(deviance rejects) = 0.0493 (size-calibrated at alpha);
+  P(Bonferroni rejects) = 0.0113 (conservative, as constructed);
+  P(disagree, either direction) = 0.038 — and the mass is ENTIRELY
+  the observed direction (deviance-reject + Bonferroni-retain =
+  0.038; reverse = 0.000: at pilot-n the conservative marginals can
+  never reject alone).  Verdict per pre-registered threshold:
+  OBSERVED-DIRECTION-SURPRISING (0.038 < 0.05) — the exp027 split is
+  not the shared hazard's ordinary mood, so it retains genuine
+  adjudication urgency, with the honest caveat that 0.038 is
+  rare-ish, not vanishing, at 4 events.  Q2 THE RULE, sealed in
+  prose BEFORE any power number: enlarged corpus = pilot + b*
+  pre-committed salt blocks of 8 census streams (exp024 protocol,
+  31000-series seeds, ONE batch, no peeking); shared hazard REFUTED
+  iff pooled exact deviance p < 0.05; Bonferroni diagnostic-only;
+  reverse sensitivity rule (refute only if BOTH reject) sealed
+  alongside so the choice cannot be post-hoc.  Q3 PRE-COMMITTED
+  SIZE, LABELED approximation (Patnaik + Wilson-Hilferty, never the
+  binding rule): under the design-fixed two-class alternative (3 hot
+  at 10x pooled / 5 frozen at 0.1x), b* = 1 block = 8 census streams
+  (~1354 draws) already carries approx power 0.9988 — the
+  adjudication corpus is ONE pulse of runs away whenever Casey
+  commits the batch.  results: experiments/exp028.results.json;
+  script: experiments/exp028_adjudication_prereg.py
