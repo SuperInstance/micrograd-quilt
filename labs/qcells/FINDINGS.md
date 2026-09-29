@@ -631,3 +631,21 @@ scientific target: what makes a root resist both mechanisms?
   wire 2; every observed win2 draw flowed through the ~30% replace
   class.  mutate_telem pinned 800/800 states (genome + rng-state
   equality); exp001 guard green.
+- exp022 CROSSING-STREAM CENSUS (TRAIN-VISIBLE, TIE-BREAK-INVARIANT):
+  passive census (exp021 Q2 semantics) on the exp021 crossing band
+  k3/k5/k6 (seeds 31003/31005/31006) + contrasts k4 (0.418) / k7
+  (0.0).  All five replicate exp021 champion values verbatim
+  (replicate pins pass) with exp001 guard byte-identical (census
+  active).  On every crossing stream the >=0.45 cell appeared with
+  train 0.498 / verify 0.482 at a single DESERT-BREAK gen (k3 g0,
+  k5 g3, k6 g8) as gen-max: n_tied=1 on k3/k5 (unique max — any tie
+  rule picks it), n_tied=2 on k6 (two identical 0.4824 twins).
+  Pick window 0 gens everywhere; later bar_gens are the promoted
+  champion in the cloud.  READ: 31's resistance is a per-stream
+  DESERT-BREAK RATE (5/8 never birth a train-visible high cell;
+  k4 near-miss 0.418 under BAR; k7 dead) — NOT a tie-band sampling
+  lottery.  exp020 tie-sampling governs 29/37, not 31; exp021
+  RATE-NOT-WALL refines to desert-break odds; exp016 archive
+  crossing on canonical 31 (desert 12/12 gens) keeps
+  RETENTION-ASSEMBLY as the only no-break mechanism.  Local lab
+  repo only (push credentials still wiped).
