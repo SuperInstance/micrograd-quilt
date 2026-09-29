@@ -1006,3 +1006,45 @@ scientific target: what makes a root resist both mechanisms?
   Local only (push creds wiped).
   results: experiments/exp032.results.json;
   script: experiments/exp032_censusn_prereg.py
+- exp034 PAIRED-STREAM JOINT GATES PRE-REGISTRATION (escalation
+  lane named by exp033's report; sealed BEFORE any pair statistic
+  exists; evaluation = exp035).  Pairing rule = EXHAUSTIVE
+  C(24,2)=276 unordered pairs (no cherry-picking) over the 24
+  sealed census streams; two probes per pair; family m=552,
+  Bonferroni gate g = 0.05/552; null hazard w_pair = 15/3078
+  fixed (the 15 hits set it — every exp035 pair read is labeled
+  conditioning-on-total context).  PROBE A joint-count: pair
+  n=n_i+n_j, h=h_i+h_j, two-sided exact Binomial trip at g;
+  PROBE B pair-contrast: two-sided Fisher exact, trip at g,
+  validity by construction (Fisher exact => P(p<=g) <= g).
+  Q1 SIZE: family calibrated by construction (union bound over
+  552 exact-valid tests closes at exactly 0.05, no independence
+  assumption); exact expected null trips: probe A 0.0111,
+  probe B ~0.0 (structurally silent at census-n margins: the
+  minimum attainable two-sided Fisher p at these hit counts is
+  orders above g — documented, probe stays in-family at zero
+  cost).  Q2 DESIGN POWER (labeled, exp028 composition 3 hot
+  @10x / 5 frozen @0.1x, design n=169/stream, pair n=338):
+  probe A trips for a 10x-hot pair w.p. 0.985, hot-frozen pair
+  0.4523, frozen pair at 0.1x ~0.0; probe B hot-frozen contrast
+  0.0175.  Q3 FROZEN VISIBILITY: n_zero = 1906 for a zero-hit
+  pair vs design pair n=338 -> FROZEN-PAIR-BLIND under probe A
+  (sealed prose BEFORE the number); probe B design power 0.0175
+  is also weak — the pair lane is a hot-side + joint-deviation
+  instrument, not a frozen-side one.  CLOSURE sealed: pairs are
+  the FINEST resolution of the rate lane; no triples, no
+  re-pairing, no probe drops; finer needs a fresh
+  pre-registration.  Q4 deliberately ABSENT: no real-data pair
+  statistic computed anywhere in the script — not even which
+  pairs would trip.  Guards green: all 24 streams re-derived
+  from raw telemetry vs sealed corpus + block-E tables, totals
+  3078/15; suite 7/7 green outside this file; consecutive re-run
+  digest byte-identical 185913de.  SYNTHESIS: the pair
+  escalation keeps the family honest by construction and is
+  well-powered on the hot side; the frozen arm stays blind at
+  pair resolution too — after exp035 the rate lane CLOSES at
+  pairs whatever the reads.  NEXT: exp035 evaluates the sealed
+  gates once over the 24 streams.  Local only (push creds
+  wiped).
+  results: experiments/exp034.results.json;
+  script: experiments/exp034_pair_joint_gates_prereg.py
