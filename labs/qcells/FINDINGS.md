@@ -649,6 +649,29 @@ scientific target: what makes a root resist both mechanisms?
   crossing on canonical 31 (desert 12/12 gens) keeps
   RETENTION-ASSEMBLY as the only no-break mechanism.  Local lab
   repo only (push credentials still wiped).
+- exp024 BLIND VALIDATION (NOT_SEPARABLE_AT_N8 — exp023 CONFIRMED):
+  census of the 3 remaining exp021 Q1 salts k0/k1/k2 (seeds
+  31000/31001/31002, never censused before) + frozen-predictor
+  test over the enlarged 8-stream panel.  Replicate pins: all
+  three finish @0.2422, not crossed — exp021 q1 values verbatim;
+  exp001 guard byte-identical with census ACTIVE.  Census facts:
+  on all 3 new streams the cloud NEVER holds a >=0.45 cell
+  (max_cloud = 0.2422 = the champion itself, zero bar_gens) —
+  exp021's DESERT-EXTENDS-TO-CLOUD holds on the full non-crosser
+  salt panel (k0/k1/k2/k4/k7 all cloud-barren; k4's 0.418 was
+  champion-side, not cloud birth).  Blind predictor reads at n=8:
+  C1 win2presence now universal 8/8 at birth AND 6/6 in W2 — the
+  reach constraint is dead at panel level, exp018 confirmed on
+  every salted stream; C2 trips still only k3 (its break gen IS
+  g0); C3 trips 3 crossers + k0/k1/k7 non-crossers (no
+  separation); C4 trips nobody in W1, anti-correlates in W2
+  (k4 + k6).  No frozen predictor separates 3 crossers from 5
+  non-crossers in either window.  VERDICT: exp023's pilot read
+  CONFIRMED blind — the desert break is a per-gen BIRTH event
+  invisible pre-break; prediction must target birth-cloud
+  per-draw odds, not trajectories.  Named next: exp025
+  birth-cloud per-draw odds model.  results: experiments/
+  exp024.results.json; census: experiments/exp024_blind_validation.py
 - exp023 DESERT-BREAK PREDICTOR SCREEN (NOT SEPARABLE AT AVAILABLE N):
   pure analysis of the sealed exp022 telemetry (no re-run, no rng, no
   new sims) answering exp022's named question — what distinguishes

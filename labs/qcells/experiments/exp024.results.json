@@ -1,0 +1,294 @@
+{
+ "design": "same passive census as exp021 Q2 / exp022; replicate pins vs exp021.results.json q1_rate_vs_wall verbatim; exp001 guard byte-identical with census ACTIVE; predictors C1-C4 + thresholds + windows frozen from exp023 (pre-existing telemetry, no re-screen fit); new-stream class from replicate pins, not predictors",
+ "experiment": "exp024 blind validation: census k0/k1/k2 + frozen-predictor test at n=8",
+ "guard": {
+  "exp001_reproduced_byte_identical": true
+ },
+ "honesty": "crosser:non-crosser = 3:5 (unbalanced panel stated); W2 undefined for k3 (peak at g0) and any new stream peaking at g0 \u2014 named per stream, never dropped; post-hoc reads labeled; n=8 still pilot class for any SEPARATES verdict; no archive, no retention",
+ "new_stream_W1_trips": {
+  "C1_win2presence": {
+   "k0": true,
+   "k1": true,
+   "k2": true
+  },
+  "C2_nearbar40": {
+   "k0": false,
+   "k1": false,
+   "k2": false
+  },
+  "C3_tiewidth4": {
+   "k0": true,
+   "k1": true,
+   "k2": false
+  },
+  "C4_activity3": {
+   "k0": false,
+   "k1": false,
+   "k2": false
+  }
+ },
+ "new_streams": {
+  "k0": {
+   "champion_verify": 0.2422,
+   "class": "non_crosser",
+   "cloud_bar_gens": [],
+   "crossed": false,
+   "exp021_replicate_ok": true,
+   "max_cloud_verify": 0.242188,
+   "seed": 31000,
+   "telemetry": "exp024.telemetry.k0.jsonl"
+  },
+  "k1": {
+   "champion_verify": 0.2422,
+   "class": "non_crosser",
+   "cloud_bar_gens": [],
+   "crossed": false,
+   "exp021_replicate_ok": true,
+   "max_cloud_verify": 0.242188,
+   "seed": 31001,
+   "telemetry": "exp024.telemetry.k1.jsonl"
+  },
+  "k2": {
+   "champion_verify": 0.2422,
+   "class": "non_crosser",
+   "cloud_bar_gens": [],
+   "crossed": false,
+   "exp021_replicate_ok": true,
+   "max_cloud_verify": 0.242188,
+   "seed": 31002,
+   "telemetry": "exp024.telemetry.k2.jsonl"
+  }
+ },
+ "next": "exp025: birth-cloud per-draw odds model (exp018/exp024 doctrine: predict P(>=BAR cell born) per generation from cloud composition, not trajectory history)",
+ "overall_verdict": "NOT_SEPARABLE_AT_N8 \u2014 exp023 pilot verdict CONFIRMED blind: desert-break is a per-gen birth event invisible pre-break; the 3 new non-crossers enlarge the non-crosser sample 2->5 and no frozen predictor separates 3 crossers from 5 non-crossers in either window; exp018 doctrine holds at stream level; prediction must target birth-cloud per-draw odds, not trajectories",
+ "panel_report": {
+  "k0": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "break_or_peak_gen": 1,
+   "class": "non_crosser",
+   "crossed": false
+  },
+  "k1": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "break_or_peak_gen": 1,
+   "class": "non_crosser",
+   "crossed": false
+  },
+  "k2": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": false,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": false,
+    "C4_activity3": false
+   },
+   "break_or_peak_gen": 1,
+   "class": "non_crosser",
+   "crossed": false
+  },
+  "k3": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": true,
+    "C3_tiewidth4": false,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": "undefined",
+   "break_or_peak_gen": 0,
+   "class": "crossing",
+   "crossed": true
+  },
+  "k4": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": false,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": true
+   },
+   "break_or_peak_gen": 5,
+   "class": "contrast_near_miss",
+   "crossed": false
+  },
+  "k5": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "break_or_peak_gen": 3,
+   "class": "crossing",
+   "crossed": true
+  },
+  "k6": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": true
+   },
+   "break_or_peak_gen": 8,
+   "class": "crossing",
+   "crossed": true
+  },
+  "k7": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": "undefined",
+   "break_or_peak_gen": 0,
+   "class": "contrast_dead",
+   "crossed": false
+  }
+ },
+ "verdicts": {
+  "W1_at_birth": {
+   "C1_win2presence": {
+    "separates": false,
+    "trips": {
+     "k0": true,
+     "k1": true,
+     "k2": true,
+     "k3": true,
+     "k4": true,
+     "k5": true,
+     "k6": true,
+     "k7": true
+    }
+   },
+   "C2_nearbar40": {
+    "separates": false,
+    "trips": {
+     "k0": false,
+     "k1": false,
+     "k2": false,
+     "k3": true,
+     "k4": false,
+     "k5": false,
+     "k6": false,
+     "k7": false
+    }
+   },
+   "C3_tiewidth4": {
+    "separates": false,
+    "trips": {
+     "k0": true,
+     "k1": true,
+     "k2": false,
+     "k3": false,
+     "k4": false,
+     "k5": true,
+     "k6": true,
+     "k7": true
+    }
+   },
+   "C4_activity3": {
+    "separates": false,
+    "trips": {
+     "k0": false,
+     "k1": false,
+     "k2": false,
+     "k3": false,
+     "k4": false,
+     "k5": false,
+     "k6": false,
+     "k7": false
+    }
+   }
+  },
+  "W2_pre_peak": {
+   "C1_win2presence": {
+    "separates": false,
+    "trips": {
+     "k0": true,
+     "k1": true,
+     "k2": true,
+     "k4": true,
+     "k5": true,
+     "k6": true
+    }
+   },
+   "C2_nearbar40": {
+    "separates": false,
+    "trips": {
+     "k0": false,
+     "k1": false,
+     "k2": false,
+     "k4": false,
+     "k5": false,
+     "k6": false
+    }
+   },
+   "C3_tiewidth4": {
+    "separates": false,
+    "trips": {
+     "k0": true,
+     "k1": true,
+     "k2": false,
+     "k4": true,
+     "k5": true,
+     "k6": true
+    }
+   },
+   "C4_activity3": {
+    "separates": false,
+    "trips": {
+     "k0": false,
+     "k1": false,
+     "k2": false,
+     "k4": true,
+     "k5": false,
+     "k6": true
+    }
+   }
+  }
+ }
+}
