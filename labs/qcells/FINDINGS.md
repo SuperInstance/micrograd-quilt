@@ -694,3 +694,48 @@ scientific target: what makes a root resist both mechanisms?
   exp024 (census the 3 remaining exp021 Q1 salts k0/k1/k2, test
   surviving predictors blind).  results: experiments/
   exp023.results.json; screen: experiments/exp023_predictor_screen.py
+- exp026 FIRST-BIRTH TIMING + NON-CROSSER HAZARD CEILING
+  (HOMOGENEOUS-AT-PILOT-N / CALIBRATED / COMPATIBLE): pure analysis
+  of the sealed 8-stream census corpus (exp022 k3-k7 + exp024 k0-k2),
+  independent re-derivation from raw telemetry cross-checked against
+  sealed exp025 values (74 desert gens / 1037 desert draws / 4 hits —
+  match, else abort).  TIMING TABLE sealed as canonical reference:
+  k3 breaks AT BIRTH (g0, 16 desert draws in, 1 hit); k5 at g3 (cum
+  54 draws); k6 at g8 (cum 121 draws, 2 hits that gen); the five
+  non-crossers (k0/k1/k2/k4/k7) run all 12 gens cloud-barren — 846
+  desert draws, 0 hits.  Q2 exact homogeneity test under ONE shared
+  per-draw hazard (conditional on 4 hits / 1037 draws; per-stream
+  exact Binomial(4, n_s/1037) tails, Bonferroni x8): every adjusted
+  p >= 0.48 -> HOMOGENEOUS-AT-PILOT-N.  k3's at-birth break carries
+  the smallest tail (raw 0.0603) — the least-expected single cell
+  under the shared hazard — but is nowhere near significant at n=4.
+  Read honestly: 'not distinguishable at this n', never 'rates
+  equal'.  Q3 timing calibration under the sealed pooled p
+  (1-in-259, never re-estimated): per-stream q_g = 1-(1-p)^D_g
+  gives expected birth-stream count 3.02 with exact Poisson-
+  binomial 95% prediction interval [1, 5]; observed = 3 ->
+  CALIBRATED.  ONE shared hazard predicts ~3 of 8 streams break;
+  exactly 3 did.  Per-crosser timing surprises under the shared
+  hazard (reported, not verdicted): F_k3(0)=0.0600 (a 1-in-16.7
+  event), F_k5(3)=0.1884, F_k6(8)=0.3735 — the early breaks are
+  mildly lucky, the late break unremarkable; nothing timing-shaped
+  is left unexplained by censoring.  Q4 non-crosser ceiling: 0 hits
+  in 846 censored-stream desert draws -> exact 95% upper bound
+  0.004351 per draw; COMPATIBLE with the sealed pooled point
+  estimate 0.003857 (verdict condition pre-registered on the point
+  estimate).  Post-registered observation, labeled as such: the UB
+  sits BELOW the pooled CI's upper end (0.00988) — the frozen
+  majority rules out the top of the pooled interval, so the pooled
+  1-in-259 is best read as 'typical-or-lower for non-crossers,
+  carried at the point by crosser-side exposure'.  VERDICT: the
+  exp021 RATE-NOT-WALL lottery refines at pilot-n to ONE shared
+  desert hazard + heavy censoring; the per-stream 'some hot, some
+  frozen' read is NOT distinguishable from shared-hazard luck at
+  4 events, and the frozen five are bounded, not rated.  exp016's
+  RETENTION-ASSEMBLY on canonical 31 (never births, crosses anyway)
+  remains the only no-break mechanism.  Named next: exp027 birth
+  ORDER statistics under the shared hazard (joint waiting-time
+  distribution of 3 breaks + 5 censored streams — does the OBSERVED
+  order k3<=k5<=k6 carry more evidence than the marginals used
+  here?) or prospector E3/E4.  results: experiments/exp026.results.json;
+  script: experiments/exp026_first_birth_timing.py

@@ -1,0 +1,218 @@
+{
+ "experiment": "exp026 desert first-birth timing + regime-conditioned hazard ceiling",
+ "design": "pure analysis of the sealed 8-stream census corpus (exp022 k3-k7 + exp024 k0-k2); independent re-derivation from raw telemetry cross-checked against sealed exp025 values (74/1037/4) with abort-on-drift; newborn/draw/hit/regime units identical to exp025's operational code; shared hazard tests condition on the sealed totals",
+ "honesty": "4 events over 8 streams is deep-pilot class; Q2 HOMOGENEOUS means 'not distinguishable at this n', never 'rates equal'; Q3b timing surprises are reported not verdicted; Q4's ceiling is the honest refinement available for the frozen majority \u2014 a bound, not a rate",
+ "guard_rederivation_vs_sealed": {
+  "desert_gens": [
+   74,
+   74,
+   true
+  ],
+  "desert_draws": [
+   1037,
+   1037,
+   true
+  ],
+  "desert_hits": [
+   4,
+   4,
+   true
+  ]
+ },
+ "q1_timing_table": {
+  "k3": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": true,
+   "birth_gen": 0,
+   "status": "birth_at_g0",
+   "desert_gens_exposed": 1,
+   "desert_draws_exposed": 16,
+   "cumulative_draws_at_birth": 16,
+   "desert_hits": 1
+  },
+  "k4": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": false,
+   "birth_gen": null,
+   "status": "censored",
+   "desert_gens_exposed": 12,
+   "desert_draws_exposed": 165,
+   "cumulative_draws_at_birth": null,
+   "desert_hits": 0
+  },
+  "k5": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": true,
+   "birth_gen": 3,
+   "status": "birth_at_g3",
+   "desert_gens_exposed": 4,
+   "desert_draws_exposed": 54,
+   "cumulative_draws_at_birth": 54,
+   "desert_hits": 1
+  },
+  "k6": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": true,
+   "birth_gen": 8,
+   "status": "birth_at_g8",
+   "desert_gens_exposed": 9,
+   "desert_draws_exposed": 121,
+   "cumulative_draws_at_birth": 121,
+   "desert_hits": 2
+  },
+  "k7": {
+   "cohort": "B_exp022_tiesample",
+   "crossed_sealed": false,
+   "birth_gen": null,
+   "status": "censored",
+   "desert_gens_exposed": 12,
+   "desert_draws_exposed": 163,
+   "cumulative_draws_at_birth": null,
+   "desert_hits": 0
+  },
+  "k0": {
+   "cohort": "C_exp024_replicate",
+   "crossed_sealed": false,
+   "birth_gen": null,
+   "status": "censored",
+   "desert_gens_exposed": 12,
+   "desert_draws_exposed": 174,
+   "cumulative_draws_at_birth": null,
+   "desert_hits": 0
+  },
+  "k1": {
+   "cohort": "C_exp024_replicate",
+   "crossed_sealed": false,
+   "birth_gen": null,
+   "status": "censored",
+   "desert_gens_exposed": 12,
+   "desert_draws_exposed": 175,
+   "cumulative_draws_at_birth": null,
+   "desert_hits": 0
+  },
+  "k2": {
+   "cohort": "C_exp024_replicate",
+   "crossed_sealed": false,
+   "birth_gen": null,
+   "status": "censored",
+   "desert_gens_exposed": 12,
+   "desert_draws_exposed": 169,
+   "cumulative_draws_at_birth": null,
+   "desert_hits": 0
+  }
+ },
+ "q2_homogeneity_shared_hazard": {
+  "null": "conditional on 4 hits / 1037 desert draws, each hit lands in stream s w.p. n_s/1037",
+  "per_stream": {
+   "k3": {
+    "desert_draws": 16,
+    "share_w": 0.015429,
+    "hits": 1,
+    "exact_tail_P_X_ge_k": 0.06030277837524232,
+    "bonferroni_p": 0.48242222700193854
+   },
+   "k4": {
+    "desert_draws": 165,
+    "share_w": 0.159113,
+    "hits": 0,
+    "exact_tail_P_X_ge_k": 1.0,
+    "bonferroni_p": 1.0
+   },
+   "k5": {
+    "desert_draws": 54,
+    "share_w": 0.052073,
+    "hits": 1,
+    "exact_tail_P_X_ge_k": 0.19258084967088163,
+    "bonferroni_p": 1.0
+   },
+   "k6": {
+    "desert_draws": 121,
+    "share_w": 0.116683,
+    "hits": 2,
+    "exact_tail_P_X_ge_k": 0.06953630776687934,
+    "bonferroni_p": 0.5562904621350347
+   },
+   "k7": {
+    "desert_draws": 163,
+    "share_w": 0.157184,
+    "hits": 0,
+    "exact_tail_P_X_ge_k": 1.0,
+    "bonferroni_p": 1.0
+   },
+   "k0": {
+    "desert_draws": 174,
+    "share_w": 0.167792,
+    "hits": 0,
+    "exact_tail_P_X_ge_k": 1.0,
+    "bonferroni_p": 1.0
+   },
+   "k1": {
+    "desert_draws": 175,
+    "share_w": 0.168756,
+    "hits": 0,
+    "exact_tail_P_X_ge_k": 1.0,
+    "bonferroni_p": 1.0
+   },
+   "k2": {
+    "desert_draws": 169,
+    "share_w": 0.16297,
+    "hits": 0,
+    "exact_tail_P_X_ge_k": 1.0,
+    "bonferroni_p": 1.0
+   }
+  },
+  "alpha_per_stream_bonferroni": 0.00625,
+  "verdict": "HOMOGENEOUS-AT-PILOT-N"
+ },
+ "q3_timing_calibration_under_pooled_p": {
+  "p_used": 0.003857280617164899,
+  "p_source": "sealed exp025 desert point estimate (never re-estimated here)",
+  "per_stream_P_at_least_one_desert_birth": {
+   "k3": 0.059962795981501116,
+   "k4": 0.47148386964835864,
+   "k5": 0.18835799123013786,
+   "k6": 0.3735168699459248,
+   "k7": 0.46738288691935337,
+   "k0": 0.4895510289403595,
+   "k1": 0.4915199738624796,
+   "k2": 0.47959134943725423
+  },
+  "expected_birth_streams": 3.021366765965369,
+  "observed_birth_streams": 3,
+  "prediction_interval_95": [
+   1,
+   5
+  ],
+  "verdict_count": "CALIBRATED",
+  "per_crosser_timing_surprise": {
+   "k3": {
+    "birth_gen": 0,
+    "F_T_obs_under_shared_hazard": 0.059962795981501116,
+    "read": "under the shared 259-in-1 hazard, a stream of this shape births at or before g0 with probability 0.0600"
+   },
+   "k5": {
+    "birth_gen": 3,
+    "F_T_obs_under_shared_hazard": 0.18835799123013786,
+    "read": "under the shared 259-in-1 hazard, a stream of this shape births at or before g3 with probability 0.1884"
+   },
+   "k6": {
+    "birth_gen": 8,
+    "F_T_obs_under_shared_hazard": 0.3735168699459248,
+    "read": "under the shared 259-in-1 hazard, a stream of this shape births at or before g8 with probability 0.3735"
+   }
+  },
+  "read": "how early each observed break is under ONE shared hazard; k3's F(0) is the exact at-birth-break probability under the null"
+ },
+ "q4_noncrosser_hazard_ceiling": {
+  "noncrosser_desert_draws": 846,
+  "noncrosser_hits": 0,
+  "exact_ub95_per_draw": 0.004350884961088153,
+  "sealed_pooled_point_estimate": 0.003857280617164899,
+  "sealed_pooled_ci95": [
+   0.0010515115660763353,
+   0.009876264981316496
+  ],
+  "verdict": "COMPATIBLE",
+  "read": "the five censored streams' shared hazard is below 0.004351 (95% exact); the pooled point estimate stays inside the non-crosser ceiling"
+ }
+}
