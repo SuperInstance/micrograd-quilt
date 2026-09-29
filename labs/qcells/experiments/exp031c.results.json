@@ -1,0 +1,121 @@
+{
+ "experiment": "exp031c sequential (birth,n) joint null calibration of exp027's breaker-set statistic",
+ "guard_ok": true,
+ "guards": {
+  "birth_cum_vs_sealed": {
+   "k3": [
+    16,
+    16,
+    true
+   ],
+   "k5": [
+    54,
+    54,
+    true
+   ],
+   "k6": [
+    121,
+    121,
+    true
+   ]
+  },
+  "breaker_full_totals": {
+   "k3": 167,
+   "k5": 171,
+   "k6": 166
+  },
+  "crosser_set_vs_sealed": [
+   [
+    "k3",
+    "k5",
+    "k6"
+   ],
+   [
+    "k3",
+    "k5",
+    "k6"
+   ],
+   true
+  ],
+  "noncrosser_full_sum_vs_sealed_846": [
+   846,
+   846,
+   true
+  ],
+  "noncrosser_full_totals": {
+   "k0": 174,
+   "k1": 175,
+   "k2": 169,
+   "k4": 165,
+   "k7": 163
+  },
+  "pilot_rederivation_vs_sealed": {
+   "desert_draws": [
+    1037,
+    1037,
+    true
+   ],
+   "desert_gens": [
+    74,
+    74,
+    true
+   ],
+   "desert_hits": [
+    4,
+    4,
+    true
+   ]
+  }
+ },
+ "honesty": "Pure exact arithmetic, no rng / no MC / no normal approximation.  The counterfactual schedule for breakers uses actual post-crossing newborn counts (labeled approximation).  Q4's event is a sufficient rendering of 'breakers = bottom-3 by exposure' (exactly-3-breakers + all below all censor points); rankings where a breaker out-exposes a non-breaker are not in the event, matching the observation.  Deep-pilot class: 4 events / 8 streams.",
+ "null_model": "each stream runs its FULL actual 12-gen newborn schedule (N_s from telemetry: {'k3': 167, 'k4': 165, 'k5': 171, 'k6': 166, 'k7': 163, 'k0': 174, 'k1': 175, 'k2': 169}); draws iid, hit w.p. w=0.003857280617164899 (sealed, never re-estimated); break = first hit; P(T=j)=(1-w)^(j-1)*w; censor=(1-w)^N; streams independent.  Counterfactual-continuation approximation LABELED: breaker schedules include post-crossing gens from the actual runs; no cleaner counterfactual exists.",
+ "preregistration": "sealed in FINDINGS at exp031b time as 'the remaining endogenous-side closer': full sequential joint of (birth, n) under the sealed shared per-draw hazard; probes Q1-Q5 and verdicts sealed in this script's docstring BEFORE any statistic ran",
+ "q1_reproduction_guard": {
+  "P_no_heavy5_recomputed": 0.038022800464556195,
+  "P_no_heavy5_sealed_exp027": 0.038022800464556195,
+  "P_set_truncated_recomputed": 7.96890965981818e-05,
+  "P_set_truncated_sealed_exp027": 7.96890965981818e-05,
+  "match": true,
+  "note": "exp027's order-free set prob is distinct-gen-order-free (strict g1<g2<g3 per ordered triple excludes same-gen double-breaks); found-by-guard the plain product form is 1.604e-4. Reproduced via exp027's exact triple-sum path."
+ },
+ "q2_full_schedule_set_probability": {
+  "P_set_observed_under_full_schedule_null": 0.0041406516556988125,
+  "exp027_truncated_value": 7.96890965981818e-05,
+  "flat_baseline_1_over_56": 0.017857142857142856,
+  "formula": "prod_{breakers}(1-(1-w)^N) * prod_{non}(1-w)^N",
+  "gap_to_flat_full_x": 4.3126407005443035,
+  "gap_to_flat_truncated_x": 224.08514614219243,
+  "orders_of_magnitude_closed": 1.7156697923202406,
+  "verdict": "PARTIALLY-CLOSED"
+ },
+ "q3_exact_pattern_joint_probability": {
+  "P_exact_birth_n_pattern": 1.0552176574123614e-09,
+  "formula": "w^3 (1-w)^((16-1)+(54-1)+(121-1)+sum N_nb)",
+  "survived_draws_exponent": 1034
+ },
+ "q4_exposure_rank_event_under_sequential_null": {
+  "P_rank_event": 0.2189524456790341,
+  "definition": "exactly 3 streams break AND each breaker breaks before every non-breaker's censor point (then break set == bottom-3 by exposure); summed over all C(8,3)=56 candidate breaker sets",
+  "observed_set_term_of_that_sum": 0.003830898072637774,
+  "observed_term_share": 0.017496484502637386
+ },
+ "q5_break_count_context": {
+  "P_at_least_1_breaks": 0.9945785815891546,
+  "P_exactly_3_break": 0.23625870874907623,
+  "expected_break_count_under_null": 3.832203220473134,
+  "observed_break_count": 3,
+  "per_stream_break_probability_full_schedule": {
+   "k0": 0.4895510289403596,
+   "k1": 0.4915199738624798,
+   "k2": 0.47959134943725445,
+   "k3": 0.47555327611191833,
+   "k4": 0.47148386964835876,
+   "k5": 0.4835983308795869,
+   "k6": 0.4735225046738232,
+   "k7": 0.46738288691935326
+  }
+ },
+ "relation_to_exp029": "This calibrates exp027's set statistic only.  exp029's conditional deviance (p=0.003256) conditions on observed exposure by design and stands as valid conditional arithmetic; exp031b closed the exogenous side; this run closes the endogenous side.",
+ "rerun_digest": "145e93e46ed5a5b952c85c36ea7cd79f",
+ "synthesis": "exp027's 7.97e-5 was computed on post-birth-truncated exposure; under the full-schedule sequential joint null the SAME set probability is 0.004141 (4.31x below flat, vs 224.1x truncated \u2014 1.7 orders of the surprise close as truncation geometry).  The verdict is PARTIALLY-CLOSED: a large share of the set surprise was truncation geometry, but the calibrated gap remains below flat \u2014 read with Q4/Q5."
+}

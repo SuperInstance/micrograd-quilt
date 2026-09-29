@@ -920,3 +920,46 @@ scientific target: what makes a root resist both mechanisms?
   only (push creds wiped).
   results: experiments/exp031b.results.json;
   script: experiments/exp031b_exogenous_allocation.py
+- exp031c SEQUENTIAL (birth,n) JOINT NULL CALIBRATION OF EXP027's
+  BREAKER-SET STATISTIC (PARTIALLY-CLOSED / EXPOSURE-RANK ORDINARY):
+  sealed in FINDINGS at exp031b time as 'the remaining endogenous-side
+  closer'. NULL: each stream runs its FULL actual 12-gen newborn
+  schedule (N from telemetry: k3 167, k4 165, k5 171, k6 166, k7 163,
+  k0 174, k1 175, k2 169; non-crosser full sum = sealed 846 exactly);
+  draws iid, hit w.p. w=0.003857280617164899 (sealed, never
+  re-estimated); break = first hit; streams independent.
+  Counterfactual-continuation approximation LABELED (breaker schedules
+  include actual post-crossing gens). FOUND-BY-GUARD: exp027's
+  'order-free' P(set)=7.97e-5 is actually DISTINCT-GEN-order-free —
+  its config_p enforces strict g1<g2<g3 per ordered triple, excluding
+  same-gen double-breaks (plain product form = 1.604e-4, 2.01x); Q1
+  reproduced the sealed value via exp027's exact triple-sum path, and
+  P(none of heavy5) = 0.0380228 reproduced to the last digit. Q2
+  FULL-SCHEDULE SET PROBABILITY: P(break set = {k3,k5,k6}) =
+  4.140652e-03 under the sequential joint null = 4.31x below flat
+  1/56, versus 224x truncated — 1.72 orders of the ~200x surprise
+  close as truncation geometry; verdict PARTIALLY-CLOSED per the
+  sealed rule (gap shrank >= 10x but not to ordinary). Q3 exact
+  observed (birth,n) pattern joint = 1.055218e-09 (point density,
+  context anchor). Q4 EXPOSURE-RANK EVENT (the faithful analog of
+  'breakers are the three lowest-exposure streams': exactly 3 streams
+  break AND each breaks before every non-breaker's censor point,
+  summed over all C(8,3)=56 candidate sets): P = 0.2189524 — the
+  exposure ranking is ORDINARY under the sequential joint null; the
+  observed set's own term is 3.830898e-03 of that sum. Q5 CONTEXT:
+  expected break count 3.832, P(exactly 3 break) = 0.2363 — three
+  breakers is itself ordinary. SYNTHESIS: exp027's SET-SURPRISING
+  headline was mostly truncation artifact — under the null that does
+  not condition on the outcome, 'the breakers are the lightest
+  streams' happens w.p. ~0.22, and the residue (specific identity set
+  4.3x below flat) is the same residue exp031b showed carries NO
+  exogenous signature. ENDOGENOUS SIDE CLOSED; exp027 Q3 read
+  downgraded from SET-SURPRISING to TRUNCATION-DOMINATED (labeled).
+  exp029's conditional deviance (p=0.003256) untouched — it
+  conditions on exposure by design. Guards green: pilot 74/1037/4,
+  crossers {k3,k5,k6} @16/54/121, birth cum == sealed; pure exact
+  arithmetic, no rng / no MC; suite 7/7 green outside this file;
+  consecutive re-run digest byte-identical 145e93e4. Local only
+  (push creds wiped).
+  results: experiments/exp031c.results.json;
+  script: experiments/exp031c_sequential_joint_null.py
