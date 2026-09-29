@@ -608,3 +608,26 @@ scientific target: what makes a root resist both mechanisms?
   crossing claim, fails for the zero-signal claim.  Transplant
   (archive-elite injection) is NOT a third crossing class - 0/3
   roots.  exp001 guard green.  Commit 7368f20, local lab repo.
+- exp018 HARD-ROOT AUTOPSY (FITNESS DESERT AT THE BIRTH CLOUD):
+  instrumented full-cloud telemetry on the exact exp005 unaided lane,
+  hard roots 29/31/37 + control 13 (exp012 ROOT-LOTTERY difference
+  read), winning-move class pre-registered from exp016's actual hard-
+  root champions (2q gate touching wire 2; all three winners carry
+  one).  Reach NOT the binding constraint: win2 drawn 13-17x per hard
+  root vs 14x on control.  But all 540 hard-root child-sims sat at
+  train=0.0 AND verify=0.0 for all 12 gens - including wire-2-
+  entangled birth champions (r37 opens cx(2,0)+swap(2,1)+swap(1,0),
+  a structural superset of exp016's r37 winner, and still pays zero
+  at both seeds).  Control r13's cloud shows signal from gen 0
+  (train 0.1289 -> 0.2559, verify 0.2422 plateau) at identical draw
+  counts - the desert is ROOT-SPECIFIC, not lane-global.  Read: the
+  hard-class freeze is UPSTREAM of selection (fitness desert, nothing
+  to witness); exp016's archive-hybrid hard-root crossing at the same
+  seeds unlocked FITNESS ASSEMBLY via multi-parent mixing, matching
+  exp015 ELITISM-ARTIFACT.  Harness quirk surfaced by the FAIL-first
+  equivalence pin (witness_rng class): search.mutate's indel-insert
+  branch calls random_gate(rng) with NO n_qubits - the insert pool is
+  hard-wired 2-wire even in n=3 lanes, so insert can NEVER introduce
+  wire 2; every observed win2 draw flowed through the ~30% replace
+  class.  mutate_telem pinned 800/800 states (genome + rng-state
+  equality); exp001 guard green.
