@@ -55,3 +55,13 @@ downloads/*.zip
 fleet_data/*.json
 fleet_data/*.csv
 cells/.cell-env.sh
+
+# Secrets. The absence of these rules is what put a live LLM_API_KEY on a public
+# repository: the .env was committed and nothing told git to stop.
+# *.env, not .env -- the bare pattern matches only a file named exactly
+# '.env', so 'memory_consolidation.env' sailed straight through it.
+*.env
+!*.template.env
+!.env.example
+*.pem
+*.key
