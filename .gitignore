@@ -54,3 +54,4 @@ downloads/*.zip
 # Ignore specific workspace artifacts that regenerate
 fleet_data/*.json
 fleet_data/*.csv
+cells/.cell-env.sh
