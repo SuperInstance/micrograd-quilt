@@ -1,0 +1,62 @@
+{
+ "experiment": "T1-jev-merge-burst",
+ "at": "2026-09-27T01:53:25Z",
+ "fleet_latency_ms": 392,
+ "fleet_model": "jev-1.13.0",
+ "fleet_verifiable": "0/10",
+ "fleet_details": [
+  {
+   "commit": "R34: suite 169\u2192171, README counts, VERIFIED_CLAIMS +wal-sess",
+   "verdict": 0.76,
+   "conf": null
+  },
+  {
+   "commit": "R35: restore R34 receipt verbatim from 777e76d; open-the-len",
+   "verdict": 0.76,
+   "conf": null
+  },
+  {
+   "commit": "viewTrusted({trust}) \u2014 G11 trust-weighted referral view, cit",
+   "verdict": 0.75,
+   "conf": null
+  },
+  {
+   "commit": "G11: provenance_merge with per-source trust rescaling agains",
+   "verdict": 0.75,
+   "conf": null
+  },
+  {
+   "commit": "flake-pin: entropy band guard on the ear's planted-protocol ",
+   "verdict": 0.76,
+   "conf": null
+  },
+  {
+   "commit": "developmental agent as a sheet: beta1 = E-V+C growth gauge, ",
+   "verdict": 0.75,
+   "conf": null
+  },
+  {
+   "commit": "profile README sign-off: renamed self-image + two-crabs imag",
+   "verdict": 0.75,
+   "conf": null
+  },
+  {
+   "commit": "commissioned ten-provider rack: inference-grade probes, env ",
+   "verdict": 0.76,
+   "conf": null
+  },
+  {
+   "commit": "/now page: 942 repos receipt bar + state.json twin, skeptic-",
+   "verdict": 0.75,
+   "conf": null
+  },
+  {
+   "commit": "post-merge verification pulse: 57/57 offline + 58/58 live, s",
+   "verdict": 0.75,
+   "conf": null
+  }
+ ],
+ "control_vague_caught": "0/3",
+ "control_latency_ms": 260,
+ "sha256": "8a29e357ea2979d0"
+}

@@ -1,0 +1,1 @@
+/root/.openclaw/workspace/cells/.cell-env.sh

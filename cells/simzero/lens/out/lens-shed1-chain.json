@@ -1,0 +1,44 @@
+[
+ {
+  "kind": "stone.header",
+  "alg": "stone-v1",
+  "genesis": "STONE-GENESIS-1",
+  "op": "LENS",
+  "cell": "quilt-lens/shed-1",
+  "tool": "numpy-NFW-shed",
+  "backend": "clmm-pending-py312-wheel",
+  "row_hash": "44dbb8be33cd4453632f3bd48947ce5940a2acf39b59c3418e77e02f2401a006"
+ },
+ {
+  "op": "BIND",
+  "args": {
+   "cell": "quilt-lens/shed-1",
+   "catalog_sha": "324e867e38d1464b294b99451ac752bbbc3a2341fd07acbc7c10772f319f77ae",
+   "n_src": 4000,
+   "seed": 20260927,
+   "sigma_e": 0.3
+  },
+  "row_hash": "77cc9ac8a373c692b4b76496ff2776fc31be91442e54fc2779ac765a2003812b"
+ },
+ {
+  "op": "EFFECT",
+  "args": {
+   "op": "lens.reconstruct",
+   "method": "chi2-grid-NFW",
+   "profile_sha": "9f2efb45850f2e77d5263fc450bbb6e34256cc1d9a58bc4bbf5cc79acc211e99",
+   "bins": 20
+  },
+  "row_hash": "65af2de9179b9e4b7ee042666b4422bf068906ef73f27392df3090e5f842aacf"
+ },
+ {
+  "op": "VIEW",
+  "args": {
+   "M200c_recovered_msun": "2.040e+14",
+   "M200c_true_msun": 1000000000000000.0,
+   "ratio": 0.204,
+   "chi2_min": 12.24,
+   "convergence_field": "kappa(r)=Sigma/Sigmac (implicit, shed-1)"
+  },
+  "row_hash": "39ca0118dda95655f104e36be6a79a5790f1bd5a10275e848d217a48c2b864fb"
+ }
+]

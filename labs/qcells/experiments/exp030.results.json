@@ -1,0 +1,167 @@
+{
+ "birth_event_table": {
+  "k11": {
+   "birth_gen": 6,
+   "birth_hits": 2,
+   "birth_newborns": 14
+  },
+  "k13": {
+   "birth_gen": 0,
+   "birth_hits": 1,
+   "birth_newborns": 16
+  },
+  "k15": {
+   "birth_gen": 11,
+   "birth_hits": 1,
+   "birth_newborns": 14
+  },
+  "k3": {
+   "birth_gen": 0,
+   "birth_hits": 1,
+   "birth_newborns": 16
+  },
+  "k5": {
+   "birth_gen": 3,
+   "birth_hits": 1,
+   "birth_newborns": 12
+  },
+  "k6": {
+   "birth_gen": 8,
+   "birth_hits": 2,
+   "birth_newborns": 15
+  },
+  "k8": {
+   "birth_gen": 4,
+   "birth_hits": 1,
+   "birth_newborns": 14
+  },
+  "k9": {
+   "birth_gen": 7,
+   "birth_hits": 1,
+   "birth_newborns": 13
+  }
+ },
+ "corpus": {
+  "births": 8,
+  "crossers": [
+   "k3",
+   "k5",
+   "k6",
+   "k8",
+   "k9",
+   "k11",
+   "k13",
+   "k15"
+  ],
+  "desert_draws": 2009,
+  "desert_hits": 10,
+  "non_crossers": [
+   "k0",
+   "k1",
+   "k2",
+   "k4",
+   "k7",
+   "k10",
+   "k12",
+   "k14"
+  ],
+  "streams": 16,
+  "w_pooled": 0.004977600796416127
+ },
+ "definitions_guard": "birth = first desert gen with >=1 newborn >= BAR; regime ends at birth => hit-rates conditioned on crossing status are TAUTOLOGICAL and BANNED as evidence",
+ "experiment": "exp030 birth-structure decomposition (multiplicity + birth-count)",
+ "guards": {
+  "census_rederivation_vs_sealed": {
+   "desert_draws": [
+    972,
+    972,
+    true
+   ],
+   "desert_hits": [
+    6,
+    6,
+    true
+   ]
+  },
+  "p_s_formula_reverification_exp027": {
+   "ok": true
+  },
+  "pilot_rederivation_vs_sealed": {
+   "desert_draws": [
+    1037,
+    1037,
+    true
+   ],
+   "desert_hits": [
+    4,
+    4,
+    true
+   ]
+  }
+ },
+ "honesty": "same 16-stream corpus as exp029; Q1 and Q2 test DISJOINT structure (within-birth-gen allocation; across-stream birth count) and do not re-litigate hit allocation, which exp029 settled (p=0.003256). Pure exact analysis, no rng, no MC.",
+ "rerun_digest": "45467dd1b1334c19202953b1e8cf2c48",
+ "rule1_multiplicity_dispersion": {
+  "exact_p": 0.997754977760087,
+  "observed_hits_per_birth": [
+   1,
+   1,
+   2,
+   1,
+   1,
+   2,
+   1,
+   1
+  ],
+  "read": "multiplicity consistent with shared per-draw hazard",
+  "verdict": "CONSISTENT",
+  "weights_birthgen_newborns": [
+   16,
+   12,
+   15,
+   14,
+   13,
+   14,
+   16,
+   14
+  ]
+ },
+ "rule2_birth_count_vs_counterfactual_exposure": {
+  "exact_upper_tail_P_X_ge_observed": 0.7888630582900605,
+  "expected_births_under_shared_hazard": 9.084453011370476,
+  "observed_births": 8,
+  "p_s_per_stream": {
+   "k0": 0.5803210541783526,
+   "k1": 0.5824100484333135,
+   "k10": 0.5654025429968486,
+   "k11": 0.5610435185429792,
+   "k12": 0.5865568941628201,
+   "k13": 0.5385837425200647,
+   "k14": 0.5718600511146845,
+   "k15": 0.5865568941628201,
+   "k2": 0.5697182804849431,
+   "k3": 0.5654025429968486,
+   "k4": 0.5610435185429792,
+   "k5": 0.5739911608652337,
+   "k6": 0.5632284686746716,
+   "k7": 0.5566407729538769,
+   "k8": 0.5739911608652337,
+   "k9": 0.5477023598748065
+  },
+  "read": "birth count calibrated to shared hazard",
+  "verdict": "CALIBRATED"
+ },
+ "rule3_birth_timing_exploratory_labeled": {
+  "histogram": {
+   "k11(g6)": 2,
+   "k13(g0)": 1,
+   "k15(g11)": 1,
+   "k3(g0)": 1,
+   "k5(g3)": 1,
+   "k6(g8)": 2,
+   "k8(g4)": 1,
+   "k9(g7)": 1
+  },
+  "note": "labeled EXPLORATORY; any test invented now would be a new pre-registration, not a result"
+ }
+}

@@ -1,0 +1,1 @@
+PERSONA: Staff engineer evaluating whether to adopt or contribute. Zero prior knowledge of SuperInstance. Reads fast, hates marketing, wants receipts (tests, commits, live state). You have 60 seconds total before deciding.

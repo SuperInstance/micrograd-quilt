@@ -1,0 +1,47 @@
+[
+ {
+  "kind": "stone.header",
+  "alg": "stone-v1",
+  "genesis": "STONE-GENESIS-1",
+  "op": "LENS",
+  "cell": "quilt-lens/clmm-run-1",
+  "tool": "clmm-1.16.10+pyccl-3.3.6",
+  "row_hash": "42494fbe97483e74db37a6ab7c1e168cad96b40b4d5ac8c311d84475fe8bb436"
+ },
+ {
+  "op": "BIND",
+  "args": {
+   "cell": "quilt-lens/clmm-run-1",
+   "M200c_true_msun": "1.000e+15",
+   "c_true": 4.0,
+   "z_cluster": 0.42,
+   "seed": 20260927,
+   "n_src": 3000,
+   "profile_sha": "e565950ab62ab376c35298bbed34d970ef08ce292f25a24d4d4257d5a524fe7e",
+   "profile_points": 10
+  },
+  "row_hash": "c0f1230242e3ff0142485232656ff83d76488b4b001578abecbcd95405fba540"
+ },
+ {
+  "op": "EFFECT",
+  "args": {
+   "op": "lens.reconstruct",
+   "method": "chi2-grid-clmm-nfw-ccl",
+   "grid_lo": "3e14",
+   "grid_hi": "3e15",
+   "grid_n": 60,
+   "chi2_min": 6.837
+  },
+  "row_hash": "ff3e74e499d56d377491fa577c78444dcbcd0f70a19ebe1e81d2fcdcfa115550"
+ },
+ {
+  "op": "VIEW",
+  "args": {
+   "M200c_recovered_msun": "3.000e+14",
+   "ratio_vs_true": 0.3,
+   "shed1_ratio": 0.204,
+   "note": "clmm backend fixes shed-1 dimensional Sigma bug"
+  },
+  "row_hash": "bd203eb33fb545c156eb59db8aeece48a7bd61ed0240e7196458c68c5b098012"
+ }
+]

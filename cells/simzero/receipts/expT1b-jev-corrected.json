@@ -1,0 +1,90 @@
+{
+ "experiment": "T1b-jev-merge-burst-corrected",
+ "at": "2026-09-27T01:54:22Z",
+ "model": "jev-1.13.0",
+ "scar": "first pass read noul value as boolean -> 0/10; value is float probability (documented fallback). Corrected before reporting.",
+ "fleet": {
+  "n": 10,
+  "mean_p_verifiable": 0.745,
+  "min": 0.73,
+  "max": 0.76,
+  "latency_ms": 350
+ },
+ "vague_control": {
+  "n": 3,
+  "mean_p_verifiable": 0.027,
+  "latency_ms": 247
+ },
+ "separation": 0.718,
+ "discrimination": "PASS",
+ "fleet_details": [
+  {
+   "commit": "R34: suite 169->171, README counts, VERIFIED_CLAIMS +wal-ses",
+   "p_verifiable": 0.76,
+   "confidence_field": null
+  },
+  {
+   "commit": "R35: restore R34 receipt verbatim from 777e76d; open-the-len",
+   "p_verifiable": 0.74,
+   "confidence_field": null
+  },
+  {
+   "commit": "viewTrusted({trust}) \u2014 G11 trust-weighted referral view, cit",
+   "p_verifiable": 0.74,
+   "confidence_field": null
+  },
+  {
+   "commit": "G11: provenance_merge with per-source trust rescaling agains",
+   "p_verifiable": 0.75,
+   "confidence_field": null
+  },
+  {
+   "commit": "flake-pin: entropy band guard on the ear's planted-protocol ",
+   "p_verifiable": 0.74,
+   "confidence_field": null
+  },
+  {
+   "commit": "developmental agent as a sheet: beta1 = E-V+C growth gauge, ",
+   "p_verifiable": 0.75,
+   "confidence_field": null
+  },
+  {
+   "commit": "profile README sign-off: renamed self-image + two-crabs imag",
+   "p_verifiable": 0.75,
+   "confidence_field": null
+  },
+  {
+   "commit": "commissioned ten-provider rack: inference-grade probes, env ",
+   "p_verifiable": 0.74,
+   "confidence_field": null
+  },
+  {
+   "commit": "/now page: 942 repos receipt bar + state.json twin, skeptic-",
+   "p_verifiable": 0.75,
+   "confidence_field": null
+  },
+  {
+   "commit": "post-merge verification pulse: 57/57 offline + 58/58 live, s",
+   "p_verifiable": 0.73,
+   "confidence_field": null
+  }
+ ],
+ "control_details": [
+  {
+   "commit": "various improvements and updates to the system",
+   "p_verifiable": 0.03,
+   "confidence_field": null
+  },
+  {
+   "commit": "work on stuff, fixed things, ongoing development",
+   "p_verifiable": 0.03,
+   "confidence_field": null
+  },
+  {
+   "commit": "more changes; general progress across the board",
+   "p_verifiable": 0.02,
+   "confidence_field": null
+  }
+ ],
+ "sha256": "041adff81aea0408"
+}

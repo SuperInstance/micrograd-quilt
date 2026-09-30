@@ -1,31 +1,31 @@
 {
   "stm": {
-    "count": 295,
-    "last_ts": "2026-05-28T14:37:04.727037",
-    "last_sessions": 228,
-    "last_messages": 3628,
-    "last_chars": 22462
+    "count": 358,
+    "last_ts": "2026-09-28T05:12:31.794106",
+    "last_sessions": 440,
+    "last_messages": 27016,
+    "last_chars": 24542
   },
   "diary": {
-    "count": 70,
-    "last_ts": "2026-05-28T03:47:35.171470",
-    "last_day": 7,
+    "count": 77,
+    "last_ts": "2026-09-28T03:52:39.035109",
+    "last_day": 129,
     "last_sessions": 10,
     "last_messages": 93,
     "last_filename": "day7-2026-05-27-the_subagent_that_died_in_my_arms.md",
     "last_latency_s": 20.6,
     "last_skip": "no_sessions_today",
-    "last_error": "HTTP Error 403: Forbidden"
+    "last_error": "'text'"
   },
   "compact": {
-    "count": 70,
-    "last_ts": "2026-05-28T03:47:39.275168",
+    "count": 77,
+    "last_ts": "2026-09-28T03:54:27.012095",
     "last_invoke": 16,
     "last_sessions": 186,
     "last_messages": 3022,
     "last_latency_s": 13.1,
     "last_model": "k2p6",
     "last_skip": "stm_hash_unchanged",
-    "last_error": "HTTP Error 403: Forbidden"
+    "last_error": "'text'"
   }
 }

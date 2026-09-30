@@ -1,0 +1,408 @@
+{
+ "block_census_facts": {
+  "k10": {
+   "birth_gen": null,
+   "desert_draws": 167,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "desert_hits": 0,
+   "seed": 31010
+  },
+  "k11": {
+   "birth_gen": 6,
+   "desert_draws": 90,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "desert_hits": 2,
+   "seed": 31011
+  },
+  "k12": {
+   "birth_gen": null,
+   "desert_draws": 177,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "desert_hits": 0,
+   "seed": 31012
+  },
+  "k13": {
+   "birth_gen": 0,
+   "desert_draws": 16,
+   "desert_gens": [
+    0
+   ],
+   "desert_hits": 1,
+   "seed": 31013
+  },
+  "k14": {
+   "birth_gen": null,
+   "desert_draws": 170,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "desert_hits": 0,
+   "seed": 31014
+  },
+  "k15": {
+   "birth_gen": 11,
+   "desert_draws": 177,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "desert_hits": 1,
+   "seed": 31015
+  },
+  "k8": {
+   "birth_gen": 4,
+   "desert_draws": 73,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "desert_hits": 1,
+   "seed": 31008
+  },
+  "k9": {
+   "birth_gen": 7,
+   "desert_draws": 102,
+   "desert_gens": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "desert_hits": 1,
+   "seed": 31009
+  }
+ },
+ "block_totals": {
+  "draws": 972,
+  "gens": 69,
+  "hits": 6
+ },
+ "design": "exp001 instrument guard byte-identical (census ACTIVE); salts k8-k15 seeds 31008-31015, exp021 Q1 tiesample semantics POP16 GENS12 BUDGET6; determinism verified by in-memory re-run before any statistic; pilot corpus re-derived from raw telemetry and guarded vs sealed 74/1037/4 (abort on drift); pooled corpus = 16 streams (cohorts B/C/D per pre-registration)",
+ "experiment": "exp029 adjudication census block b*=1 + sealed-rule pooled decision",
+ "guards": {
+  "determinism_rerun_byte_equal_all_8": true,
+  "exp001_reproduced_byte_identical": true,
+  "pilot_rederivation_vs_sealed": {
+   "pilot_desert_draws": [
+    1037,
+    1037,
+    true
+   ],
+   "pilot_desert_gens": [
+    74,
+    74,
+    true
+   ],
+   "pilot_desert_hits": [
+    4,
+    4,
+    true
+   ]
+  }
+ },
+ "honesty": "new salts carry NO replicate pins (they are new rng streams, not replicates of k0-k7) \u2014 guards are the exp001 instrument guard + seeded determinism only; the pooled deviance mixes cohorts B/C/D because the sealed rule says pool; per-stream hot/cold reads AFTER the verdict are post-hoc and labeled; per-stream Bonferroni is DIAGNOSTIC ONLY by seal; the two-class power number in exp028 Q3 was an approximation, labeled there, decision-informing only",
+ "pooled_corpus": {
+  "desert_draws": 2009,
+  "desert_hits": 10,
+  "per_stream": {
+   "k0": {
+    "birth_gen": null,
+    "cohort": "C_exp024_replicate",
+    "desert_draws": 174,
+    "hits": 0,
+    "share_w": 0.08661
+   },
+   "k1": {
+    "birth_gen": null,
+    "cohort": "C_exp024_replicate",
+    "desert_draws": 175,
+    "hits": 0,
+    "share_w": 0.087108
+   },
+   "k10": {
+    "birth_gen": null,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 167,
+    "hits": 0,
+    "share_w": 0.083126
+   },
+   "k11": {
+    "birth_gen": 6,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 90,
+    "hits": 2,
+    "share_w": 0.044798
+   },
+   "k12": {
+    "birth_gen": null,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 177,
+    "hits": 0,
+    "share_w": 0.088104
+   },
+   "k13": {
+    "birth_gen": 0,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 16,
+    "hits": 1,
+    "share_w": 0.007964
+   },
+   "k14": {
+    "birth_gen": null,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 170,
+    "hits": 0,
+    "share_w": 0.084619
+   },
+   "k15": {
+    "birth_gen": 11,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 177,
+    "hits": 1,
+    "share_w": 0.088104
+   },
+   "k2": {
+    "birth_gen": null,
+    "cohort": "C_exp024_replicate",
+    "desert_draws": 169,
+    "hits": 0,
+    "share_w": 0.084121
+   },
+   "k3": {
+    "birth_gen": 0,
+    "cohort": "B_exp022_tiesample",
+    "desert_draws": 16,
+    "hits": 1,
+    "share_w": 0.007964
+   },
+   "k4": {
+    "birth_gen": null,
+    "cohort": "B_exp022_tiesample",
+    "desert_draws": 165,
+    "hits": 0,
+    "share_w": 0.08213
+   },
+   "k5": {
+    "birth_gen": 3,
+    "cohort": "B_exp022_tiesample",
+    "desert_draws": 54,
+    "hits": 1,
+    "share_w": 0.026879
+   },
+   "k6": {
+    "birth_gen": 8,
+    "cohort": "B_exp022_tiesample",
+    "desert_draws": 121,
+    "hits": 2,
+    "share_w": 0.060229
+   },
+   "k7": {
+    "birth_gen": null,
+    "cohort": "B_exp022_tiesample",
+    "desert_draws": 163,
+    "hits": 0,
+    "share_w": 0.081135
+   },
+   "k8": {
+    "birth_gen": 4,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 73,
+    "hits": 1,
+    "share_w": 0.036336
+   },
+   "k9": {
+    "birth_gen": 7,
+    "cohort": "D_exp029_adjudication",
+    "desert_draws": 102,
+    "hits": 1,
+    "share_w": 0.050772
+   }
+  },
+  "streams": 16
+ },
+ "posthoc_reads_labeled": {
+  "block_birth_streams": [
+   "k11",
+   "k13",
+   "k15",
+   "k8",
+   "k9"
+  ],
+  "pilot_birth_streams": [
+   "k3",
+   "k5",
+   "k6"
+  ]
+ },
+ "preregistration": "exp028 Q2/Q3 (sealed 2026-09-30 BEFORE this batch ran): block = 8 census-only streams, seeds continuing the 31000-series, protocol byte-identical to exp024, one committed batch, no peeking; pooled exact conditional deviance p<0.05 REFUTES, Bonferroni diagnostic-only, reverse rule = both must reject",
+ "sealed_decision": {
+  "alpha": 0.05,
+  "binding": "verdict_primary_rule (exp028 Q2 seal)",
+  "bonferroni_any_rejects": false,
+  "bonferroni_diagnostic_only": {
+   "k0": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 174,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k1": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 175,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k10": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 167,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k11": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 90,
+    "exact_tail": 0.07109675291037121,
+    "hits": 2
+   },
+   "k12": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 177,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k13": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 16,
+    "exact_tail": 0.07684713996702588,
+    "hits": 1
+   },
+   "k14": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 170,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k15": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 177,
+    "exact_tail": 0.6023918060192548,
+    "hits": 1
+   },
+   "k2": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 169,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k3": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 16,
+    "exact_tail": 0.07684713996702588,
+    "hits": 1
+   },
+   "k4": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 165,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k5": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 54,
+    "exact_tail": 0.23850290687431253,
+    "hits": 1
+   },
+   "k6": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 121,
+    "exact_tail": 0.11834239987561387,
+    "hits": 2
+   },
+   "k7": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 163,
+    "exact_tail": 1.0,
+    "hits": 0
+   },
+   "k8": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 73,
+    "exact_tail": 0.30935612876496016,
+    "hits": 1
+   },
+   "k9": {
+    "bonferroni_p": 1.0,
+    "desert_draws": 102,
+    "exact_tail": 0.4061078799226947,
+    "hits": 1
+   }
+  },
+  "composition_count": 3268760,
+  "exact_conditional_deviance_p": 0.003255798653594562,
+  "exact_path": "enumerate",
+  "verdict_primary_rule": "SHARED-HAZARD-REFUTED",
+  "verdict_reverse_sensitivity_rule": "SHARED-HAZARD-RETAINED-UNDER-REVERSE-RULE"
+ }
+}

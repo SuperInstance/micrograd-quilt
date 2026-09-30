@@ -1,0 +1,53 @@
+{
+ "experiment": "exp028",
+ "date": "2026-09-30",
+ "kind": "adjudication pre-registration + exact disagreement base rate (design-only, no rng, no new stream runs)",
+ "guards": {
+  "rederived_desert_draws": 1037,
+  "rederived_desert_hits": 4,
+  "rederived_deviance": 14.528623779121798,
+  "rederived_deviance_p": 0.005344580610707674,
+  "rederived_bonferroni_min_tail": 0.48242222700193865,
+  "abort_on_drift": "all asserts passed (74/1037/4, deviance 14.528623779121798 / 0.005344580610707676, Bonferroni >= 0.48)"
+ },
+ "q1_exact_disagreement_base_rate": {
+  "test": "enumerate all 330 Multinomial(4; w) compositions; per-composition exact deviance p AND Bonferroni min tail; sum probabilities by rejection pattern",
+  "n_compositions": 330,
+  "P_deviance_rejects": 0.04927704056528411,
+  "P_bonferroni_rejects": 0.011300721087902586,
+  "P_disagree_either_direction": 0.03797631947738152,
+  "P_dev_reject_AND_bonf_retain": 0.03797631947738152,
+  "P_bonf_reject_AND_dev_retain": 0.0,
+  "P_both_reject": 0.011300721087902586,
+  "observed_direction": "deviance p=0.0053 rejects, Bonferroni >= 0.48 retains (exp027 seal)",
+  "verdict": "OBSERVED-DIRECTION-SURPRISING",
+  "read": "at pilot-n under the shared hazard itself, the two procedures disagree with probability 0.0380, and the OBSERVED direction (joint deviance rejects, conservative marginals retain) occurs with probability 0.0380 \u2014 the disagreement exp027 sealed is, at this n, an ordinary outcome of the very null under dispute; it carries urgency to adjudicate on a larger corpus, not evidence by itself"
+ },
+ "q2_adjudication_rule_preregistered": "PRE-REGISTERED ADJUDICATION RULE (sealed 2026-09-30, BEFORE any Q3 number existed).  Corpus: the sealed 8-stream pilot census PLUS b* pre-committed salt blocks of 8 census-only streams each (protocol byte-identical to exp024: passive cloud census, zero rng consumption by the census, seeds continuing the 31000-series, block composition fixed before the batch).  No peeking: all b* blocks run in ONE committed batch; no interim deviance is computed on a partial corpus.  DECISION: on the pooled corpus, the one-shared-desert-hazard null is REFUTED iff the exact conditional deviance p < 0.05 (enumeration exact where feasible; otherwise the sealed exact-upper-bound variant); one-stream-at-a-time Bonferroni marginal tails are DIAGNOSTIC ONLY and cannot by themselves retain or refute. Justification: both procedures condition on the same hits/draws, but Bonferroni is a conservative union bound that structurally cannot see joint set patterns (exp027 Q3 was only visible jointly), while the deviance is the joint exact likelihood-ratio test; at these counts exact enumeration is the calibrated instrument and asymptotic chi2 is invalid (exp027 Q4).  REVERSE SENSITIVITY (sealed so the choice cannot be post-hoc): a reader who weights marginal false-positive protection above joint power would refute only if BOTH procedures reject; under that rule the pilot verdict is RETAIN (Bonferroni >= 0.48).  The two rules are stated before the power calculation; the report carries both.",
+ "q3_precommitted_census_size": {
+  "approximation": "Patnaik noncentral chi2 + Wilson-Hilferty central chi2 (LABELED; decision-informing only \u2014 Q2 is the binding rule)",
+  "alternative_design_fixed": {
+   "hot_streams": 3,
+   "hot_per_draw_hazard": 0.03857280617164899,
+   "frozen_streams": 5,
+   "frozen_per_draw_hazard": 0.0003857280617164899,
+   "motivation": "pilot read sealed in exp027: breakers = the three lightest streams; heavy five 0/846"
+  },
+  "block_protocol": "8 census streams x ~169.2 draws (12 gens), seeds continuing 31000-series, one committed batch of b* blocks, no peeking",
+  "b_star_blocks": 1,
+  "b_star_streams": 8,
+  "b_star_desert_draws_approx": 1353.6,
+  "approx_power_at_b_star": 0.9988,
+  "noncentrality_at_b_star": 35.38,
+  "df_at_b_star": 7,
+  "approx_cutoff_chi2": 14.05,
+  "power_curve_sample": {
+   "1": 0.9988,
+   "2": 1.0,
+   "3": 1.0,
+   "4": 1.0
+  },
+  "feasibility_note": "each census stream is a full 12-gen search run at n=3 (exp024 precedent: 3 streams per pulse); b* blocks are a multi-pulse commitment, pre-registered here so no interim peek can shape the corpus"
+ },
+ "headline": "THE DISAGREEMENT IS ORDINARY AT PILOT-N (P(observed direction)=0.0380 under the shared hazard itself; P(any disagreement)=0.0380) \u2014 so exp027's sealed split is a sample-size artifact-class event, not yet evidence.  Adjudication rule PRE-REGISTERED before any power number: pooled exact deviance decides, Bonferroni diagnostic-only; b*=1 block(s) = 8 census streams (~1354 draws, approx power 1.00 under the design-fixed two-class alternative) pre-committed as ONE batch, no peeking.  Binding rule is Q2; Q3's chi2 approximation is labeled and decision-informing only."
+}

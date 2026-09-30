@@ -1,0 +1,89 @@
+{
+ "experiment": "Q5c-referral-mesh-graph-state",
+ "at": "2026-09-27T03:07:39Z",
+ "substrate": {
+  "engine": "graph-v1",
+  "mode": "emu",
+  "backend": "aer",
+  "shots": 1024,
+  "seed": 20260927
+ },
+ "mesh": {
+  "nodes": [
+   "fleet-murmur",
+   "moth-waveform",
+   "quality-gate-stream",
+   "jev-quilt",
+   "quilt-tools"
+  ],
+  "verified_edges": [
+   [
+    "fleet-murmur",
+    "moth-waveform"
+   ],
+   [
+    "fleet-murmur",
+    "quality-gate-stream"
+   ],
+   [
+    "jev-quilt",
+    "quilt-tools"
+   ]
+  ],
+  "coupling_map": [
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    3,
+    4
+   ]
+  ],
+  "provenance": "edge-watch pulse 09:57Z 9/27 \u2014 fm\u2014mw (quilt-tools#15), fm\u2014qgs (quilt-tools#16), jq\u2014qt (quilt-tools#18, VERIFIED=1.0); edges 1-5 ledgered in quilt-tools, endpoints not in snapshot \u2014 honest 5-node confirmed subgraph"
+ },
+ "result": {
+  "edge_agreement_score": 1,
+  "dominant_bitstring": "11111",
+  "hub_bloch_fleet_murmur": {
+   "X": 0.40136199543838486,
+   "Y": -0.16588632758286803,
+   "Z": -0.24599477414763718
+  },
+  "polarized_moth_waveform": {
+   "X": 0.006619785752269871,
+   "Y": 0.017294508434675646,
+   "Z": -0.943410990131027
+  }
+ },
+ "control": {
+  "chain5_edge_agreement": 1,
+  "chain5_dominant": "00000",
+  "note": "connected 5-chain control with same seed"
+ },
+ "instrument_limitation_receipted": {
+  "failure": "num_qubits=6 + coupling_map [[0,1],[0,2],[3,4]] (quilt-stone as isolated node) -> job FAILED twice; /result 409 for failed jobs, no error detail in job object",
+  "isolation_matrix": {
+   "baseline(defaults)": "completed",
+   "num_qubits=6": "completed",
+   "n6+seed": "completed",
+   "n6+seed+coupling_map(isolated node 5)": "FAILED",
+   "n5+two-component map": "completed",
+   "n5+connected chain": "completed"
+  },
+  "verdict": "graph-v1 rejects ISOLATED nodes (not disconnectedness \u2014 the two-component mesh ran fine). An unverified candidate node cannot exist on this substrate without admitting an edge. The instrument itself enforces the referral graph's admission rule."
+ },
+ "polyformalism_frame": {
+  "substrate_1_otoc_echo": "expQ5-otoc-echo.json \u2014 kick dynamics, localization contrast 0.300",
+  "substrate_2_disorder_tensor": "expQ5b-otoc-disorder-sweep.json \u2014 11-dose curve, MBL phases, late-echo sign flip at 0.4",
+  "substrate_3_graph_state": "this receipt \u2014 structural coherence, edge_agreement_score=1.0",
+  "substrate_4_quilt_kernel": "5-opcode encoding: BIND(6 nodes) LINK(3 verified edges) TICK(merges 19:06Z-01:27Z) \u2014 the ledger itself is the fourth substrate",
+  "principle": "one question, four substrates, words last \u2014 each substrate measures a different invariant of the same vector shape"
+ },
+ "honest_note": "edge_agreement_score=1 on a 1024-shot sample means perfect agreement of measured correlations with imposed couplings for THIS random-seed state; it is a coherence receipt, not a trust proof. The trust lives in the ledger, the quantum layer is an analogy instrument with real amplitudes.",
+ "sha256": "f09cd2d9decd6cb3"
+}

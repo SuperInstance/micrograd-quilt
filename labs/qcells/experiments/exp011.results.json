@@ -1,0 +1,1242 @@
+{
+  "exp": "exp011",
+  "question": "does a reach-class mutator (two-move children / non-champion-parent cloud) unfreeze the unaided n=3 balance lane that pop scaling (exp010) could not?",
+  "lane": {
+    "root_seed": 7,
+    "train_seed": 101,
+    "verify_seed": 202,
+    "shots": 512,
+    "pop": 16,
+    "generations": 12,
+    "targets": [
+      "000",
+      "111"
+    ],
+    "n_qubits": 3,
+    "mode": "balance",
+    "seeded": false,
+    "mut_classes": [
+      "replace",
+      "indel"
+    ]
+  },
+  "control_reproduces_exp001": true,
+  "runs": {
+    "two_move": {
+      "arm": "two_move",
+      "seeded": false,
+      "champion_genome": [
+        [
+          "h",
+          2
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          2,
+          0
+        ],
+        [
+          "rx",
+          1.0,
+          1
+        ]
+      ],
+      "champion_len": 5,
+      "champion_train_p": 0.255859375,
+      "champion_verify_p": 0.2421875,
+      "first_gen_over_0.45": null,
+      "gens_champion_nonzero": 12,
+      "curve": [
+        {
+          "gen": 0,
+          "train_p": 0.0352,
+          "verify_p": 0.0371,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "crx",
+              0.75,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 1,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 2,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 3,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 4,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 5,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 6,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 7,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 8,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 9,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 10,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        },
+        {
+          "gen": 11,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              2
+            ],
+            [
+              "cx",
+              0,
+              1
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "rx",
+              1.0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    "parent_pool": {
+      "arm": "parent_pool",
+      "seeded": false,
+      "champion_genome": [
+        [
+          "swap",
+          2,
+          1
+        ],
+        [
+          "rx",
+          0.5,
+          2
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          2,
+          1
+        ],
+        [
+          "rz",
+          0.5,
+          0
+        ],
+        [
+          "cx",
+          1,
+          0
+        ]
+      ],
+      "champion_len": 6,
+      "champion_train_p": 0.498046875,
+      "champion_verify_p": 0.482421875,
+      "first_gen_over_0.45": 5,
+      "gens_champion_nonzero": 12,
+      "curve": [
+        {
+          "gen": 0,
+          "train_p": 0.1289,
+          "verify_p": 0.1074,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "h",
+              0
+            ],
+            [
+              "h",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 1,
+          "train_p": 0.1387,
+          "verify_p": 0.1152,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "h",
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "crx",
+              0.5,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 2,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "crx",
+              0.5,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 3,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "crx",
+              0.5,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 4,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "crx",
+              0.5,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 5,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 6,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 7,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 8,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 9,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 10,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "gen": 11,
+          "train_p": 0.498,
+          "verify_p": 0.4824,
+          "promoted": true,
+          "genome": [
+            [
+              "swap",
+              2,
+              1
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "cx",
+              1,
+              2
+            ],
+            [
+              "cx",
+              2,
+              1
+            ],
+            [
+              "rz",
+              0.5,
+              0
+            ],
+            [
+              "cx",
+              1,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "both": {
+      "arm": "both",
+      "seeded": false,
+      "champion_genome": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "rx",
+          0.5,
+          2
+        ],
+        [
+          "x",
+          2
+        ]
+      ],
+      "champion_len": 4,
+      "champion_train_p": 0.255859375,
+      "champion_verify_p": 0.2421875,
+      "first_gen_over_0.45": null,
+      "gens_champion_nonzero": 10,
+      "curve": [
+        {
+          "gen": 0,
+          "train_p": 0.0,
+          "verify_p": 0.0,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 1,
+          "train_p": 0.0,
+          "verify_p": 0.0,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              2,
+              0
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 2,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 3,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 4,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 5,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 6,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 7,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 8,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 9,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 10,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        },
+        {
+          "gen": 11,
+          "train_p": 0.2559,
+          "verify_p": 0.2422,
+          "promoted": true,
+          "genome": [
+            [
+              "h",
+              1
+            ],
+            [
+              "cx",
+              1,
+              0
+            ],
+            [
+              "rx",
+              0.5,
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

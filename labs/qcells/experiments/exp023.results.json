@@ -1,0 +1,162 @@
+{
+ "design": "pure analysis of sealed exp022 telemetry; no re-run, no rng, no new sims; candidate predictors numbered pre-run from named doctrine steps; windows symmetric across classes; undefined windows named",
+ "experiment": "exp023 desert-break predictor screen",
+ "honesty": "n=5 (W1) / n=4 (W2) PILOT class: any SEPARATES verdict is a hypothesis requiring exp024 blind validation on the 3 remaining exp021 Q1 salts (k0/k1/k2, census lane); k3 W1 window IS its break gen (at-birth context read, labeled); k3 W2 undefined (peak at g0)",
+ "next": "exp024: census remaining exp021 Q1 salts k0/k1/k2 (seeds 31000/31001/31002), test surviving predictor(s) blind against break status",
+ "overall_verdict": "NOT_SEPARABLE_AT_AVAILABLE_N \u2014 desert-break is a per-gen birth event invisible pre-break; exp018 doctrine holds at stream level; prediction must target birth-cloud per-draw odds",
+ "streams": {
+  "k3": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": true,
+    "C3_tiewidth4": false,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": "undefined",
+   "break_or_peak_gen": 0,
+   "class": "crossing",
+   "crossed": true
+  },
+  "k4": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": false,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": true
+   },
+   "break_or_peak_gen": 5,
+   "class": "contrast_near_miss",
+   "crossed": false
+  },
+  "k5": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "break_or_peak_gen": 3,
+   "class": "crossing",
+   "crossed": true
+  },
+  "k6": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": true
+   },
+   "break_or_peak_gen": 8,
+   "class": "crossing",
+   "crossed": true
+  },
+  "k7": {
+   "W1_at_birth": {
+    "C1_win2presence": true,
+    "C2_nearbar40": false,
+    "C3_tiewidth4": true,
+    "C4_activity3": false
+   },
+   "W2_pre_peak": "undefined",
+   "break_or_peak_gen": 0,
+   "class": "contrast_dead",
+   "crossed": false
+  }
+ },
+ "verdicts": {
+  "W1_at_birth": {
+   "C1_win2presence": {
+    "separates": false,
+    "trips": {
+     "k3": true,
+     "k4": true,
+     "k5": true,
+     "k6": true,
+     "k7": true
+    }
+   },
+   "C2_nearbar40": {
+    "separates": false,
+    "trips": {
+     "k3": true,
+     "k4": false,
+     "k5": false,
+     "k6": false,
+     "k7": false
+    }
+   },
+   "C3_tiewidth4": {
+    "separates": false,
+    "trips": {
+     "k3": false,
+     "k4": false,
+     "k5": true,
+     "k6": true,
+     "k7": true
+    }
+   },
+   "C4_activity3": {
+    "separates": false,
+    "trips": {
+     "k3": false,
+     "k4": false,
+     "k5": false,
+     "k6": false,
+     "k7": false
+    }
+   }
+  },
+  "W2_pre_peak": {
+   "C1_win2presence": {
+    "separates": false,
+    "trips": {
+     "k4": true,
+     "k5": true,
+     "k6": true
+    }
+   },
+   "C2_nearbar40": {
+    "separates": false,
+    "trips": {
+     "k4": false,
+     "k5": false,
+     "k6": false
+    }
+   },
+   "C3_tiewidth4": {
+    "separates": false,
+    "trips": {
+     "k4": true,
+     "k5": true,
+     "k6": true
+    }
+   },
+   "C4_activity3": {
+    "separates": false,
+    "trips": {
+     "k4": true,
+     "k5": false,
+     "k6": true
+    }
+   }
+  }
+ }
+}

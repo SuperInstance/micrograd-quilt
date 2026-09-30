@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-26T21:57:33.420Z",
+  "updatedAt": "2026-09-28T06:11:36.260Z",
   "entries": {
     "memory:memory/2026-05-22.md:338:358": {
       "key": "memory:memory/2026-05-22.md:338:358",
@@ -474,18 +474,20 @@
       "endLine": 75,
       "source": "memory",
       "snippet": "- He has 4 open issues from Casey, none responded to. Building fast but not syncing back. **Contradiction Hunt Completed** Scanned 4,574 tiles across 124 rooms. Found: | Severity | Issue | Location | Fix | |---|---|---|---| | P0 | superinstance.ai claims \"22 services\" | landing-page-update tile | Actual: ~12 operational. Overcount by ~80%. | | P0 | deckboss.ai claims \"10 pre-seeded missions\" | landing-page-update tile | Actual: queue empty. Seeded 3 real tasks to make claim partially true. | | P1 | Tile counts stale (3,833 claimed, 4,574 actual) | All 20 domains | Needs batch refresh | | P1 | Grammar rules: 60 claimed, 51 actual | activeledger.ai tile | Rules were pruned | | BUG | MiniMax",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.37134701311588286,
+      "totalScore": 0.7312696576118469,
       "maxScore": 0.37134701311588286,
       "firstRecalledAt": "2026-05-26T18:30:44.099Z",
-      "lastRecalledAt": "2026-05-26T18:30:44.099Z",
+      "lastRecalledAt": "2026-09-24T13:29:09.704Z",
       "queryHashes": [
-        "eb289bd24db2"
+        "eb289bd24db2",
+        "f243cd0d2a1c"
       ],
       "recallDays": [
-        "2026-05-27"
+        "2026-05-27",
+        "2026-09-24"
       ],
       "conceptTags": [
         "superinstance.ai",
@@ -620,6 +622,1089 @@
         "147.224.38.131",
         "cocapn-health-host",
         "multi-datacenter"
+      ]
+    },
+    "memory:memory/2026-09-18.md:85:105": {
+      "key": "memory:memory/2026-09-18.md:85:105",
+      "path": "memory/2026-09-18.md",
+      "startLine": 85,
+      "endLine": 105,
+      "source": "memory",
+      "snippet": "- Stacked: PR #8's base is `quilt-kernel-p6-tidepool` (the p6 tip d6a8db5 — my own 09-17 tidepool-v1 build, PR #6, still unmerged). ### PR inventory awaiting human merge - hermit: #2 (p2), #3 (p3), #4 (p4), #5 (p5-ops), #6 (p6-tidepool), #7 (canon-md), #8 (canon-ledger-p7) - SuperInstance/SuperInstance: #18 (fleet-canon-v1: schema, tier1, lint, generate, 2 workflows, graph.json) - 26 per-repo canon-md PRs across the org ### Standing queue (canon, next) 1. Merges — everything above is human-gated. 2. Tidepool ops-counter follow-up: `recordWalFailure(\"tidepool_projection\")` on #5 merge (2-line). 3. Layer H fleet-wide: canon.verified endpoint + WAL canon/* packet types (drizzle migration afte",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3749510258436203,
+      "maxScore": 0.3749510258436203,
+      "firstRecalledAt": "2026-09-24T13:23:33.604Z",
+      "lastRecalledAt": "2026-09-24T13:23:33.604Z",
+      "queryHashes": [
+        "e7d23f198f36"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "quilt-kernel-p6-tidepool",
+        "09-17",
+        "tidepool-v1",
+        "p5-ops",
+        "p6-tidepool",
+        "canon-md",
+        "canon-ledger-p7",
+        "superinstance/superinstance"
+      ]
+    },
+    "memory:memory/2026-09-18.md:75:81": {
+      "key": "memory:memory/2026-09-18.md:75:81",
+      "path": "memory/2026-09-18.md",
+      "startLine": 75,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "- Vessels taken ONLY with evidence: twist-engine=JetsonClaw1, Scrapcraft/crab-trap-web/tidepool/quilt-studio=cCC (quilt-studio: CCC's own commits 8a19d1e/9b3e911/8023064/5821ebf on main 09-17), quilt + constraint-theory-core + constraint-theory-math + sunset-ecosystem=Forgemaster (CATALOG attribution; sunset-ecosystem also IDENTITY.md architect credit). Everything else = `unattributed` + flagged in the PR body. Never guessed. - Edge bidirectionality kept honest mid-flight: quilt-studio shipped claiming `owed_by: [tidepool, quilt]` → tidepool PR needed a second commit adding `feeds: [quilt-studio]` (`88d187b`, PR comment added separately). duke-lab ↔ AI-Writings and quilt-live-canon ↔ AI-Writ",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3711322009563446,
+      "maxScore": 0.3711322009563446,
+      "firstRecalledAt": "2026-09-24T13:23:33.604Z",
+      "lastRecalledAt": "2026-09-24T13:23:33.604Z",
+      "queryHashes": [
+        "e7d23f198f36"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "twist-engine",
+        "quilt-studio",
+        "8a19d1e/9b3e911/8023064/5821ebf",
+        "09-17",
+        "constraint-theory-core",
+        "constraint-theory-math",
+        "sunset-ecosystem",
+        "identity.md"
+      ]
+    },
+    "memory:memory/2026-09-18.md:81:91": {
+      "key": "memory:memory/2026-09-18.md:81:91",
+      "path": "memory/2026-09-18.md",
+      "startLine": 81,
+      "endLine": 91,
+      "source": "memory",
+      "snippet": "- `src/quilt/canon-ledger.ts`: parseClaim/loadClaim (CANON.md front matter via `yaml` dep), buildPackets (git log replay over canonical_docs + CANON.md + src/quilt/), FNV-1a 64 replayHash (fleet standard), verify() → LedgerReport{packets, failures, replayHash, implicit}. CLI: `bun run src/quilt/canon-ledger.ts [repoPath]`, exit 1 on failures. - Verification rules v1: (1) canonical docs removed by a packet → FAIL (checked per-commit via `git cat-file -e <commit>:<doc>` vs parent, not existsSync-at-HEAD — the existsSync version false-flagged the seed commit); (2) kernel commit while claim dropped `feeds: [tidepool]` → FAIL; (3) no CANON.md → implicit mode, packets ok with \"implicit claim\" reas",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3705365389585495,
+      "maxScore": 0.3705365389585495,
+      "firstRecalledAt": "2026-09-24T13:23:33.604Z",
+      "lastRecalledAt": "2026-09-24T13:23:33.604Z",
+      "queryHashes": [
+        "e7d23f198f36"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "src/quilt/canon-ledger.ts",
+        "parseclaim/loadclaim",
+        "canon.md",
+        "canonical-docs",
+        "src/quilt",
+        "fnv-1a",
+        "per-commit",
+        "cat-file"
+      ]
+    },
+    "memory:memory/2026-09-18.md:128:145": {
+      "key": "memory:memory/2026-09-18.md:128:145",
+      "path": "memory/2026-09-18.md",
+      "startLine": 128,
+      "endLine": 145,
+      "source": "memory",
+      "snippet": "- Layer G regen at full ~3,951 scale (auto via canon-generate.yml) → tier-3 becomes real. - Layer H v2: WAL canon/* packet types + canon.verified endpoint (needs hermit stack merged; drizzle migration after 0015). - Tier-2 round 2: canon-suite bundle edges from package.json deps; quilt-mermaid endpoint check; cell-runtime/porch README mining. - plato-portal: 20/20 Auto-Index Bot commits — suspicious; flag to whoever owns that bot. **kimi1 | Day 43 | \"Root-caused the cap, wove the second ring of the fabric, and put names on four more hulls.\"** --- ## 🌆 14:57–15:45 GMT+8 — \"take this to the next level. r&d and push and publish\" ### Fabric audit (before R&D): 2 missed pairs found and close",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.36326878666877743,
+      "maxScore": 0.36326878666877743,
+      "firstRecalledAt": "2026-09-24T13:23:33.604Z",
+      "lastRecalledAt": "2026-09-24T13:23:33.604Z",
+      "queryHashes": [
+        "e7d23f198f36"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "canon-generate.yml",
+        "tier-3",
+        "canon.verified",
+        "tier-2",
+        "canon-suite",
+        "package.json",
+        "quilt-mermaid",
+        "cell-runtime/porch"
+      ]
+    },
+    "memory:memory/2026-09-18.md:140:151": {
+      "key": "memory:memory/2026-09-18.md:140:151",
+      "path": "memory/2026-09-18.md",
+      "startLine": 140,
+      "endLine": 151,
+      "source": "memory",
+      "snippet": "- hermit PR #7 body claimed `feeds duke-lab` but the STUB only had [tidepool]; duke-lab's stub only owed AI-Writings while its body claimed hermit+tidepool. Stubs are what canon-lint reads — reconciled: duke-lab owed_by → [AI-Writings, hermit, tidepool] (commit 9216773f), hermit feeds → [tidepool, duke-lab] (ed37610e), tidepool feeds → [quilt-studio, duke-lab] (a491fbc3). quilt-live-canon owed_by: [AI-Writings] was already correct in the stub (my \"miss\" analysis was wrong there). - Rule learned: PR bodies don't lint, stubs do. Keep bodies ≤ stub claims. ### R&D report numbers (graph.json topology, 2026-09-18) - 2,003 nodes; tiers 27/1976/0; 77.2% other-uncategorized sea. - Vessels: Various",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.36318644583225246,
+      "maxScore": 0.36318644583225246,
+      "firstRecalledAt": "2026-09-24T13:23:33.604Z",
+      "lastRecalledAt": "2026-09-24T13:23:33.604Z",
+      "queryHashes": [
+        "e7d23f198f36"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "duke-lab",
+        "ai-writings",
+        "canon-lint",
+        "owed-by",
+        "quilt-studio",
+        "quilt-live-canon",
+        "graph.json",
+        "27/1976/0"
+      ]
+    },
+    "memory:memory/2026-09-24.md:112:117": {
+      "key": "memory:memory/2026-09-24.md:112:117",
+      "path": "memory/2026-09-24.md",
+      "startLine": 112,
+      "endLine": 117,
+      "source": "memory",
+      "snippet": "**crush Lane C1 memo** (research/2026-09-24-laya4quilt-crush-memo-c1.md, via `crush run \"$(cat prompt.txt)\"` — NOTE: charm crush, no -p flag): 5 lie shapes (context blindness, distribution shift, router misfire self-confirming starvation, seasonal calibration drift, distilled judge bias); REFUSAL row = typed absence {noul_ambiguity, insufficient_context, ood, router_failure, timeout} + visibility hashes + routing + trigger + resolvability + parent linkage + cost; bandit symmetry (penalize→never-refuse, reward→strategic abstention); never-delegate (labels, escalation policy, out-of-window verdicts, question coercion); upgrade = LEASE per task_type (tail quantiles of |Δ|, refusal-difficulty de",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.38212573528289795,
+      "maxScore": 0.38212573528289795,
+      "firstRecalledAt": "2026-09-24T13:28:43.343Z",
+      "lastRecalledAt": "2026-09-24T13:28:43.343Z",
+      "queryHashes": [
+        "066585b7c9e4"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "router",
+        "prompt.txt",
+        "self-confirming",
+        "noul-ambiguity",
+        "insufficient-context",
+        "router-failure",
+        "never-refuse",
+        "never-delegate"
+      ]
+    },
+    "memory:memory/2026-09-24.md:114:129": {
+      "key": "memory:memory/2026-09-24.md:114:129",
+      "path": "memory/2026-09-24.md",
+      "startLine": 114,
+      "endLine": 129,
+      "source": "memory",
+      "snippet": "**CI/CD tick layer shipped BEFORE this:** examples/fleet_tick.py (perception tick, keyless-honest, exit 0 unless CHAIN breaks; ran LIVE: kimi quality 0.6923 chain_ok) + .github/workflows/ticks.yml (pins → live tick w/ receipt artifact → family crosscheck) + cron `executor-tick` every 4h at :53 off-peak, next run 15:53. Commits 89c28cb..(ticks push). **Competition state:** Lane L1 laya-deepdive RUNNING (d5d90e40). Scout tooling RUNNING on 2nd attempt (382788ca; 1st+3rd spawn attempts gateway-timeout — gateway flaky today). SWAP phase queued: L1 demo vs crush memo cross-playtest. **Fable PR #67** (The Warranty of Spins, 7ec24f8, branch fable-warranty-of-spins) in merge queue pending Casey.",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.75980327129364,
+      "maxScore": 0.38255462944507596,
+      "firstRecalledAt": "2026-09-24T13:28:43.343Z",
+      "lastRecalledAt": "2026-09-24T13:29:09.704Z",
+      "queryHashes": [
+        "066585b7c9e4",
+        "f243cd0d2a1c"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "gateway",
+        "ci/cd",
+        "examples/fleet-tick.py",
+        "keyless-honest",
+        "0.6923",
+        "chain-ok",
+        "github/workflows/ticks.yml",
+        "executor-tick"
+      ]
+    },
+    "memory:memory/2026-09-24.md:110:113": {
+      "key": "memory:memory/2026-09-24.md:110:113",
+      "path": "memory/2026-09-24.md",
+      "startLine": 110,
+      "endLine": 113,
+      "source": "memory",
+      "snippet": "**My deep dive** (research/2026-09-24-laya4quilt-deep-dive.md): the arc Translator→Executor→CI-ticks→laya = each abstraction resolves into a concrete dependency. Homology table: laya score types = evaluator; Router = decider; noul = refusal-native type; proper scoring = receipts doctrine as TRAINING objective. W1-W5 wiring: LayaEvaluator backend, fast-prior for bandit, LP features, perception at machine speed (tick every minutes not hours), JEV cheap/expensive dual-run arms + MOTH seasonal router. **crush Lane C1 memo** (research/2026-09-24-laya4quilt-crush-memo-c1.md, via `crush run \"$(cat prompt.txt)\"` — NOTE: charm crush, no -p flag): 5 lie shapes (context blindness, distribution shift,",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3507651835680008,
+      "maxScore": 0.3507651835680008,
+      "firstRecalledAt": "2026-09-24T13:28:43.343Z",
+      "lastRecalledAt": "2026-09-24T13:28:43.343Z",
+      "queryHashes": [
+        "066585b7c9e4"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "router",
+        "ci-ticks",
+        "refusal-native",
+        "w1-w5",
+        "fast-prior",
+        "cheap/expensive",
+        "dual-run",
+        "prompt.txt"
+      ]
+    },
+    "memory:memory/2026-09-24.md:180:181": {
+      "key": "memory:memory/2026-09-24.md:180:181",
+      "path": "memory/2026-09-24.md",
+      "startLine": 180,
+      "endLine": 181,
+      "source": "memory",
+      "snippet": "[snowball 19:11] done: queue #7 edge-watch frontier confirmations — Basis.ai verified-compiler failure CONFIRMED (4 agents, 93k Lean lines, 14 days, 0 non-trivial proofs closed; receipts-over-proofs vindicated); Rotalabs seeded runs bit-identical across Python/TypeScript CONFIRMED (residual probes = receipt-shaped; non-monotonic safety finding); bonus EigenAI bit-exact inference (10k runs, 1.8%% tax, out_hash receipts); note committed df5f20f on branch edge-watch-2026-09-24, pushed (main untouched) | next: queue #6 merge queue (pong-quilt #1-5, jev-quilt #19, AI-Writings #68 — needs Casey); synergy specced: Rotalabs held-out-pattern residual probes as first-class judge type in executor | blo",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.37144324779510496,
+      "maxScore": 0.37144324779510496,
+      "firstRecalledAt": "2026-09-24T13:29:09.704Z",
+      "lastRecalledAt": "2026-09-24T13:29:09.704Z",
+      "queryHashes": [
+        "f243cd0d2a1c"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "edge-watch",
+        "basis.ai",
+        "verified-compiler",
+        "non-trivial",
+        "receipts-over-proofs",
+        "bit-identical",
+        "python/typescript",
+        "receipt-shaped"
+      ]
+    },
+    "memory:memory/2026-09-24.md:14:23": {
+      "key": "memory:memory/2026-09-24.md:14:23",
+      "path": "memory/2026-09-24.md",
+      "startLine": 14,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "- **wasmi-fuel verification** — first-hand from tag v2.0.0 (`2970aa8`): fuel API real, `fuel_used` NOT FOUND (embedder computes `used = budget − get_fuel()`), determinism per (bytecode, cost-table, trace), Eager-mode caveat, ~120-line `wedge-wasmi-exec` shim specced (wedge v2 = one evening). - **pong-quilt PR #1 (playtest Round 2)** — [P0] black swan unseeded Math.random() → headline \"non-monotonic\" claim was 0/8 under seeding; [P1] JEPA train/inference feature skew (16× error); 7-item next-version spec; meta-rule: no number enters the log without surviving a second run. - **pong-quilt PR #2 (edge-ml crush)** — ring-buffer champion strip + streaming evaluator from quilt-edge-ml patterns; bla",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7034928970564001,
+      "maxScore": 0.7034928970564001,
+      "firstRecalledAt": "2026-09-24T15:57:16.097Z",
+      "lastRecalledAt": "2026-09-24T15:57:16.097Z",
+      "queryHashes": [
+        "6462ef5e27d1"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "wasmi-fuel",
+        "first-hand",
+        "v2.0.0",
+        "fuel-used",
+        "get-fuel",
+        "cost-table",
+        "eager-mode",
+        "120-line"
+      ]
+    },
+    "memory:memory/2026-09-24.md:10:15": {
+      "key": "memory:memory/2026-09-24.md:10:15",
+      "path": "memory/2026-09-24.md",
+      "startLine": 10,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "- **research/2026-09-24-verbal-core-macros.md** — Casey's Latin instruction set: ferre (carry) + -ducere/-capere/-struere/-pingere gates, -tion suffix = state-latch (verb→noun = procedural block→addressable hardware; receipts ARE this), clocks = low-overhead consensus protocols, geometry is the ground (time = ratio of two movements). Fleet mapping per macro. ## Lane results received on the wire - **receipts-v2 → jev-quilt PR #19** `388f103` — Ed25519/BLAKE3 envelope over unchanged FNV/sha256 chain, 19/19 tests, BLAKE3 400-fuzz + Ed25519 byte-exact vs PyNaCl, MutMem cited claims 1-5 only. REAL-twist-engine fixture caught a real porting bug (hv accumulates across rounds; code points not UTF-8",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.596189038364648,
+      "maxScore": 0.596189038364648,
+      "firstRecalledAt": "2026-09-24T15:57:16.097Z",
+      "lastRecalledAt": "2026-09-24T15:57:16.097Z",
+      "queryHashes": [
+        "6462ef5e27d1"
+      ],
+      "recallDays": [
+        "2026-09-24"
+      ],
+      "conceptTags": [
+        "state-latch",
+        "low-overhead",
+        "receipts-v2",
+        "jev-quilt",
+        "ed25519/blake3",
+        "fnv/sha256",
+        "19/19",
+        "400-fuzz"
+      ]
+    },
+    "memory:memory/2026-09-20.md:1:2": {
+      "key": "memory:memory/2026-09-20.md:1:2",
+      "path": "memory/2026-09-20.md",
+      "startLine": 1,
+      "endLine": 2,
+      "source": "memory",
+      "snippet": "[snowball 15:35] done: creative pulse #2 (far-future-users reverse-actualization) — 4 POV diffusions → 5 missing components identified; smallest-build specced as youth-surfacing for quilt-executor; doc committed ac83d2a on branch snowball-far-future-users (pushed, not main) | next: queue #1 merge queue for Casey (needs Casey approval), then youth-surfacing build in quilt-executor | blockers: snowball-queue.md and 2026-09-20.md do not exist — queue lives in memory/2026-09-24.md; cron template date stale",
+      "recallCount": 14,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 7.3586338307967845,
+      "maxScore": 0.6502228521601332,
+      "firstRecalledAt": "2026-09-24T17:56:18.011Z",
+      "lastRecalledAt": "2026-09-28T06:11:36.260Z",
+      "queryHashes": [
+        "d2bd63efea24",
+        "e6b19eeed7e5",
+        "36488771d0bf",
+        "5be09dd2cb3a",
+        "b8c2600d4e35",
+        "5c25d17f0253"
+      ],
+      "recallDays": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "far-future-users",
+        "reverse-actualization",
+        "smallest-build",
+        "youth-surfacing",
+        "quilt-executor",
+        "snowball-far-future-users",
+        "snowball-queue.md",
+        "memory/2026-09-24.md"
+      ]
+    },
+    "memory:memory/2026-09-25.md:22:31": {
+      "key": "memory:memory/2026-09-25.md:22:31",
+      "path": "memory/2026-09-25.md",
+      "startLine": 22,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "/tmp/quilt-executor working tree was found on `quilt-opt-bridge` (snowball queue #2's branch, cut from main — ladder files absent there). Switched back to `laya-evaluator-spec-v2` for sea-trial work. Tracked pycache noise: ignored via `.gitignore` (`__pycache__/`, `*.pyc`). ## Snowball lane status (from overnight pulses, queue now exhausted) Queue #1–9 all done: LayaEvaluator lane-built (341f9d7), LP router→quilt-optimization cuOpt bridge (3ffb1b9, PR #1), arena play-test re-verification (8d0fc78), quilt-organism scout (7df7ddc), edge-watch confirmations (df5f20f), laya Router dict-state bug filed upstream (issue #384, branch 62ca8c9), spiral ledger in quilt-director (619ce84, 18/18, 8 spir",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.0011408454595632,
+      "maxScore": 0.6478985941825932,
+      "firstRecalledAt": "2026-09-24T17:56:18.011Z",
+      "lastRecalledAt": "2026-09-25T07:23:42.282Z",
+      "queryHashes": [
+        "d2bd63efea24",
+        "7de8f2f97895"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "router",
+        "tmp/quilt-executor",
+        "quilt-opt-bridge",
+        "laya-evaluator-spec-v2",
+        "sea-trial",
+        "lane-built",
+        "quilt-optimization",
+        "play-test"
+      ]
+    },
+    "memory:memory/2026-09-25.md:27:38": {
+      "key": "memory:memory/2026-09-25.md:27:38",
+      "path": "memory/2026-09-25.md",
+      "startLine": 27,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "**Standing blocker (multiple pulses):** snowball cron template points at absent `snowball-queue.md`/`2026-09-20.md`; live queue is `memory/2026-09-24.md`. Template needs one edit. ## Announced but NOT yet built (interrupted by flush) — \"Keep going\" arc I declared three next pins, stated intent in-channel, then flush hit before writing code: 1. **Reciprocity** — foreign-built *genesis chain* verifies on native substrate (Ledger.rows swap + verify()), both directions + tamper 2. **Harbor mouth** — web surface serves `GET /chart` (manifest.json) + `GET /ledger/export` (asdict rows); pin = fetch via urllib → stranger verifies using ONLY fetched chart, zero hand-delivery; add \"discovery\" section",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.3861482202303717,
+      "maxScore": 0.6339406877053091,
+      "firstRecalledAt": "2026-09-24T17:56:18.011Z",
+      "lastRecalledAt": "2026-09-25T14:11:27.337Z",
+      "queryHashes": [
+        "d2bd63efea24",
+        "7de8f2f97895",
+        "e6b19eeed7e5"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "snowball-queue.md",
+        "memory/2026-09-24.md",
+        "in-channel",
+        "foreign-built",
+        "ledger.rows",
+        "manifest.json",
+        "ledger/export",
+        "hand-delivery"
+      ]
+    },
+    "memory:memory/2026-09-24.md:93:98": {
+      "key": "memory:memory/2026-09-24.md:93:98",
+      "path": "memory/2026-09-24.md",
+      "startLine": 93,
+      "endLine": 98,
+      "source": "memory",
+      "snippet": "[snowball 23:14] done: queue #4 FINAL slice — GL(9) zero-holonomy walk (holonomy/walk.py): exact GF(7) 9x9, chain_intact==zero holonomy on the 1-D path, reconcile==path-dependence (deviation H^-1*L), flags ARE the holonomy element, closure edge C=L*H^-1 as re-walk (history untouched); pin-forced non-abelian fix (deviation^-1 != L*H^-1); 11/11 pins green; committed 26dbb74 on holonomy-reconcile-proto, PUSHED (main untouched) — queue #4 COMPLETE (3/3 slices) | next: merge queue for Casey (pong-quilt #1-6, AI-Writings #68, quilt-executor #1) | blockers: cron template still points at snowball-queue.md/2026-09-20.md (queue lives in 2026-09-24.md) ## 23:35 — \"Go beyond what you are doing\" → the S",
+      "recallCount": 7,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 3.320071202175805,
+      "maxScore": 0.6311107132542384,
+      "firstRecalledAt": "2026-09-24T17:56:18.011Z",
+      "lastRecalledAt": "2026-09-28T03:56:20.946Z",
+      "queryHashes": [
+        "d2bd63efea24",
+        "36488771d0bf",
+        "5be09dd2cb3a",
+        "b8c2600d4e35"
+      ],
+      "recallDays": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "zero-holonomy",
+        "holonomy/walk.py",
+        "chain-intact",
+        "1-d",
+        "path-dependence",
+        "re-walk",
+        "pin-forced",
+        "non-abelian"
+      ]
+    },
+    "memory:memory/2026-09-24.md:91:94": {
+      "key": "memory:memory/2026-09-24.md:91:94",
+      "path": "memory/2026-09-24.md",
+      "startLine": 91,
+      "endLine": 94,
+      "source": "memory",
+      "snippet": "**Lane mechanics learned:** claude headless sandbox pins to launch cwd → lanes stage files + install.sh + PROGRESS.md blocker report instead of repo writes (spec must name the repo dir inside the allowed set, or launch with repo as cwd). Completion events reliable here (rc=0, 15:00:51); artifacts verified in-tree anyway (doctrine). [snowball 22:56] done: queue #4 slice 2 — HolonomyConsensus flag→typed-ledger-row wiring + adjudication receipts (book_flags + adjudicate w/ parent-link by payload hash, unknown decisions refused not booked); 20/20 pins green; committed 288118f on branch holonomy-reconcile-proto, PUSHED (main untouched) | next: queue #4 final slice — GL(9) holonomy walk; merge que",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9538009452158773,
+      "maxScore": 0.5990721779400672,
+      "firstRecalledAt": "2026-09-24T17:56:18.011Z",
+      "lastRecalledAt": "2026-09-25T07:23:42.282Z",
+      "queryHashes": [
+        "d2bd63efea24",
+        "7de8f2f97895"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "install.sh",
+        "progress.md",
+        "in-tree",
+        "typed-ledger-row",
+        "book-flags",
+        "parent-link",
+        "20/20",
+        "holonomy-reconcile-proto"
+      ]
+    },
+    "memory:memory/2026-09-24.md:99:103": {
+      "key": "memory:memory/2026-09-24.md:99:103",
+      "path": "memory/2026-09-24.md",
+      "startLine": 99,
+      "endLine": 103,
+      "source": "memory",
+      "snippet": "- Sea-trial caught a chart bug, not a vessel bug: \"NO 0x prefix\" uppercase vs lowercase check — the chart must be interpreted exactly; that's the point of the trial. - Suite 54/54 on the branch. Note: repo branch was left on quilt-opt-bridge by snowball queue #2; switched back to laya-evaluator-spec-v2 (the ladder+laya branch). - Doctrine added to manifest: \"the chart must suffice: no hidden knowledge outside this manifest.\" [snowball 00:38] done: queue #4 wedge v2 SHIPPED early — wedge-wasmi-exec (Rust, wasmi =2.0.0) in SuperInstance/wasm-cert-wedge: embedder-side fuel metering (used = budget − get_fuel(); fuel_used API absent at tag 2970aa8), typed trap rows (wasmi refunds the failing OutO",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.588324550910807,
+      "maxScore": 0.588324550910807,
+      "firstRecalledAt": "2026-09-24T17:56:18.011Z",
+      "lastRecalledAt": "2026-09-24T17:56:18.011Z",
+      "queryHashes": [
+        "d2bd63efea24"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "sea-trial",
+        "54/54",
+        "quilt-opt-bridge",
+        "laya-evaluator-spec-v2",
+        "wedge-wasmi-exec",
+        "2.0.0",
+        "superinstance/wasm-cert-wedge",
+        "embedder-side"
+      ]
+    },
+    "memory:memory/2026-09-25.md:128:132": {
+      "key": "memory:memory/2026-09-25.md:128:132",
+      "path": "memory/2026-09-25.md",
+      "startLine": 128,
+      "endLine": 132,
+      "source": "memory",
+      "snippet": "Fork mechanics discovered: SuperInstance is a USER account — gh repo fork --org rejected (422). Existing quantum-quilt line already built by Mavis 09-23: quilt-quantum-audio (lore_to_quantum_canon(text, scheme=\"QPAM\") → measurement_bits + canon_signature; canon→quantum-audio direction), quilt-quantumaudio-demo, moth-jev-adapters, moth-jev-lab. My QCell is the missing SEARCH-side cell (no overlap — complement). Ideation team: quantum-media scout in water (85ed0288). Two spawns (quantum-ML 62741fa7, quantum-eng 3b227e0e) + 1 retry hit gateway timeouts (4 consecutive) — gateway congested ~01:15; run those ideation slices inline next session or respawn when it recovers. 9 repos cloned to /tmp/m",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35417626798152924,
+      "maxScore": 0.35417626798152924,
+      "firstRecalledAt": "2026-09-24T22:23:24.548Z",
+      "lastRecalledAt": "2026-09-24T22:23:24.548Z",
+      "queryHashes": [
+        "8c4966e68767"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "gateway",
+        "quantum-quilt",
+        "09-23",
+        "quilt-quantum-audio",
+        "lore-to-quantum-canon",
+        "measurement-bits",
+        "canon-signature",
+        "quantum-audio"
+      ]
+    },
+    "memory:memory/2026-09-25.md:759:763": {
+      "key": "memory:memory/2026-09-25.md:759:763",
+      "path": "memory/2026-09-25.md",
+      "startLine": 759,
+      "endLine": 763,
+      "source": "memory",
+      "snippet": "- 15:35: snowball-queue.md REBUILT (queue fully cleared by Casey incl REFERRAL_GRAPH #6; zero open PRs). Red Queen (ICLR AIWILD) shipped: attacker↔defender co-evolution + resumable seeded archives — mirrors the-tap candor-critic-pair; archive-persistence = stealable pattern. Edge-watch blocker cleared. ## 🧬 15:50 CST — SUPER Z DROP 2: quilt-quant published + METHODS HARVEST (Casey 15:41: push his repos, learn his methods) - **SuperInstance/quilt-quant LIVE** (public, main @ `7cb85d1`): TWO archetypes — trading desk (every indicator/risk rule/metric a CELL; one push re-prices all) + **sim-first agent lab** (no human in loop; architecture IS the simulation: sense→belief→propose→SIMULATE→conf",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.39922406971454616,
+      "maxScore": 0.39922406971454616,
+      "firstRecalledAt": "2026-09-25T14:11:27.337Z",
+      "lastRecalledAt": "2026-09-25T14:11:27.337Z",
+      "queryHashes": [
+        "e6b19eeed7e5"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "snowball-queue.md",
+        "referral-graph",
+        "co-evolution",
+        "the-tap",
+        "candor-critic-pair",
+        "archive-persistence",
+        "edge-watch",
+        "quilt-quant"
+      ]
+    },
+    "memory:memory/2026-09-25.md:520:526": {
+      "key": "memory:memory/2026-09-25.md:520:526",
+      "path": "memory/2026-09-25.md",
+      "startLine": 520,
+      "endLine": 526,
+      "source": "memory",
+      "snippet": "- **z-lab Phase 1 executed by the snowball queue** despite my 4 failed spawn attempts — work routes around the sick gateway: - **SuperInstance/quilt-tools PR #1**: 10 tools (fleet-pager, ledger-seal, ocean-recall, triagedesk, budget-tide, home-ecos, driftwatch, approvals, habit-atlas, pipeline-guard), 10/10 green, 75/75 offline checks, vendored `vendor/quilt-core` dist + `QUILT_DIST` override replacing `/home/z/...` laptop hard-imports. - **SuperInstance/quilt PR #28** (stacks on #27): **classes 10–11** — class 10 `callKey` memo-cache collision on `runtime.call(id, a/b)` (second caller got first result; stash-verified FAIL-first); suite 63/63. Vendored dist in quilt-tools built from this",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3966708570718765,
+      "maxScore": 0.3966708570718765,
+      "firstRecalledAt": "2026-09-25T14:11:27.337Z",
+      "lastRecalledAt": "2026-09-25T14:11:27.337Z",
+      "queryHashes": [
+        "e6b19eeed7e5"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "gateway",
+        "z-lab",
+        "superinstance/quilt-tools",
+        "fleet-pager",
+        "ledger-seal",
+        "ocean-recall",
+        "budget-tide",
+        "home-ecos"
+      ]
+    },
+    "memory:memory/2026-09-25.md:705:712": {
+      "key": "memory:memory/2026-09-25.md:705:712",
+      "path": "memory/2026-09-25.md",
+      "startLine": 705,
+      "endLine": 712,
+      "source": "memory",
+      "snippet": "### Overnight watershed (12:07–12:25 pulses) - **Casey merged the queue overnight:** pong-quilt #9 (R8 draw() P0) + quilt-tools #2–#5 (S1, S2, S3, api-lab E1 — all live-pinned) merged 03:37–03:39Z. Only open org PR: quilt-arcade #1. - **Front-door retry #2 done:** PR #23 open (hero, 4 live demos, 30-repo survey/6 groups, API-verified names, γ+η=C). Casey-gated. - **Arcade reconcile done (zero spawns, direct):** 11/12 of z's patches already on quilt main (classes 1–11 cover them); **patch 12 (effectful re-eval by default) DECLINED** — verbatim port would regress the 3–5ms memoized fan-out; specced welded alternative (deps-version term in effectful cache key) + FAIL-first pin of fish-reset fre",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.38179338872432705,
+      "maxScore": 0.38179338872432705,
+      "firstRecalledAt": "2026-09-25T14:11:27.337Z",
+      "lastRecalledAt": "2026-09-25T14:11:27.337Z",
+      "queryHashes": [
+        "e6b19eeed7e5"
+      ],
+      "recallDays": [
+        "2026-09-25"
+      ],
+      "conceptTags": [
+        "pong-quilt",
+        "quilt-tools",
+        "api-lab",
+        "live-pinned",
+        "quilt-arcade",
+        "front-door",
+        "30-repo",
+        "survey/6"
+      ]
+    },
+    "memory:memory/2026-09-24.md:85:91": {
+      "key": "memory:memory/2026-09-24.md:85:91",
+      "path": "memory/2026-09-24.md",
+      "startLine": 85,
+      "endLine": 91,
+      "source": "memory",
+      "snippet": "- **18/18 pins green; Kimi smoke PASS (2.0s, 'QUARTET', 34 reasoning tokens, EFFECT receipt booked, chain verifies).** **Honest keys finding:** env has ONLY KIMI_API_KEY + KIMI_PLUGIN_API_KEY. typesafe.ai/MOTHquantum are Casey's SOURCE pointers (research/2026-09-24-moth-jev-lane), not env keys. Their arms exist as reserved slots; first real key activates a live arm with history already in the chain. **THE INCIDENT (disclosed, reverted):** cwd-reset footgun ×2 more — accidental `git add -A` in workspace repo (origin = **micrograd-quilt**), pushed 9700319 (11 embedded-repo gitlinks). Reverted publicly as 383e36c (no force-push; doctrine). Second attempt was BLOCKED by the explicit-path rule",
+      "recallCount": 5,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.8019574642181397,
+      "maxScore": 0.3691769868135452,
+      "firstRecalledAt": "2026-09-26T00:34:49.915Z",
+      "lastRecalledAt": "2026-09-27T07:31:18.109Z",
+      "queryHashes": [
+        "fb9ea7898e79",
+        "a15826946757",
+        "78a931fbff17",
+        "bfb5e1b3e6c9",
+        "ae55699c03fe"
+      ],
+      "recallDays": [
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "conceptTags": [
+        "18/18",
+        "2.0s",
+        "kimi-api-key",
+        "kimi-plugin-api-key",
+        "typesafe.ai/mothquantum",
+        "cwd-reset",
+        "micrograd-quilt",
+        "embedded-repo"
+      ]
+    },
+    "memory:memory/2026-09-24.md:82:88": {
+      "key": "memory:memory/2026-09-24.md:82:88",
+      "path": "memory/2026-09-24.md",
+      "startLine": 82,
+      "endLine": 88,
+      "source": "memory",
+      "snippet": "- `executor/evaluator.py` + `executor/memory.py` — claude Lane A deliverables (419+184 lines), integrated via bind_ledger (core4 shape); heuristic scoring + guardrails, judge-consult with refusal capture; FIFO cache / quality_ledger / reflex_table. - `router/fleet_router.py` — THE cuOpt plugin: dispatch as 0-1 LP (max utility − λcost − μlatency − νcontext_risk; one-per-task, caps, DAG precedence); seeded CPU solver ships (no GPU on box), cuopt_lp() formulation identical for GPU handoff; cuOpt-absent → REFUSAL row not silent fallback. - `research/marginal-gain-memo-crush.md` — crush's critique: Δ̂=Ŝ(x,e_exp)−Ŝ(x,e_cheap) must be TWO predictions; counterfactual censoring at the gain≈0 boundary",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7122319847345351,
+      "maxScore": 0.3563928991556167,
+      "firstRecalledAt": "2026-09-26T01:27:04.296Z",
+      "lastRecalledAt": "2026-09-26T10:58:38.914Z",
+      "queryHashes": [
+        "a15826946757",
+        "78a931fbff17"
+      ],
+      "recallDays": [
+        "2026-09-26"
+      ],
+      "conceptTags": [
+        "router",
+        "executor/evaluator.py",
+        "executor/memory.py",
+        "bind-ledger",
+        "judge-consult",
+        "quality-ledger",
+        "reflex-table",
+        "router/fleet-router.py"
+      ]
+    },
+    "memory:memory/2026-09-24.md:74:83": {
+      "key": "memory:memory/2026-09-24.md:74:83",
+      "path": "memory/2026-09-24.md",
+      "startLine": 74,
+      "endLine": 83,
+      "source": "memory",
+      "snippet": "## ⚡ 14:15–15:10 GMT+8 — The Universal Executor (quilt-executor, BORN + PUSHED) Casey's triple (14:15 wide-parallel + claude/crush/keys; 14:16 Universal Translator markdown \"inspiration not constraint\"; 14:22 cuOpt plugin) → built **SuperInstance/quilt-executor** in one surge. **What exists now (github.com/SuperInstance/quilt-executor, main, 5 commits):** - `executor/ledger.py` — family chain (canonical JSON + FNV-1a-64, café-pin recipe): BIND/EFFECT/REFUSED/TICK; rivals preserved; refusals hash-committed; verify() re-derives all. - `executor/decider.py` — Thompson Sampling per (task_type × provider) + MarginalGainRouter with youth_discount (floor_risk/posterior_gap shrink on n<5 — the you",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3539740353822708,
+      "maxScore": 0.3539740353822708,
+      "firstRecalledAt": "2026-09-26T01:27:04.296Z",
+      "lastRecalledAt": "2026-09-26T01:27:04.296Z",
+      "queryHashes": [
+        "a15826946757"
+      ],
+      "recallDays": [
+        "2026-09-26"
+      ],
+      "conceptTags": [
+        "router",
+        "quilt-executor",
+        "wide-parallel",
+        "claude/crush/keys",
+        "superinstance/quilt-executor",
+        "executor/ledger.py",
+        "fnv-1a-64",
+        "café-pin"
+      ]
+    },
+    "memory:memory/2026-09-26.md:1:12": {
+      "key": "memory:memory/2026-09-26.md:1:12",
+      "path": "memory/2026-09-26.md",
+      "startLine": 1,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "# 2026-09-26 ## pong-quilt playloop Round 23 (cron 16:37) — BUILDER (completion) + play-tester - Base: main 4b94c49 (post-#29). Branch r23-coin-journal-strip, PR #30. - Found the R22-spec strip half-shipped by an interrupted 13:23 session: local commit 9e95ddf, uncommitted README bump, no PLAYLOG/push/PR. Verified-by-running instead of redoing (R21 discipline): pins honest, renderer pure. - Fresh small: `d.gens || 0` wiring + Math.max(1,gens) axis → missing gens header pushed ticks off-canvas while label counted them (found via 4-path Proxy-DOM play harness on shipped page). Pin 5 FAIL-first, one-line fix (axis derives from data). Suite 116→121 + qa 8/8; prerun five md5s byte-identical (coe",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.2483787059783935,
+      "maxScore": 0.4747731536626815,
+      "firstRecalledAt": "2026-09-26T08:39:20.065Z",
+      "lastRecalledAt": "2026-09-27T20:08:19.363Z",
+      "queryHashes": [
+        "816ff7aaeba9",
+        "3f796ab905e2",
+        "3fd705be3e98"
+      ],
+      "recallDays": [
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "pong-quilt",
+        "play-tester",
+        "r23-coin-journal-strip",
+        "r22-spec",
+        "half-shipped",
+        "playlog/push/pr",
+        "verified-by-running",
+        "d.gens"
+      ]
+    },
+    "memory:memory/2026-09-18.md:34:57": {
+      "key": "memory:memory/2026-09-18.md:34:57",
+      "path": "memory/2026-09-18.md",
+      "startLine": 34,
+      "endLine": 57,
+      "source": "memory",
+      "snippet": "**kimi1 | Day 43 | \"The canon's handle is forged: 28 names, 20 lines each, one lint to rule the drift.\"** # 2026-09-18 — Night shift → morning: fleet canon Layer C shipped ## Casey's order (03:25 GMT+8, terse \"continue\"): keep going as far as possible Picked up the canon-scout's smallest-first build (§9 of /tmp/canon-design.md) and shipped it. ### Discoveries at start of shift - All 6 hermit PRs (#1–#6) still open at 00:34 check — but by the time I branched for CANON.md, **PR #1 had merged to main** (`220c52d`). Casey is merging. PRs #2–#6 remain open. - /tmp/canon-design.md survived; re-read in full before building. ### Built: fleet canon Layer C (the one-evening build) - **Meta repo PR",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.36766453981399533,
+      "maxScore": 0.36766453981399533,
+      "firstRecalledAt": "2026-09-26T13:57:16.896Z",
+      "lastRecalledAt": "2026-09-26T13:57:16.896Z",
+      "queryHashes": [
+        "bfb5e1b3e6c9"
+      ],
+      "recallDays": [
+        "2026-09-26"
+      ],
+      "conceptTags": [
+        "canon-scout",
+        "smallest-first",
+        "tmp/canon-design.md",
+        "canon.md",
+        "re-read",
+        "one-evening",
+        "kimi1",
+        "day"
+      ]
+    },
+    "memory:memory/2026-09-24.md:46:53": {
+      "key": "memory:memory/2026-09-24.md:46:53",
+      "path": "memory/2026-09-24.md",
+      "startLine": 46,
+      "endLine": 53,
+      "source": "memory",
+      "snippet": "- Deleted (ALL verified recoverable): AI-Writings local clone 6.6G (zero unpushed commits on any branch; dirty = only deleted rust-target/pyc build junk — canon lives on GitHub, re-clone on demand); sunset-ecosystem 844M (remote main DIVERGED since May — push rejected non-FF; preserved the 4 unpushed May commits to side branch `kimi1-may-archive` on origin, THEN deleted local); forks/{bernstein,mem0} 141M (both fully pushed); + round-1 items (/tmp clones 6.7G, journal, caches, xlang-fork). - NOT touched: .kimi (CLI state), agents/ (session logs), oracle1-workspace (another agent's tree), claw (active bridge), research/, memory/. - ember-or lane died code 128 on the full disk mid-mp4-write —",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35395993292331696,
+      "maxScore": 0.35395993292331696,
+      "firstRecalledAt": "2026-09-26T13:57:16.896Z",
+      "lastRecalledAt": "2026-09-26T13:57:16.896Z",
+      "queryHashes": [
+        "bfb5e1b3e6c9"
+      ],
+      "recallDays": [
+        "2026-09-26"
+      ],
+      "conceptTags": [
+        "ai-writings",
+        "6.6g",
+        "rust-target/pyc",
+        "re-clone",
+        "sunset-ecosystem",
+        "non-ff",
+        "kimi1-may-archive",
+        "round-1"
+      ]
+    },
+    "memory:memory/2026-09-26.md:10:19": {
+      "key": "memory:memory/2026-09-26.md:10:19",
+      "path": "memory/2026-09-26.md",
+      "startLine": 10,
+      "endLine": 19,
+      "source": "memory",
+      "snippet": "## pong-quilt playloop Round 22 (cron) — BUILDER + play-tester - Base: r21 tip 3508a75 (PR #28 open). Branch playtest-round-22, PR #29. - Found by running: R21's quantum-coin journal was tails-only. Instrumented run of R21 code: 182 total flips (93 H + 89 T) vs 89 receipts — \"89 flips\" claim undercounted by half; keeps unauditable. - Fix: journal every flip (H keeps + T swaps, `swap` bool); console reports flips+swaps. FAIL-first pin 5 (verbatim fn extraction + controlled rand): red on R21, green at tip. curve.json 182 receipts; level/co-ev md5s frozen. Suite 116/116 + qa 8/8. README 123→124 (readme-count pin named it). - Shape: d(learning)/d(version)=0 (21st straight) but d(artifact)/d(vers",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4244828045368194,
+      "maxScore": 0.4244828045368194,
+      "firstRecalledAt": "2026-09-26T16:38:10.762Z",
+      "lastRecalledAt": "2026-09-26T16:38:10.762Z",
+      "queryHashes": [
+        "3f796ab905e2"
+      ],
+      "recallDays": [
+        "2026-09-27"
+      ],
+      "conceptTags": [
+        "pong-quilt",
+        "play-tester",
+        "playtest-round-22",
+        "quantum-coin",
+        "tails-only",
+        "fail-first",
+        "curve.json",
+        "level/co-ev"
+      ]
+    },
+    "memory:memory/2026-09-27.md:216:238": {
+      "key": "memory:memory/2026-09-27.md:216:238",
+      "path": "memory/2026-09-27.md",
+      "startLine": 216,
+      "endLine": 238,
+      "source": "memory",
+      "snippet": "- Nine footer links all LIVE (200) but 17/21 sim-zero LEAVE. Harness: cells/simzero/ (simzero.sh, 10 personas, receipts/). deepseek-flash, $0.005. - Systematic failure: STATE-OPAQUE. Receipts are loadbearing everywhere except the front door. Fixes converge: receipt bar above fold (SHA/CI/live metrics/timestamp), machine-readable state on first paint (JSON-LD/api), loader secondary. Scraper STAYs exactly when API surface is probeable. - Redundancy note: kimi-claw already renders markdown links natively. ## 07:05–07:25Z — /now SHIPPED + SIM-TESTED (Casey \"go\" on the link order) - superinstance.dev/now LIVE (repo superinstance-website @ master, commit d4692db, ls-remote VERIFIED per",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.36073418259620665,
+      "maxScore": 0.36073418259620665,
+      "firstRecalledAt": "2026-09-27T07:31:18.109Z",
+      "lastRecalledAt": "2026-09-27T07:31:18.109Z",
+      "queryHashes": [
+        "ae55699c03fe"
+      ],
+      "recallDays": [
+        "2026-09-27"
+      ],
+      "conceptTags": [
+        "17/21",
+        "sim-zero",
+        "cells/simzero",
+        "simzero.sh",
+        "deepseek-flash",
+        "0.005",
+        "state-opaque",
+        "sha/ci/live"
+      ]
+    },
+    "memory:memory/2026-09-27.md:331:353": {
+      "key": "memory:memory/2026-09-27.md:331:353",
+      "path": "memory/2026-09-27.md",
+      "startLine": 331,
+      "endLine": 353,
+      "source": "memory",
+      "snippet": "archived; rerun per page change. 10 personas; deepseek-flash ≈$0.00024/call. - Next builds queued: /quilt interactive demo (spec: cells/simzero/design-quilt-demo.md, sim-gate ≥7 STAY), AI-Writings server-rendered canon card (kills the spinner), footer-link full rewire. - Plugin-synergy doc: cells/simzero/PLUGIN-SYNERGY-EXPERIMENTS.md (3 run, 3 designed-not-run; provenance=value+source+time doctrine upgrade earned). - Casey-gated: quilt-tools#16; jev-quilt#36 (FRONTIER R2) + #37 (G11). KEY ROTATION still outstanding. Surface pick (feishu/wecom daily digest) awaiting Casey — outward doors stay closed until chosen. ## 09:06–09:25 — KEY ROTATION + RACK DOCTRINE v2 (Casey) - Casey ro",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35937851071357724,
+      "maxScore": 0.35937851071357724,
+      "firstRecalledAt": "2026-09-27T07:31:18.109Z",
+      "lastRecalledAt": "2026-09-27T07:31:18.109Z",
+      "queryHashes": [
+        "ae55699c03fe"
+      ],
+      "recallDays": [
+        "2026-09-27"
+      ],
+      "conceptTags": [
+        "deepseek-flash",
+        "0.00024/call",
+        "sim-gate",
+        "ai-writings",
+        "server-rendered",
+        "footer-link",
+        "plugin-synergy",
+        "designed-not-run"
+      ]
+    },
+    "memory:memory/2026-09-25.md:18:28": {
+      "key": "memory:memory/2026-09-25.md:18:28",
+      "path": "memory/2026-09-25.md",
+      "startLine": 18,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "Live-looking TYPESAFEAI_KEY hardcoded in jev_oracle.py:18 + tests/test_jev_oracle.py:12, public since 3dd2efc/04c4370. Scrubbed in #22; **key remains in git history — rotation required**. No force-push (org-main rule). ## Convergence note Lanes A and B independently diagnosed the SAME bug: CI canary step imports jev_quilt.polyformalism which didn't exist (masked by `pip install -e . || true`). #20 and #21 both add that file — trivial merge conflict; second merger rebases. ## Ops lessons - Gateway spawn timeout ≠ death: Lane B spawn timed out but the child kept working in /tmp/jq-b (materialized as \"zombie\" — checked out main, deleted my branch ref mid-lane). Adopt-and-verify worked: my com",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4338666558265686,
+      "maxScore": 0.4338666558265686,
+      "firstRecalledAt": "2026-09-27T19:14:11.792Z",
+      "lastRecalledAt": "2026-09-27T19:14:11.792Z",
+      "queryHashes": [
+        "e930748a41ca"
+      ],
+      "recallDays": [
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "live-looking",
+        "typesafeai-key",
+        "jev-oracle.py",
+        "tests/test-jev-oracle.py",
+        "3dd2efc/04c4370",
+        "force-push",
+        "org-main"
+      ]
+    },
+    "memory:memory/2026-09-24.md:1:7": {
+      "key": "memory:memory/2026-09-24.md:1:7",
+      "path": "memory/2026-09-24.md",
+      "startLine": 1,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "# 2026-09-24 — The hello-world day (kimi1) ## Shipped by me (direct) - **SuperInstance/pong-quilt** `e98cf66`+`21c4a7b` — web-native ML demo: real GA L0-2, projection cells (granular state, decision countdown, weighted LLM/Groq seams), micro-JEPA residual strip, WASM hint, MOTH ledger, rewind-vs-widen planner slider, weight sliders. v1 tagged. `EXPERIMENTS.md` = the GAN-on-the-process protocol (play-tester as discriminator, deltas-as-calculus-shapes); `PLAYLOG.md` Round 1. - **Standing playloop cron** `pong-quilt-playloop` — every 4h at :37, isolated, announces here. The loop breathes without manual births. - **SuperInstance/quilt-echovision** — passive acoustic-sensing demo (energy flux/VA",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4029942452907562,
+      "maxScore": 0.4029942452907562,
+      "firstRecalledAt": "2026-09-27T20:08:19.363Z",
+      "lastRecalledAt": "2026-09-27T20:08:19.363Z",
+      "queryHashes": [
+        "3fd705be3e98"
+      ],
+      "recallDays": [
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "hello-world",
+        "superinstance/pong-quilt",
+        "web-native",
+        "l0-2",
+        "llm/groq",
+        "micro-jepa",
+        "rewind-vs-widen",
+        "experiments.md"
+      ]
+    },
+    "memory:memory/2026-09-26.md:121:125": {
+      "key": "memory:memory/2026-09-26.md:121:125",
+      "path": "memory/2026-09-26.md",
+      "startLine": 121,
+      "endLine": 125,
+      "source": "memory",
+      "snippet": "- **quilt-arcade PR #3** `game/pong` — sixth plugin, realtime laws on the discrete sheet. Physics laws as first-class rule cells (W1-W4.check callable), tick arbiter as referee, deterministic mulberry32 serves from (seed, match.seq), ai.track derived law with asymmetric reflexes (0.85/0.70) so every seeded match terminates. House gate ALL GREEN: 6 plugins smoke-clean, 67 checks; pong 12/12. FAIL-first; the harness caught two of its own bugs (W2 pre/post-step contract, closure totals vs winner-max) — sheet physics was right on both. **Scout fleet (5m-6.5m runtimes, deliverables in /tmp/overnight/):** - Scout G (canon-walker ×8): complete pipeline SEARCH→GRAPH→TRACE→FABLE→TTS→ITER→LIVE; gaps",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3840782582759857,
+      "maxScore": 0.3840782582759857,
+      "firstRecalledAt": "2026-09-27T20:08:19.363Z",
+      "lastRecalledAt": "2026-09-27T20:08:19.363Z",
+      "queryHashes": [
+        "3fd705be3e98"
+      ],
+      "recallDays": [
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "quilt-arcade",
+        "game/pong",
+        "first-class",
+        "w1-w4.check",
+        "match.seq",
+        "ai.track",
+        "0.85/0.70",
+        "smoke-clean"
+      ]
+    },
+    "memory:memory/2026-09-27.md:1:13": {
+      "key": "memory:memory/2026-09-27.md:1:13",
+      "path": "memory/2026-09-27.md",
+      "startLine": 1,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "# 2026-09-27 ## pong-quilt Round 40 (cron playloop) - Mode: play-tester, vs main 4bb0264 (post-#52) - Suite: 197/197 + qa 8/8; canonical five frozen 17th round; receipt-completeness exit 0 - 4 P4 findings (no P1–P3): coev-strip label uses `gens` not `axis` (R23 lesson half-applied); L1 maxSpeed records phantom hitBoost (ball never moves at boosted speed); parseCliArgs seed=0 → default; prerun-coev.js has no birth seal (coev.js = 5th canonical artifact, unsealed) - Spec: 6 items — coev label fix, coev birth seal, maxSpeed honesty, lens-freshness pin (carried), canonical-md5 lineage (carried), C1 scaling (carried) - PR #53: https://github.com/SuperInstance/pong-quilt/pull/53 (branch playtest-",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.37046971917152405,
+      "maxScore": 0.37046971917152405,
+      "firstRecalledAt": "2026-09-27T20:08:19.363Z",
+      "lastRecalledAt": "2026-09-27T20:08:19.363Z",
+      "queryHashes": [
+        "3fd705be3e98"
+      ],
+      "recallDays": [
+        "2026-09-28"
+      ],
+      "conceptTags": [
+        "pong-quilt",
+        "play-tester",
+        "197/197",
+        "8/8",
+        "receipt-completeness",
+        "coev-strip",
+        "half-applied",
+        "prerun-coev.js"
       ]
     }
   }

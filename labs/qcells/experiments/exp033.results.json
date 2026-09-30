@@ -1,0 +1,614 @@
+{
+ "blockE_census_facts": {
+  "k16": {
+   "birth_cum": null,
+   "crossed": false,
+   "desert_draws": 166,
+   "desert_hits": 0,
+   "seed": 31016
+  },
+  "k17": {
+   "birth_cum": null,
+   "crossed": false,
+   "desert_draws": 164,
+   "desert_hits": 0,
+   "seed": 31017
+  },
+  "k18": {
+   "birth_cum": 129,
+   "crossed": true,
+   "desert_draws": 129,
+   "desert_hits": 1,
+   "seed": 31018
+  },
+  "k19": {
+   "birth_cum": null,
+   "crossed": false,
+   "desert_draws": 161,
+   "desert_hits": 0,
+   "seed": 31019
+  },
+  "k20": {
+   "birth_cum": 55,
+   "crossed": true,
+   "desert_draws": 55,
+   "desert_hits": 2,
+   "seed": 31020
+  },
+  "k21": {
+   "birth_cum": 121,
+   "crossed": true,
+   "desert_draws": 121,
+   "desert_hits": 1,
+   "seed": 31021
+  },
+  "k22": {
+   "birth_cum": null,
+   "crossed": false,
+   "desert_draws": 157,
+   "desert_hits": 0,
+   "seed": 31022
+  },
+  "k23": {
+   "birth_cum": 116,
+   "crossed": true,
+   "desert_draws": 116,
+   "desert_hits": 1,
+   "seed": 31023
+  }
+ },
+ "blockE_totals": {
+  "crossers": 4,
+  "draws": 1069,
+  "hits": 5
+ },
+ "design": "exp001 instrument guard byte-identical (census ACTIVE); exp021 Q1 tiesample semantics POP16 GENS12 BUDGET6; determinism verified by in-memory re-run before any statistic; corpus re-derived from raw telemetry and guarded vs exp032 sealed table (abort on drift)",
+ "experiment": "exp033 block-E census batch RUN + sealed per-stream gate evaluation (pre-registration exp032, sealed 2026-09-30 BEFORE this batch ran)",
+ "family_of_24": {
+  "FAMILY_VERDICT": "ALL-SHARE-W_HAT RETAINED",
+  "alpha": 0.05,
+  "corpus_labeled_posthoc": true,
+  "gate": 0.0020833333333333333,
+  "named_FROZEN": [],
+  "named_HOT": [],
+  "null_hazard": 0.004977600796416127,
+  "per_stream": {
+   "k0": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 174,
+    "p_minus": 0.41967894582164744,
+    "p_plus": 0.9999999999999905,
+    "trips_gate_0.05_over_24": false
+   },
+   "k1": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 175,
+    "p_minus": 0.41758995156668655,
+    "p_plus": 0.9999999999999905,
+    "trips_gate_0.05_over_24": false
+   },
+   "k10": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 167,
+    "p_minus": 0.4345974570031515,
+    "p_plus": 0.9999999999999907,
+    "trips_gate_0.05_over_24": false
+   },
+   "k11": {
+    "birth_cum": 90,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 2,
+    "n": 90,
+    "p_minus": 0.9894982176065634,
+    "p_plus": 0.07446555865201082,
+    "trips_gate_0.05_over_24": false
+   },
+   "k12": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 177,
+    "p_minus": 0.41344310583717986,
+    "p_plus": 0.9999999999999905,
+    "trips_gate_0.05_over_24": false
+   },
+   "k13": {
+    "birth_cum": 16,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 1,
+    "n": 16,
+    "p_minus": 0.9971616467448804,
+    "p_plus": 0.07673639099443368,
+    "trips_gate_0.05_over_24": false
+   },
+   "k14": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 170,
+    "p_minus": 0.4281399488853154,
+    "p_plus": 0.9999999999999907,
+    "trips_gate_0.05_over_24": false
+   },
+   "k15": {
+    "birth_cum": 177,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 1,
+    "n": 177,
+    "p_minus": 0.7795232945974642,
+    "p_plus": 0.5865568941628105,
+    "trips_gate_0.05_over_24": false
+   },
+   "k16": {
+    "birth_cum": null,
+    "cohort": "blockE",
+    "crossed": false,
+    "hits": 0,
+    "n": 166,
+    "p_minus": 0.43677153132532837,
+    "p_plus": 0.9999999999999909,
+    "trips_gate_0.05_over_24": false
+   },
+   "k17": {
+    "birth_cum": null,
+    "cohort": "blockE",
+    "crossed": false,
+    "hits": 0,
+    "n": 164,
+    "p_minus": 0.44115236180447975,
+    "p_plus": 0.9999999999999909,
+    "trips_gate_0.05_over_24": false
+   },
+   "k18": {
+    "birth_cum": 129,
+    "cohort": "blockE",
+    "crossed": true,
+    "hits": 1,
+    "n": 129,
+    "p_minus": 0.8643500870634386,
+    "p_plus": 0.474662260857453,
+    "trips_gate_0.05_over_24": false
+   },
+   "k19": {
+    "birth_cum": null,
+    "cohort": "blockE",
+    "crossed": false,
+    "hits": 0,
+    "n": 161,
+    "p_minus": 0.44780613229464744,
+    "p_plus": 0.9999999999999911,
+    "trips_gate_0.05_over_24": false
+   },
+   "k2": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 169,
+    "p_minus": 0.4302817195150569,
+    "p_plus": 0.9999999999999908,
+    "trips_gate_0.05_over_24": false
+   },
+   "k20": {
+    "birth_cum": 55,
+    "cohort": "blockE",
+    "crossed": true,
+    "hits": 2,
+    "n": 55,
+    "p_minus": 0.9973330062734328,
+    "p_plus": 0.030909811295150292,
+    "trips_gate_0.05_over_24": false
+   },
+   "k21": {
+    "birth_cum": 121,
+    "cohort": "blockE",
+    "crossed": true,
+    "hits": 1,
+    "n": 121,
+    "p_minus": 0.8776728513463099,
+    "p_plus": 0.45326642884347323,
+    "trips_gate_0.05_over_24": false
+   },
+   "k22": {
+    "birth_cum": null,
+    "cohort": "blockE",
+    "crossed": false,
+    "hits": 0,
+    "n": 157,
+    "p_minus": 0.45683419790288615,
+    "p_plus": 0.9999999999999915,
+    "trips_gate_0.05_over_24": false
+   },
+   "k23": {
+    "birth_cum": 116,
+    "cohort": "blockE",
+    "crossed": true,
+    "hits": 1,
+    "n": 116,
+    "p_minus": 0.8858257216215175,
+    "p_plus": 0.4394537456405719,
+    "trips_gate_0.05_over_24": false
+   },
+   "k3": {
+    "birth_cum": 16,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 1,
+    "n": 16,
+    "p_minus": 0.9971616467448804,
+    "p_plus": 0.07673639099443368,
+    "trips_gate_0.05_over_24": false
+   },
+   "k4": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 165,
+    "p_minus": 0.4389564814570209,
+    "p_plus": 0.9999999999999909,
+    "trips_gate_0.05_over_24": false
+   },
+   "k5": {
+    "birth_cum": 54,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 1,
+    "n": 54,
+    "p_minus": 0.9701172002527954,
+    "p_plus": 0.2362094197300727,
+    "trips_gate_0.05_over_24": false
+   },
+   "k6": {
+    "birth_cum": 121,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 2,
+    "n": 121,
+    "p_minus": 0.9770043011281377,
+    "p_plus": 0.1223271486536836,
+    "trips_gate_0.05_over_24": false
+   },
+   "k7": {
+    "birth_cum": null,
+    "cohort": "corpus",
+    "crossed": false,
+    "hits": 0,
+    "n": 163,
+    "p_minus": 0.443359227046123,
+    "p_plus": 0.9999999999999911,
+    "trips_gate_0.05_over_24": false
+   },
+   "k8": {
+    "birth_cum": 73,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 1,
+    "n": 73,
+    "p_minus": 0.9483951613114057,
+    "p_plus": 0.30529793790344045,
+    "trips_gate_0.05_over_24": false
+   },
+   "k9": {
+    "birth_cum": 102,
+    "cohort": "corpus",
+    "crossed": true,
+    "hits": 1,
+    "n": 102,
+    "p_minus": 0.9078242313969758,
+    "p_plus": 0.3988934618871907,
+    "trips_gate_0.05_over_24": false
+   }
+  },
+  "question_closed_at_n24": true,
+  "tripping_streams": []
+ },
+ "guards": {
+  "corpus_rederivation_vs_exp032_sealed": {
+   "k0": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     174,
+     174,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k1": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     175,
+     175,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k10": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     167,
+     167,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k11": {
+    "birth_cum": [
+     90,
+     90,
+     true
+    ],
+    "draws": [
+     90,
+     90,
+     true
+    ],
+    "hits": [
+     2,
+     2,
+     true
+    ]
+   },
+   "k12": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     177,
+     177,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k13": {
+    "birth_cum": [
+     16,
+     16,
+     true
+    ],
+    "draws": [
+     16,
+     16,
+     true
+    ],
+    "hits": [
+     1,
+     1,
+     true
+    ]
+   },
+   "k14": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     170,
+     170,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k15": {
+    "birth_cum": [
+     177,
+     177,
+     true
+    ],
+    "draws": [
+     177,
+     177,
+     true
+    ],
+    "hits": [
+     1,
+     1,
+     true
+    ]
+   },
+   "k2": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     169,
+     169,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k3": {
+    "birth_cum": [
+     16,
+     16,
+     true
+    ],
+    "draws": [
+     16,
+     16,
+     true
+    ],
+    "hits": [
+     1,
+     1,
+     true
+    ]
+   },
+   "k4": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     165,
+     165,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k5": {
+    "birth_cum": [
+     54,
+     54,
+     true
+    ],
+    "draws": [
+     54,
+     54,
+     true
+    ],
+    "hits": [
+     1,
+     1,
+     true
+    ]
+   },
+   "k6": {
+    "birth_cum": [
+     121,
+     121,
+     true
+    ],
+    "draws": [
+     121,
+     121,
+     true
+    ],
+    "hits": [
+     2,
+     2,
+     true
+    ]
+   },
+   "k7": {
+    "birth_cum": [
+     null,
+     null,
+     true
+    ],
+    "draws": [
+     163,
+     163,
+     true
+    ],
+    "hits": [
+     0,
+     0,
+     true
+    ]
+   },
+   "k8": {
+    "birth_cum": [
+     73,
+     73,
+     true
+    ],
+    "draws": [
+     73,
+     73,
+     true
+    ],
+    "hits": [
+     1,
+     1,
+     true
+    ]
+   },
+   "k9": {
+    "birth_cum": [
+     102,
+     102,
+     true
+    ],
+    "draws": [
+     102,
+     102,
+     true
+    ],
+    "hits": [
+     1,
+     1,
+     true
+    ]
+   },
+   "totals": {
+    "draws": [
+     2009,
+     2009,
+     true
+    ],
+    "hits": [
+     10,
+     10,
+     true
+    ]
+   }
+  },
+  "determinism_rerun_byte_equal_all_8": true,
+  "exp001_reproduced_byte_identical": true
+ },
+ "honesty": "the 16 corpus hits set w_hat, so corpus-stream tails shrink toward the middle (conditioning-on-total); their gate reads are labeled POST-HOC context.  The 8 block-E streams contributed NOTHING to w_hat \u2014 their gate reads are the design's clean operating point (exp032 Q2: 10x-hot trips w.p. 0.9268 at design n=169; frozen arm per-stream-invisible, n_zero=1238 >> 169).  After this run the per-stream question CLOSES at n=24 per the exp032 seal.  Pure exact arithmetic for the gate; the only rng is the sealed census protocol itself.",
+ "preregistration": "exp032 (sealed): block E = salts k16-k23, seeds 31016-31023, protocol byte-identical to exp024; ONE committed batch, NO PEEKING (all 8 telemetry files sealed to disk before any statistic); sealed null hazard w_hat = 10/2009 fixed; per-stream two-sided exact Binomial, Bonferroni gate g = 0.05/24 over the family of 24; FAMILY REFUTED iff any stream trips; HOT p_plus <= g; FROZEN p_minus <= g; family CLOSES at n=24, escalation requires a fresh pre-registration",
+ "rerun_digest": "b6e83e296b78a23ca3001612e195a4c7",
+ "synthesis": "Block E executed under seal: 8 streams, 1069 desert draws, 5 desert hits, 4 crossers.  Family of 24 at gate 0.05/24 vs w_hat=10/2009: tripping streams = NONE.  FAMILY VERDICT: ALL-SHARE-W_HAT RETAINED at the per-stream gate \u2014 the exp029 pooled deviance refutation (10 events) does not decompose into any individually-nameable stream at census-n; read as a small-cluster/interaction signature, per-stream resolution needs the fresh pre-registration the seal requires.  Corpus-stream reads are post-hoc context (shrink-toward-middle).  The per-stream question CLOSES at n=24 per the exp032 seal."
+}
