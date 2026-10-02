@@ -1,0 +1,1 @@
+{"checksum": 8438578061747318204, "cost_usd": null, "input_tokens": 29000, "lane": "snowball-pulse", "model": "kimi/k2d8-preview", "note": "first metered pulse (b) token accounting; usage from session_status", "output_tokens": 8500, "prev": 18159390196821161995, "ts": 1790979266.4462945}
