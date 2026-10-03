@@ -1,0 +1,2 @@
+{"tick":40,"stall_ms":1320,"tier":"WASM_SIMD[simulated]","recovery_ms":110,"verdict":"PASS"}
+{"tick":40,"stall_ms":1321,"tier":"WASM_SIMD[simulated]","recovery_ms":112,"verdict":"PASS"}

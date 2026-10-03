@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>chiaroscuro P1 — bivariate text-substrate canvas (honest sim)</title>
+<style>
+  :root{--bg:#08090c;--panel:#0d0f14;--fg:#d1d5db;--green:#10b981;--yellow:#e3b341;--blue:#3b82f6;}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;
+       margin:0;padding:20px;display:grid;grid-template-columns:300px 1fr;gap:18px;height:100vh}
+  #panel{background:var(--panel);border:1px solid #1f293d;border-radius:8px;padding:16px;overflow-y:auto}
+  h3{margin:0 0 10px;font-size:13px;letter-spacing:.06em;color:#fff}
+  .row{margin:12px 0}
+  label{display:block;font-size:10px;color:#8b949e;text-transform:uppercase;margin-bottom:4px}
+  input[type=range]{width:100%}
+  .val{float:right;color:var(--yellow)}
+  #console{height:130px;background:#050608;border:1px solid #1f293d;border-radius:6px;
+           padding:8px;font-size:11px;overflow-y:auto;color:#a7f3d0;margin-top:14px;white-space:pre-wrap}
+  #view{background:var(--panel);border:1px solid #1f293d;border-radius:8px;display:flex;
+        flex-direction:column;padding:14px}
+  #term{flex:1;background:#030406;border:1px solid #11141a;border-radius:6px;padding:12px;
+        font-size:10px;line-height:11px;color:var(--green);white-space:pre;overflow:hidden;user-select:none}
+  #hdr{display:flex;justify-content:space-between;margin-bottom:10px;font-size:11px}
+  .dim{color:#6b7280}
+  @media (max-width:800px){body{grid-template-columns:1fr;height:auto}}
+</style>
+</head>
+<body>
+<div id="panel">
+  <h3>CHIAROSCURO P1 · SIM</h3>
+  <div class="row"><label>density <span class="val" id="v-den">1.00</span></label>
+    <input type="range" id="s-den" min="0.4" max="2.2" step="0.01" value="1.0"></div>
+  <div class="row"><label>contrast pivot <span class="val" id="v-piv">0.50</span></label>
+    <input type="range" id="s-piv" min="0.1" max="0.9" step="0.01" value="0.5"></div>
+  <div class="row"><label>chroma drift <span class="val" id="v-drift">0.00</span></label>
+    <input type="range" id="s-drift" min="0" max="0.5" step="0.01" value="0"></div>
+  <div class="row"><label>motion throttle</label>
+    <div id="throttle" class="dim">—</div></div>
+  <div class="row"><label>what this is</label>
+    <div class="dim" style="font-size:11px">Procedural luma field (no camera/GPU on
+    this host — claims stay sim-tagged per SPEC). Full pipeline shape: field →
+    throttle → bivariate cells [l,θ,m] → glyph ramp → viewport. Frame times are
+    <b>measured</b>, the number the seed only asserted.</div></div>
+  <div id="console"></div>
+</div>
+<div id="view">
+  <div id="hdr"><span>TEXT-SUBSTRATE VIEWPORT</span><span class="dim" id="fps">— fps · — ms</span></div>
+  <div id="term"></div>
+</div>
+<script>
+const COLS=96, ROWS=42, GLYPHS="@#W$x*+~-:. ";
+const term=document.getElementById('term'), con=document.getElementById('console');
+const S={den:1,piv:.5,drift:0,prev:null,lastThrottle:"reference"};
+function log(m){con.textContent+=m+"\n";con.scrollTop=con.scrollHeight;}
+["den","piv","drift"].forEach(k=>{
+  document.getElementById('s-'+k).addEventListener('input',e=>{
+    S[k]=+e.target.value;
+    document.getElementById('v-'+({den:'den',piv:'piv',drift:'drift'})[k]).textContent=(+e.target.value).toFixed(2);
+  });
+});
+// procedural luma field: layered waves + drifting hotspot "subject"
+function field(t){
+  const f=new Float32Array(COLS*ROWS);
+  for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){
+    const nx=x/COLS-.5, ny=y/ROWS-.5;
+    let v=.5+.28*Math.sin(nx*6+t*1.1)*Math.cos(ny*6-t*.9);
+    v+=.18*Math.sin((nx+ny)*11+t*1.7);
+    const hx=.32*Math.sin(t*.6), hy=.22*Math.cos(t*.45);
+    const d=Math.hypot(nx-hx,ny-hy);
+    v+=.55*Math.exp(-d*d*38);         // the "moving subject"
+    f[y*COLS+x]=v;
+  }
+  return f;
+}
+function sobel(f,x,y){
+  const g=(xx,yy)=>f[Math.min(ROWS-1,Math.max(0,yy))*COLS+Math.min(COLS-1,Math.max(0,xx))];
+  const gx=(g(x+1,y-1)+2*g(x+1,y)+g(x+1,y+1))-(g(x-1,y-1)+2*g(x-1,y)+g(x-1,y+1));
+  const gy=(g(x-1,y+1)+2*g(x,y+1)+g(x+1,y+1))-(g(x-1,y-1)+2*g(x,y-1)+g(x+1,y-1));
+  return [Math.hypot(gx,gy), Math.atan2(gy,gx)];
+}
+let frames=0,lastT=performance.now(),acc=0,accN=0,lastLog=performance.now();
+function tick(now){
+  const dt=now-lastT; lastT=now; acc+=dt; accN++;
+  if(frames===0) log(`[frame 0] first tick ${dt.toFixed(1)}ms — measured, not asserted`);
+  const t=now/1000;
+  const f=field(t);
+  // adaptive throttle: mean |Δ| decides ref-frame vs motion mode
+  let mi=0;
+  if(S.prev){let s=0;for(let i=0;i<f.length;i++)s+=Math.abs(f[i]-S.prev[i]);mi=s/f.length;}
+  S.prev=f;
+  const ref = mi < 0.02;
+  S.lastThrottle = ref ? `reference (Δ=${mi.toFixed(4)})` : `motion → low-res (Δ=${mi.toFixed(4)})`;
+  document.getElementById('throttle').textContent=S.lastThrottle;
+  const stepX = ref?1:2, stepY = ref?1:2;   // motion: half-res sampling
+  let out="";
+  for(let y=0;y<ROWS;y+=stepY){
+    let line="";
+    for(let x=0;x<COLS;x+=stepX){
+      const [mag,ang]=sobel(f,x,y);
+      // bivariate cell: luma shaped by pivot+density, angle picks ramp direction (drift)
+      let l=(f[y*COLS+x]-S.piv)*S.den+S.piv;
+      l+=S.drift*Math.cos(ang*2+t*2);
+      l=Math.min(1,Math.max(0,l));
+      const edgeBoost=Math.min(.35,mag*.25);       // edges lean to ramp start
+      const idx=Math.min(GLYPHS.length-1,Math.floor((l+edgeBoost)*GLYPHS.length*.999));
+      line+=GLYPHS[idx];
+    }
+    out+=line+"\n";
+  }
+  term.textContent=out;
+  frames++;
+  if(now-lastLog>=1000){
+    const avg=acc/accN;
+    document.getElementById('fps').textContent=`${accN} fps · ${avg.toFixed(1)} ms/frame`;
+    log(`[${new Date().toLocaleTimeString()}] ${accN}fps avg ${avg.toFixed(1)}ms · ${S.lastThrottle}`);
+    acc=0;accN=0;lastLog=now;
+  }
+  requestAnimationFrame(tick);
+}
+log("chiaroscuro P1 sim boot · SPEC: lanes/laneJ-chiaroscuro/SPEC.md · claims sim-tagged");
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>
