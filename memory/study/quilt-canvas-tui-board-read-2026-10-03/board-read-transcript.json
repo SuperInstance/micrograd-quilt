@@ -1,0 +1,97 @@
+{
+  "genesis": "quilt-canvas-board-read-2026-10-03",
+  "rows": 2,
+  "receipts_ok": true,
+  "saw_hello": true,
+  "saw_view": true,
+  "chain_tip": "9e0affbe16ddcabb",
+  "transcript": [
+    {
+      "receipt_id": "9a193dd084051221",
+      "prev": "afdbe586a6145c38",
+      "n": 0,
+      "payload": {
+        "type": "update",
+        "tick": 1,
+        "cells": [
+          {
+            "addr": "A1",
+            "dials": [
+              2,
+              1
+            ],
+            "kind": "generic"
+          },
+          {
+            "addr": "B1",
+            "dials": [
+              2
+            ],
+            "kind": "generic"
+          }
+        ],
+        "links": [
+          [
+            "A1",
+            "B1"
+          ]
+        ],
+        "ledger": {
+          "ok": true,
+          "len": 7,
+          "tip": "2af64f84a7d6e0fb"
+        },
+        "hello": true
+      }
+    },
+    {
+      "receipt_id": "9e0affbe16ddcabb",
+      "prev": "9a193dd084051221",
+      "n": 1,
+      "payload": {
+        "type": "update",
+        "tick": 1,
+        "cells": [
+          {
+            "addr": "A1",
+            "dials": [
+              2,
+              1
+            ],
+            "kind": "generic"
+          },
+          {
+            "addr": "B1",
+            "dials": [
+              2
+            ],
+            "kind": "generic"
+          }
+        ],
+        "links": [
+          [
+            "A1",
+            "B1"
+          ]
+        ],
+        "ledger": {
+          "ok": true,
+          "len": 8,
+          "tip": "c95230a62b607854"
+        },
+        "inspector": {
+          "cell": "A1",
+          "dials": [
+            2,
+            1
+          ],
+          "neighbors": [
+            "B1"
+          ],
+          "version": 4,
+          "state_digest": "129656b79f81c5b3"
+        }
+      }
+    }
+  ]
+}
