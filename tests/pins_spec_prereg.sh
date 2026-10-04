@@ -107,6 +107,97 @@ else
   bad P9 "broken tool already refuses — canary mutation ineffective: rc=$RC $OUT"
 fi
 
+# P10 unicode roundtrip: CJK + emoji in the spec seal/check GREEN, and a
+# CJK --note lands RAW in the ledger row (ensure_ascii=False). Raw matters:
+# fleet-witness L1 anchors hash row BYTES — an escaping dump would fork the
+# byte convention from canon() and break cross-tool root agreement.
+cat > "$T/uni.json" <<'EOF'
+{"spec": "pins.unicode", "version": 1,
+ "invariants": [
+   {"id": "地板-下限", "metric": "数值 🔬", "floor": ">= 2"}]}
+EOF
+OUT=$(python3 "$TOOL" seal "$T/uni.json" --ledger "$T/l10.jsonl" --note '备注🔬') \
+  && OUT2=$(python3 "$TOOL" check "$T/uni.json" --ledger "$T/l10.jsonl") \
+  && echo "$OUT2" | grep -q GREEN \
+  && python3 - "$T/l10.jsonl" <<'EOF' \
+  && ok P10 || bad P10 "unicode roundtrip: $OUT / $OUT2"
+import json, sys
+raw = open(sys.argv[1], "rb").readline()
+assert "备注🔬".encode("utf-8") in raw, "ledger row is not raw UTF-8"
+json.loads(raw.decode("utf-8"))  # still parses
+EOF
+
+# P11 nested reorder-stable: DEEP object key reorder -> same seal matches
+# (P3 covered top-level only; canon sorts recursively).
+cat > "$T/deep.json" <<'EOF'
+{"spec": "pins.deep", "version": 1,
+ "invariants": [
+   {"id": "d1", "metric": "m", "floor": ">= 1",
+    "meta": {"alpha": 1, "beta": {"x": 2, "y": 3}}}]}
+EOF
+python3 "$TOOL" seal "$T/deep.json" --ledger "$T/l11.jsonl" --note deep >/dev/null
+cat > "$T/deep2.json" <<'EOF'
+{"version": 1, "spec": "pins.deep",
+ "invariants": [
+   {"floor": ">= 1", "id": "d1", "meta": {"beta": {"y": 3, "x": 2}, "alpha": 1},
+    "metric": "m"}]}
+EOF
+OUT=$(python3 "$TOOL" check "$T/deep2.json" --ledger "$T/l11.jsonl") \
+  && echo "$OUT" | grep -q GREEN \
+  && ok P11 || bad P11 "deep reorder should still match: $OUT"
+
+# P12 deep array order sensitive: nested array swap -> BREACH
+# (arrays stay ordered at EVERY depth; only objects get sorted).
+cat > "$T/deep3.json" <<'EOF'
+{"spec": "pins.deep", "version": 1,
+ "invariants": [
+   {"id": "d1", "metric": "m", "floor": ">= 1",
+    "meta": {"alpha": 1, "beta": {"x": 2, "y": 3}, "seq": ["a", "b"]}}]}
+EOF
+python3 "$TOOL" seal "$T/deep3.json" --ledger "$T/l12.jsonl" --note deepseq >/dev/null
+cat > "$T/deep4.json" <<'EOF'
+{"spec": "pins.deep", "version": 1,
+ "invariants": [
+   {"id": "d1", "metric": "m", "floor": ">= 1",
+    "meta": {"alpha": 1, "beta": {"x": 2, "y": 3}, "seq": ["b", "a"]}}]}
+EOF
+OUT=$(python3 "$TOOL" check "$T/deep4.json" --ledger "$T/l12.jsonl"); RC=$?
+[ $RC -eq 1 ] && ok P12 || bad P12 "deep array reorder must diverge: rc=$RC $OUT"
+
+# P13 multi-spec ledger: two specs seal to ONE ledger; both check GREEN at
+# their own lines; chain covers 2 rows (revision/append is the lifecycle law).
+python3 "$TOOL" seal "$T/spec.json" --ledger "$T/l13.jsonl" --note spec-a >/dev/null
+python3 "$TOOL" seal "$T/uni.json" --ledger "$T/l13.jsonl" --note spec-b >/dev/null
+OUT=$(python3 "$TOOL" verify --ledger "$T/l13.jsonl") \
+  && echo "$OUT" | grep -q "2 rows" \
+  && OUTA=$(python3 "$TOOL" check "$T/spec.json" --ledger "$T/l13.jsonl") \
+  && OUTB=$(python3 "$TOOL" check "$T/uni.json" --ledger "$T/l13.jsonl") \
+  && echo "$OUTA" | grep -q "line 1" && echo "$OUTB" | grep -q "line 2" \
+  && ok P13 || bad P13 "multi-spec ledger: $OUT / $OUTA / $OUTB"
+
+# P14 semantics-blindness boundary (docstring limit #3, PINNED so no future
+# 'fix' silently adds validation): a spec with DUPLICATE invariant ids seals
+# and checks GREEN — reading/enforcing semantics is the reader's job, not the
+# tool's. The hash binds bytes, not meaning.
+cat > "$T/dup.json" <<'EOF'
+{"spec": "pins.dupids", "version": 1,
+ "invariants": [
+   {"id": "same", "metric": "m", "floor": ">= 2"},
+   {"id": "same", "metric": "m", "floor": "<= 9"}]}
+EOF
+OUT=$(python3 "$TOOL" seal "$T/dup.json" --ledger "$T/l14.jsonl" --note dupids) \
+  && OUT2=$(python3 "$TOOL" check "$T/dup.json" --ledger "$T/l14.jsonl") \
+  && echo "$OUT2" | grep -q GREEN \
+  && ok P14 || bad P14 "semantics-blind boundary moved: $OUT / $OUT2"
+
+# P15 BOM-prefixed spec -> REFUSED exit 2, nothing sealed (Windows-Notepad
+# edge; encoding='utf-8' keeps the BOM and json.load refuses it. Documented,
+# not fixed: silent BOM-stripping would change spec_bytes semantics).
+printf '\xef\xbb\xbf{"spec": "pins.bom", "version": 1, "invariants": []}' > "$T/bom.json"
+OUT=$(python3 "$TOOL" seal "$T/bom.json" --ledger "$T/l15.jsonl"); RC=$?
+[ $RC -eq 2 ] && [ ! -e "$T/l15.jsonl" ] && echo "$OUT" | grep -q REFUSED \
+  && ok P15 || bad P15 "BOM edge moved: rc=$RC $OUT"
+
 echo "----"
 echo "pins_spec_prereg: $PASS passed, $FAIL failed"
 [ $FAIL -eq 0 ]

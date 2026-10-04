@@ -25,6 +25,11 @@ Honest limits (kept first-class, receipts-culture law):
   3. The hash binds BYTES, not meaning. A spec that says "stdev >= 0.5x" is
      only as good as the reader enforcing it. This tool guarantees the spec
      you READ is the spec that was SEALED — nothing more.
+  4. Ledger rows are written RAW UTF-8 (ensure_ascii=False), matching
+     canon()'s byte convention. Downstream L1 witnesses (RFC 6962 Merkle
+     over row bytes) require one byte convention across the fleet — an
+     escaping JSON dump would fork roots for identical content. Pinned by
+     P10 (FAIL-first: RED on pre-fix dumps).
 
 Usage:
   spec_prereg.py seal SPEC [--ledger L] [--note NOTE]
@@ -156,7 +161,7 @@ def cmd_seal(args) -> int:
         if os.path.exists(args.ledger):
             with open(args.ledger, "r", encoding="utf-8") as src:
                 fh.write(src.read())
-        fh.write(json.dumps(row, sort_keys=True) + "\n")
+        fh.write(json.dumps(row, sort_keys=True, ensure_ascii=False) + "\n")
     os.replace(tmp, args.ledger)
     print(f"SEALED {sha} (ledger {args.ledger}, tip {row['chain']})")
     return 0

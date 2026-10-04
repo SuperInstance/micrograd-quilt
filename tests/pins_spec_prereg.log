@@ -8,5 +8,11 @@ PASS P7
 PASS P8
 canary RED demonstrated: chain-disabled copy exits 0 on tampered ledger (pin expectation rc=1 fails against it)
 PASS P9
+PASS P10
+PASS P11
+PASS P12
+PASS P13
+PASS P14
+PASS P15
 ----
-pins_spec_prereg: 9 passed, 0 failed
+pins_spec_prereg: 15 passed, 0 failed
